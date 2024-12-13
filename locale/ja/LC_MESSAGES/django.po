@@ -1,0 +1,1122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-18 00:16+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\base\templates\base\about.html:8 .\base\templates\base\home.html:69
+msgid ""
+"Welcome to <strong>Komyuniti</strong>, your ultimate social hub where users "
+"can seamlessly connect and collaborate within groups and clubs. Create or "
+"join groups with customizable privacy settings, engage in lively discussions "
+"through group chats and post feeds, and stay updated with upcoming events. "
+"Dive deeper into shared interests by forming private clubs within groups, "
+"fostering tighter-knit communities with dedicated chat and post features. "
+"With support for multiple languages, Komyuniti ensures inclusivity and "
+"accessibility for users worldwide. Join us and experience the power of "
+"community like never before!"
+msgstr "ユーザーがグループやクラブ内でシームレスにつながり、共同作業できる究極のソーシャル ハブである<strong>KOMYUNITI</strong>へようこそ。 カスタマイズ可能なプライバシー設定を使用してグループを作成または参加し、グループ チャットやフィードの投稿を通じて活発なディスカッションに参加し、今後のイベントに関する最新情報を入手します。 グループ内にプライベート クラブを形成し、専用のチャットや投稿機能を備えた緊密なコミュニティを育成することで、共通の関心事にさらに深く入り込みます。 Komyuniti は複数の言語をサポートし、世界中のユーザーの包括性とアクセシビリティを保証します。 私たちに参加して、これまでにないコミュニティの力を体験してください!"
+
+#: .\base\templates\base\about.html:12
+msgid "Group Creation and Membership:"
+msgstr "グループの作成とメンバーシップ:"
+
+#: .\base\templates\base\about.html:13
+msgid ""
+"Users can create groups based on shared interests, activities, or goals."
+msgstr "ユーザーは、共通の興味、活動、または目標に基づいてグループを作成できます。"
+
+#: .\base\templates\base\about.html:14
+msgid ""
+"Groups can be set as public for open access or private, requiring admin "
+"approval for membership."
+msgstr "グループは、オープン アクセスのパブリックとして設定することも、メンバーシップに対して管理者の承認を必要とするプライベートとして設定することもできます。"
+
+#: .\base\templates\base\about.html:15
+msgid "Users can send join requests to admins for private groups."
+msgstr "ユーザーは、プライベート グループの管理者に参加リクエストを送信できます。"
+
+#: .\base\templates\base\about.html:18
+msgid "Post Feeds:"
+msgstr "投稿フィード:"
+
+#: .\base\templates\base\about.html:19
+msgid ""
+"Each group has a dedicated feed where members can post updates, share "
+"content, and engage in discussions."
+msgstr "各グループには専用のフィードがあり、メンバーはここで最新情報を投稿し、コンテンツを共有し、ディスカッションに参加できます。"
+
+#: .\base\templates\base\about.html:20
+msgid ""
+"Similar to groups, each club within a group has its own post feed for "
+"focused conversations."
+msgstr "グループと同様に、グループ内の各クラブには、集中的な会話のための独自の投稿フィードがあります。"
+
+#: .\base\templates\base\about.html:23
+msgid "Chat Features:"
+msgstr "チャット機能:"
+
+#: .\base\templates\base\about.html:24
+msgid ""
+"Real-time messaging within groups to facilitate immediate communication "
+"among members."
+msgstr "グループ内のリアルタイムメッセージングにより、メンバー間の即時コミュニケーションが容易になります。"
+
+#: .\base\templates\base\about.html:25
+msgid ""
+"Private messaging within clubs for more intimate and targeted discussions."
+msgstr "クラブ内でのプライベートメッセージングにより、より親密で的を絞ったディスカッションが可能になります。"
+
+#: .\base\templates\base\about.html:28
+msgid "Subgroups (Clubs):"
+msgstr "サブグループ (クラブ):"
+
+#: .\base\templates\base\about.html:29
+msgid ""
+"Clubs are always private, ensuring focused and secure environments for "
+"specific interests within a group."
+msgstr "クラブは常に非公開であり、グループ内の特定の興味に集中した安全な環境を確保します。"
+
+#: .\base\templates\base\about.html:30
+msgid "Members can request to join clubs, which admins can approve or deny."
+msgstr "メンバーはクラブへの参加をリクエストでき、管理者はそれを承認または拒否できます。"
+
+#: .\base\templates\base\about.html:33
+msgid "Multilingual Support:"
+msgstr "多言語サポート:"
+
+#: .\base\templates\base\about.html:34
+msgid ""
+"The platform supports multiple languages, making it accessible to a diverse "
+"user base worldwide."
+msgstr "このプラットフォームは複数の言語をサポートしているため、世界中の多様なユーザー ベースがアクセスできるようになります。"
+
+#: .\base\templates\base\about.html:37
+msgid "Administrative Controls"
+msgstr "管理制御"
+
+#: .\base\templates\base\about.html:38
+msgid ""
+"Admins have the power to manage membership requests, moderate content, and "
+"organize events within their groups or clubs."
+msgstr "管理者は、メンバーシップのリクエストを管理し、コンテンツを管理し、グループまたはクラブ内でイベントを組織する権限を持っています。"
+
+#: .\base\templates\base\about.html:39
+msgid ""
+"Admins can configure the privacy settings of their groups and clubs to "
+"control visibility and access."
+msgstr "管理者はグループやクラブのプライバシー設定を構成して、可視性とアクセスを制御できます。"
+
+#: .\base\templates\base\about.html:52
+msgid ""
+"Student of SRM Ramapuram, Chennai. I am a proficient web developer with "
+"strong backend focus."
+msgstr "チェンナイのSRMラマプラムの学生。 私はバックエンドに重点を置いた熟練した Web 開発者です。"
+
+#: .\base\templates\base\about.html:71
+msgid "Made with "
+msgstr "で作りました"
+
+#: .\base\templates\base\change_password.html:8
+#: .\base\templates\base\setting.html:42
+msgid "Change Password"
+msgstr "パスワードを変更する"
+
+#: .\base\templates\base\change_password.html:11
+msgid "Old Password"
+msgstr "以前のパスワード"
+
+#: .\base\templates\base\change_password.html:13
+msgid "New Password"
+msgstr "新しいパスワード"
+
+#: .\base\templates\base\change_password.html:15
+msgid "New Password (again)"
+msgstr "新しいパスワードを再入力）"
+
+#: .\base\templates\base\change_password.html:18
+msgid "Change"
+msgstr "変化"
+
+#: .\base\templates\base\club_gallery.html:20
+#: .\base\templates\base\club_gallery.html:126
+#: .\base\templates\base\club_page.html:60
+#: .\base\templates\base\club_page.html:178
+#: .\base\templates\base\components\club_offcanvas.html:31
+#: .\base\templates\base\components\club_offcanvas.html:79
+#: .\base\templates\base\components\club_profile.html:35
+#: .\base\templates\base\components\group_offcanvas.html:67
+#: .\base\templates\base\group_details.html:229
+#: .\base\templates\base\group_details.html:281
+#: .\base\templates\base\group_details.html:333
+#: .\base\templates\base\group_info_2.html:52
+#: .\chat\templates\chat\club_chat.html:432
+msgid "Members"
+msgstr "メンバー数"
+
+#: .\base\templates\base\club_gallery.html:66
+#: .\base\templates\base\club_gallery.html:119
+#: .\base\templates\base\club_page.html:120
+#: .\base\templates\base\club_page.html:171
+#: .\base\templates\base\group_page.html:94
+#: .\base\templates\base\group_page.html:170
+#: .\base\templates\base\group_page.txt:359
+#: .\base\templates\base\group_page.txt:1241
+msgid "This group is private. Join the group to see the feed."
+msgstr "このグループは非公開です。 グループに参加してフィードを確認してください。"
+
+#: .\base\templates\base\club_gallery.html:76
+#: .\base\templates\base\club_page.html:130
+#: .\base\templates\base\group_details.html:8
+#: .\base\templates\base\group_requests.html:9
+#: .\chat\templates\chat\club_chat.html:206
+msgid "Back to group page"
+msgstr "グループページに戻る"
+
+#: .\base\templates\base\club_gallery.html:83
+#: .\base\templates\base\club_gallery.html:160
+#: .\base\templates\base\club_page.html:137
+#: .\base\templates\base\club_page.html:213
+#: .\chat\templates\chat\club_chat.html:217
+#: .\chat\templates\chat\club_chat.html:535
+msgid "Feed"
+msgstr "フィード"
+
+#: .\base\templates\base\club_gallery.html:88
+#: .\base\templates\base\club_gallery.html:165
+#: .\base\templates\base\club_page.html:142
+#: .\base\templates\base\club_page.html:218
+#: .\base\templates\base\group_clubs.html:108
+#: .\base\templates\base\group_clubs.html:244
+#: .\base\templates\base\group_events.html:150
+#: .\base\templates\base\group_events.html:305
+#: .\base\templates\base\group_page.html:136
+#: .\base\templates\base\group_page.html:204
+#: .\base\templates\base\group_page.txt:393
+#: .\base\templates\base\group_page.txt:753
+#: .\chat\templates\chat\chat_page.html:235
+#: .\chat\templates\chat\chat_page.html:540
+#: .\chat\templates\chat\club_chat.html:222
+#: .\chat\templates\chat\club_chat.html:540
+msgid "Events"
+msgstr "イベント"
+
+#: .\base\templates\base\club_gallery.html:93
+#: .\base\templates\base\club_gallery.html:177
+#: .\base\templates\base\club_page.html:147
+#: .\base\templates\base\club_page.html:230
+#: .\chat\templates\chat\club_chat.html:227
+#: .\chat\templates\chat\club_chat.html:552
+msgid "Chat"
+msgstr "チャット"
+
+#: .\base\templates\base\club_gallery.html:98
+#: .\base\templates\base\club_gallery.html:182
+#: .\base\templates\base\club_page.html:152
+#: .\base\templates\base\club_page.html:235
+#: .\chat\templates\chat\club_chat.html:232
+#: .\chat\templates\chat\club_chat.html:557
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#: .\base\templates\base\club_gallery.html:135
+#: .\base\templates\base\club_page.html:188
+#: .\base\templates\base\components\group_offcanvas.html:64
+#: .\base\templates\base\group_details.html:228
+#: .\base\templates\base\group_details.html:303
+#: .\base\templates\base\group_details.html:341
+msgid "Admin"
+msgstr "管理者"
+
+#: .\base\templates\base\club_gallery.html:172
+#: .\base\templates\base\club_page.html:225
+#: .\chat\templates\chat\club_chat.html:547
+msgid "Club"
+msgstr "クラブ"
+
+#: .\base\templates\base\club_page.html:9
+msgid "Delete Club"
+msgstr "クラブを削除する"
+
+#: .\base\templates\base\club_page.html:13
+msgid "Are you sure about deleting the club? This cannot be undone."
+msgstr "クラブを削除してもよろしいですか? これは、元に戻すことはできません。"
+
+#: .\base\templates\base\club_page.html:16
+#: .\base\templates\base\club_page.html:33
+#: .\base\templates\base\components\club_profile.html:13
+#: .\base\templates\base\components\group_offcanvas.html:32
+#: .\base\templates\base\group_details.html:190
+#: .\base\templates\base\group_details.html:208
+#: .\base\templates\base\group_info.html:14
+#: .\base\templates\base\group_info_2.html:14
+#: .\base\templates\base\group_info_2.html:32
+#: .\chat\templates\chat\chat_page.html:15
+#: .\chat\templates\chat\club_chat.html:16
+msgid "Close"
+msgstr "近い"
+
+#: .\base\templates\base\club_page.html:17
+#: .\base\templates\base\club_page.html:34
+#: .\base\templates\base\club_post_details.html:241
+#: .\base\templates\base\components\club_offcanvas.html:60
+#: .\base\templates\base\components\club_profile.html:60
+#: .\base\templates\base\components\group_offcanvas.html:33
+#: .\base\templates\base\components\group_offcanvas.html:98
+#: .\base\templates\base\components\large_club_posts.html:51
+#: .\base\templates\base\components\large_screen_posts.html:49
+#: .\base\templates\base\group_details.html:191
+#: .\base\templates\base\group_details.html:248
+#: .\base\templates\base\group_events.html:257
+#: .\base\templates\base\group_info_2.html:33
+#: .\base\templates\base\group_info_2.html:79
+#: .\base\templates\base\group_page.txt:71
+#: .\base\templates\base\group_page.txt:503
+#: .\base\templates\base\group_page.txt:952
+#: .\base\templates\base\post_details_page.html:47
+#: .\base\templates\base\post_details_page.html:235
+msgid "Delete"
+msgstr "削除"
+
+#: .\base\templates\base\club_page.html:26
+#: .\base\templates\base\components\club_profile.html:6
+msgid "Leave Club"
+msgstr "クラブを離れる"
+
+#: .\base\templates\base\club_page.html:30
+msgid "Are you sure about leaving the club? You have to request again."
+msgstr "クラブを辞めてもよろしいですか？ 再度リクエストする必要があります。"
+
+#: .\base\templates\base\club_page.html:43
+msgid "Back to clubs"
+msgstr "クラブに戻る"
+
+#: .\base\templates\base\club_page.html:63
+#: .\base\templates\base\components\club_offcanvas.html:28
+#: .\base\templates\base\components\club_profile.html:32
+#: .\base\templates\base\group_events.html:244
+msgid "Host"
+msgstr "ホスト"
+
+#: .\base\templates\base\club_page.html:72
+msgid "Request Pending"
+msgstr "リクエストを保留"
+
+#: .\base\templates\base\club_page.html:76
+msgid "Become a member"
+msgstr "会員になる"
+
+#: .\base\templates\base\club_page.html:82
+#: .\base\templates\base\components\club_offcanvas.html:37
+#: .\base\templates\base\components\club_profile.html:48
+#: .\base\templates\base\create_event.html:19
+#: .\base\templates\base\group_details.html:275
+msgid "Description"
+msgstr "説明"
+
+#: .\base\templates\base\club_page.html:113
+msgid "Be the first one to post!"
+msgstr "最初に投稿してみませんか!"
+
+#: .\base\templates\base\club_page.html:115
+#: .\base\templates\base\group_page.html:87
+msgid "End of posts"
+msgstr "投稿の終わり"
+
+#: .\base\templates\base\club_page.html:164
+msgid "No post as of now. Be the first one to post!"
+msgstr "今のところ投稿はありません。 最初に投稿してみませんか!"
+
+#: .\base\templates\base\club_post_details.html:10
+msgid "Back to Club"
+msgstr "クラブに戻る"
+
+#: .\base\templates\base\club_post_details.html:89
+#: .\base\templates\base\club_post_details.html:330
+#: .\base\templates\base\components\small_club_posts.html:80
+#: .\base\templates\base\components\small_screen_posts.html:78
+#: .\base\templates\base\group_page.txt:175
+#: .\base\templates\base\group_page.txt:654
+#: .\base\templates\base\group_page.txt:1056
+#: .\base\templates\base\post_details_page.html:149
+#: .\base\templates\base\post_details_page.html:381
+msgid "(edited)"
+msgstr "編集済み"
+
+#: .\base\templates\base\club_post_details.html:200
+#: .\base\templates\base\post_details_page.html:184
+msgid "Comments"
+msgstr "コメント"
+
+#: .\base\templates\base\club_post_details.html:225
+#: .\base\templates\base\club_post_details.html:330
+#: .\base\templates\base\components\large_club_posts.html:13
+msgid "ago"
+msgstr "前"
+
+#: .\base\templates\base\club_post_details.html:233
+#: .\base\templates\base\components\large_club_posts.html:37
+#: .\base\templates\base\components\large_screen_posts.html:35
+#: .\base\templates\base\group_page.txt:57
+#: .\base\templates\base\group_page.txt:489
+#: .\base\templates\base\group_page.txt:938
+#: .\base\templates\base\post_details_page.html:39
+#: .\base\templates\base\post_details_page.html:221
+msgid "Edited"
+msgstr "編集済み"
+
+#: .\base\templates\base\club_post_details.html:238
+#: .\base\templates\base\components\large_club_posts.html:46
+#: .\base\templates\base\components\large_screen_posts.html:44
+#: .\base\templates\base\edit_club_post.html:10
+#: .\base\templates\base\edit_post.html:10
+#: .\base\templates\base\edit_profile.html:13
+#: .\base\templates\base\group_events.html:258
+#: .\base\templates\base\group_page.txt:66
+#: .\base\templates\base\group_page.txt:498
+#: .\base\templates\base\group_page.txt:947
+#: .\base\templates\base\post_details_page.html:44
+#: .\base\templates\base\post_details_page.html:230
+msgid "Edit"
+msgstr "編集"
+
+#: .\base\templates\base\club_post_details.html:247
+#: .\base\templates\base\components\large_club_posts.html:64
+#: .\base\templates\base\components\large_screen_posts.html:62
+#: .\base\templates\base\group_page.txt:84
+#: .\base\templates\base\group_page.txt:516
+#: .\base\templates\base\group_page.txt:965
+#: .\base\templates\base\post_details_page.html:56
+#: .\base\templates\base\post_details_page.html:243
+msgid "Report"
+msgstr "報告"
+
+#: .\base\templates\base\club_requests.html:9
+msgid "Back to club page"
+msgstr "クラブページに戻る"
+
+#: .\base\templates\base\club_requests.html:12
+msgid "Club join requests"
+msgstr "クラブへの参加リクエスト"
+
+#: .\base\templates\base\club_requests.html:16
+msgid "wants to join the club."
+msgstr "クラブに参加したいと思っています。"
+
+#: .\base\templates\base\club_requests.html:17
+#: .\base\templates\base\group_requests.html:41
+#: .\base\templates\base\group_requests.html:56
+#: .\base\templates\base\invite_requests_page.html:12
+msgid "Accept"
+msgstr "受け入れる"
+
+#: .\base\templates\base\club_requests.html:18
+#: .\base\templates\base\club_requests.html:39
+#: .\base\templates\base\group_requests.html:42
+#: .\base\templates\base\group_requests.html:57
+#: .\base\templates\base\group_requests.html:74
+#: .\base\templates\base\group_requests.html:92
+msgid "Reject"
+msgstr "拒否する"
+
+#: .\base\templates\base\club_requests.html:23
+#: .\base\templates\base\club_requests.html:44
+#: .\base\templates\base\invite_requests_page.html:21
+msgid "No requests."
+msgstr "リクエストはありません。"
+
+#: .\base\templates\base\club_requests.html:27
+msgid "Post Report"
+msgstr "ポストレポート"
+
+#: .\base\templates\base\club_requests.html:30
+#: .\base\templates\base\group_requests.html:65
+#: .\base\templates\base\group_requests.html:83
+msgid "Sender"
+msgstr "送信者"
+
+#: .\base\templates\base\club_requests.html:31
+#: .\base\templates\base\group_requests.html:39
+#: .\base\templates\base\group_requests.html:51
+#: .\base\templates\base\group_requests.html:66
+#: .\base\templates\base\group_requests.html:84
+msgid "Created"
+msgstr "作成日"
+
+#: .\base\templates\base\club_requests.html:32
+#: .\base\templates\base\group_requests.html:67
+msgid "Post Creator"
+msgstr "投稿クリエイター"
+
+#: .\base\templates\base\club_requests.html:33
+#: .\base\templates\base\group_requests.html:68
+msgid "Post Creator Email"
+msgstr "作成後のメール"
+
+#: .\base\templates\base\club_requests.html:34
+#: .\base\templates\base\group_requests.html:69
+msgid "Post Body"
+msgstr "ポストボディ"
+
+#: .\base\templates\base\club_requests.html:35
+#: .\base\templates\base\group_requests.html:70
+msgid "Report Reason"
+msgstr "報告理由"
+
+#: .\base\templates\base\club_requests.html:37
+#: .\base\templates\base\group_requests.html:72
+msgid "Delete post"
+msgstr "投稿を削除する"
+
+#: .\base\templates\base\club_requests.html:38
+msgid "View Post"
+msgstr "投稿を見る"
+
+#: .\base\templates\base\components\club_offcanvas.html:16
+msgid "Club details"
+msgstr "クラブ詳細"
+
+#: .\base\templates\base\components\club_offcanvas.html:49
+msgid "Back to group"
+msgstr "グループに戻る"
+
+#: .\base\templates\base\components\club_offcanvas.html:55
+#: .\base\templates\base\components\club_profile.html:57
+msgid "Edit Club"
+msgstr "クラブを編集する"
+
+#: .\base\templates\base\components\club_offcanvas.html:63
+#: .\base\templates\base\components\club_profile.html:61
+msgid "Club requests"
+msgstr "クラブのリクエスト"
+
+#: .\base\templates\base\components\club_offcanvas.html:70
+#: .\base\templates\base\components\club_profile.html:65
+msgid "Leave the club"
+msgstr "Leave the club"
+
+#: .\base\templates\base\components\club_offcanvas.html:73
+#: .\base\templates\base\components\club_profile.html:66
+#: .\base\templates\base\components\group_offcanvas.html:111
+#: .\base\templates\base\group_info.html:45
+#: .\base\templates\base\group_info_2.html:87
+msgid "Invite"
+msgstr "招待"
+
+#: .\base\templates\base\components\club_profile.html:10
+msgid "Are you sure about leaving the club? You have to request again"
+msgstr "クラブを辞めてもよろしいですか？ 再度リクエストする必要があります"
+
+#: .\base\templates\base\components\club_profile.html:14
+#: .\base\templates\base\group_details.html:209
+#: .\base\templates\base\group_info.html:15
+#: .\base\templates\base\group_info_2.html:15
+msgid "Leave"
+msgstr "離れる"
+
+#: .\base\templates\base\components\club_profile.html:58
+#: .\base\templates\base\components\group_offcanvas.html:101
+#: .\base\templates\base\group_details.html:245
+#: .\base\templates\base\group_info.html:42
+#: .\base\templates\base\group_info_2.html:75
+msgid "Requests"
+msgstr "リクエスト"
+
+#: .\base\templates\base\components\club_profile.html:70
+#: .\base\templates\base\components\group_offcanvas.html:115
+#: .\base\templates\base\group_details.html:259
+#: .\base\templates\base\group_info.html:49
+#: .\base\templates\base\group_info_2.html:91
+msgid "Request pending...(Click to delete)"
+msgstr "リクエスト保留中...(クリックして削除)"
+
+#: .\base\templates\base\components\club_profile.html:72
+#: .\base\templates\base\group_details.html:261
+#: .\base\templates\base\group_info.html:51
+#: .\base\templates\base\group_info_2.html:93
+msgid "Request to Join"
+msgstr "参加リクエスト"
+
+#: .\base\templates\base\components\club_profile.html:75
+#: .\base\templates\base\components\group_offcanvas.html:127
+#: .\base\templates\base\group_details.html:267
+#: .\base\templates\base\group_info.html:54
+#: .\base\templates\base\group_info_2.html:99
+msgid "Join"
+msgstr "参加"
+
+#: .\base\templates\base\components\group_offcanvas.html:11
+#: .\base\templates\base\group_details.html:205
+#: .\base\templates\base\group_info.html:11
+#: .\base\templates\base\group_info_2.html:11
+msgid "Are you sure about leaving the group?"
+msgstr "グループを退会してもよろしいですか?"
+
+#: .\base\templates\base\components\group_offcanvas.html:25
+#: .\base\templates\base\group_info_2.html:25
+msgid "Delete the group"
+msgstr "グループを削除"
+
+#: .\base\templates\base\components\group_offcanvas.html:29
+#: .\base\templates\base\group_info_2.html:29
+msgid "Are you sure about deleting the group? This cannot be undone."
+msgstr "グループを削除してもよろしいですか? これは、元に戻すことはできません。"
+
+#: .\base\templates\base\components\group_offcanvas.html:52
+#: .\base\templates\base\components\group_offcanvas.html:87
+#: .\base\templates\base\group_info.html:39
+#: .\base\templates\base\group_info_2.html:69
+msgid "Group details"
+msgstr "グループ詳細"
+
+#: .\base\templates\base\components\group_offcanvas.html:93
+#: .\base\templates\base\group_details.html:244
+#: .\base\templates\base\group_info_2.html:74
+msgid "Edit Group"
+msgstr "グループ編集"
+
+#: .\base\templates\base\components\group_offcanvas.html:108
+msgid "Leave group"
+msgstr "グループを離れる"
+
+#: .\base\templates\base\components\large_club_posts.html:56
+#: .\base\templates\base\components\large_club_posts.html:69
+#: .\base\templates\base\components\large_screen_posts.html:54
+#: .\base\templates\base\components\large_screen_posts.html:67
+#: .\base\templates\base\group_page.txt:76
+#: .\base\templates\base\group_page.txt:89
+#: .\base\templates\base\group_page.txt:508
+#: .\base\templates\base\group_page.txt:521
+#: .\base\templates\base\group_page.txt:957
+#: .\base\templates\base\group_page.txt:970
+#: .\base\templates\base\post_details_page.html:50
+#: .\base\templates\base\post_details_page.html:59
+msgid "See comments"
+msgstr "コメントを参照"
+
+#: .\base\templates\base\components\new_club_post_form.html:12
+#: .\base\templates\base\components\new_post_form.html:12
+#: .\base\templates\base\components\new_post_form_small.html:28
+#: .\base\templates\base\group_page.txt:14
+#: .\base\templates\base\group_page.txt:417
+#: .\base\templates\base\group_page.txt:446
+#: .\base\templates\base\group_page.txt:566
+#: .\base\templates\base\group_page.txt:820
+#: .\base\templates\base\group_page.txt:860
+#: .\base\templates\base\group_page.txt:895
+msgid "What's happening,"
+msgstr "何が起こっているの,"
+
+#: .\base\templates\base\components\new_club_post_form.html:19
+#: .\base\templates\base\components\new_post_form.html:22
+#: .\base\templates\base\components\new_post_form_small.html:39
+msgid "Attach"
+msgstr "添付"
+
+#: .\base\templates\base\components\new_club_post_form.html:21
+#: .\base\templates\base\components\new_club_post_form.html:23
+#: .\base\templates\base\components\new_post_form.html:24
+#: .\base\templates\base\components\new_post_form.html:26
+#: .\base\templates\base\components\new_post_form_small.html:41
+#: .\base\templates\base\components\new_post_form_small.html:43
+#: .\base\templates\base\group_page.txt:579
+#: .\base\templates\base\group_page.txt:873
+msgid "Post"
+msgstr "投稿"
+
+#: .\base\templates\base\components\new_club_post_form.html:27
+#: .\base\templates\base\components\new_post_form.html:30
+#: .\base\templates\base\components\new_post_form_small.html:47
+#: .\base\templates\base\create_event.html:31
+msgid "Image"
+msgstr "画像"
+
+#: .\base\templates\base\components\new_club_post_form.html:29
+#: .\base\templates\base\components\new_post_form.html:32
+#: .\base\templates\base\components\new_post_form_small.html:49
+msgid "Embed Youtube Link"
+msgstr "YouTube リンクを埋め込む"
+
+#: .\base\templates\base\components\small_club_posts.html:63
+#: .\base\templates\base\components\small_screen_posts.html:63
+#: .\base\templates\base\group_events.html:231
+#: .\base\templates\base\group_page.txt:165
+#: .\base\templates\base\group_page.txt:644
+#: .\base\templates\base\group_page.txt:1046
+#: .\base\templates\base\post_details_page.html:134
+msgid "see more.."
+msgstr "もっと見る.."
+
+#: .\base\templates\base\create_club.html:9
+msgid "Create Club"
+msgstr "クラブを作成"
+
+#: .\base\templates\base\create_club.html:40
+#: .\base\templates\base\create_event.html:41
+msgid "Create"
+msgstr "作成"
+
+#: .\base\templates\base\create_club.html:41
+#: .\base\templates\base\create_event.html:42
+#: .\base\templates\base\create_group.html:12
+#: .\base\templates\base\edit_club_post.html:11
+#: .\base\templates\base\edit_post.html:11
+#: .\base\templates\base\edit_profile.html:14
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: .\base\templates\base\create_event.html:6
+#: .\base\templates\base\group_events.html:216
+#: .\base\templates\base\group_events.html:219
+msgid "Create an event"
+msgstr "イベントを作成する"
+
+#: .\base\templates\base\create_event.html:15
+#: .\base\templates\base\create_event.html:16
+#: .\base\templates\base\group_requests.html:85
+#: .\base\templates\base\login_register.html:13
+msgid "Name"
+msgstr "名前"
+
+#: .\base\templates\base\create_event.html:23
+#: .\base\templates\base\event_details.html:14
+msgid "Time"
+msgstr "時間"
+
+#: .\base\templates\base\create_event.html:27
+#: .\base\templates\base\event_details.html:15
+msgid "Date"
+msgstr "日付"
+
+#: .\base\templates\base\create_event.html:37
+#: .\base\templates\base\group_requests.html:40
+#: .\base\templates\base\group_requests.html:54
+#: .\base\templates\base\group_requests.html:89
+msgid "Message"
+msgstr "メッセージ"
+
+#: .\base\templates\base\create_group.html:6
+msgid "Create Group"
+msgstr "グループを作る"
+
+#: .\base\templates\base\create_group.html:11
+msgid "Create group"
+msgstr "グループを作る"
+
+#: .\base\templates\base\edit_profile.html:9
+#: .\base\templates\base\user_profile.html:130
+msgid "Edit Profile"
+msgstr "プロファイル編集"
+
+#: .\base\templates\base\event_details.html:6
+msgid "Back to events"
+msgstr "イベントに戻る"
+
+#: .\base\templates\base\event_details.html:16
+msgid "Created by"
+msgstr "によって作成された"
+
+#: .\base\templates\base\event_details.html:18
+#: .\base\templates\base\event_details.html:20
+#: .\base\templates\base\group_events.html:252
+msgid "Interested"
+msgstr "興味がある"
+
+#: .\base\templates\base\event_details.html:26
+msgid "Interested members"
+msgstr "興味のあるメンバー"
+
+#: .\base\templates\base\group_clubs.html:93
+#: .\base\templates\base\group_clubs.html:227
+#: .\base\templates\base\group_events.html:135
+#: .\base\templates\base\group_events.html:288
+#: .\base\templates\base\group_page.html:117
+#: .\base\templates\base\group_page.html:187
+#: .\base\templates\base\group_page.txt:383
+#: .\base\templates\base\group_page.txt:743
+#: .\chat\templates\chat\chat_page.html:218
+#: .\chat\templates\chat\chat_page.html:523
+msgid "Posts"
+msgstr "投稿"
+
+#: .\base\templates\base\group_clubs.html:100
+#: .\base\templates\base\group_clubs.html:232
+#: .\base\templates\base\group_events.html:142
+#: .\base\templates\base\group_events.html:293
+#: .\base\templates\base\group_page.html:125
+#: .\base\templates\base\group_page.html:192
+#: .\base\templates\base\group_page.txt:388
+#: .\base\templates\base\group_page.txt:748
+#: .\chat\templates\chat\chat_page.html:226
+#: .\chat\templates\chat\chat_page.html:528
+msgid "Clubs"
+msgstr "クラブ"
+
+#: .\base\templates\base\group_clubs.html:116
+#: .\base\templates\base\group_events.html:158
+#: .\base\templates\base\group_page.html:147
+#: .\base\templates\base\group_page.txt:398
+#: .\base\templates\base\group_page.txt:758
+#: .\chat\templates\chat\chat_page.html:243
+msgid "Discussion"
+msgstr "議論"
+
+#: .\base\templates\base\group_clubs.html:171
+#: .\base\templates\base\group_clubs.html:175
+msgid "Create a club"
+msgstr "クラブを作成する"
+
+#: .\base\templates\base\group_clubs.html:176
+#: .\base\templates\base\group_clubs.html:184
+msgid ""
+"After creating the club, a request will be sent to the group admin, and the "
+"club will only be displayed here after approval."
+msgstr "クラブを作成すると、グループ管理者にリクエストが送信され、承認された場合にのみここにクラブが表示されます。"
+
+#: .\base\templates\base\group_clubs.html:206
+#: .\base\templates\base\group_events.html:270
+msgid "This group is private. Join the group to see the clubs."
+msgstr "このグループは非公開です。 グループに参加してクラブをご覧ください。"
+
+#: .\base\templates\base\group_clubs.html:239
+#: .\base\templates\base\group_events.html:300
+#: .\base\templates\base\group_page.html:199
+#: .\chat\templates\chat\chat_page.html:535
+msgid "Group"
+msgstr ""
+
+#: .\base\templates\base\group_clubs.html:250
+#: .\base\templates\base\group_events.html:311
+#: .\base\templates\base\group_page.html:210
+#: .\chat\templates\chat\chat_page.html:546
+msgid "Chats"
+msgstr "チャット"
+
+#: .\base\templates\base\group_details.html:183
+msgid "Delete group"
+msgstr "グループの削除"
+
+#: .\base\templates\base\group_details.html:187
+msgid "Are you sure about deleting the group"
+msgstr "グループを削除してもよろしいですか"
+
+#: .\base\templates\base\group_details.html:187
+msgid "This cannot be undone."
+msgstr "これは、元に戻すことはできません。"
+
+#: .\base\templates\base\group_details.html:201
+#: .\base\templates\base\group_info.html:7
+msgid "Leave Group"
+msgstr "グループを離れる"
+
+#: .\base\templates\base\group_details.html:255
+#: .\base\templates\base\group_info.html:44
+#: .\base\templates\base\group_info_2.html:7
+#: .\base\templates\base\group_info_2.html:86
+msgid "Leave the group"
+msgstr "グループを離れる"
+
+#: .\base\templates\base\group_details.html:278
+msgid "Rules"
+msgstr "ルール"
+
+#: .\base\templates\base\group_events.html:220
+msgid ""
+"After creating the event, a request will be sent to the group admin, and the "
+"event will only be displayed here after approval."
+msgstr "イベントの作成後、リクエストがグループ管理者に送信され、イベントは承認後にのみここに表示されます。"
+
+#: .\base\templates\base\group_events.html:242
+msgid "Event details"
+msgstr "イベントの詳細"
+
+#: .\base\templates\base\group_requests.html:13
+msgid "Choose Request"
+msgstr "リクエストを選択してください"
+
+#: .\base\templates\base\group_requests.html:17
+#: .\base\templates\base\group_requests.html:27
+msgid "Join Requests"
+msgstr "参加リクエスト"
+
+#: .\base\templates\base\group_requests.html:18
+#: .\base\templates\base\group_requests.html:28
+msgid "Club Creation Requests"
+msgstr "クラブ作成リクエスト"
+
+#: .\base\templates\base\group_requests.html:19
+#: .\base\templates\base\group_requests.html:29
+msgid "Post reports"
+msgstr "レポートを投稿する"
+
+#: .\base\templates\base\group_requests.html:20
+#: .\base\templates\base\group_requests.html:30
+msgid "Event requests"
+msgstr "イベントリクエスト"
+
+#: .\base\templates\base\group_requests.html:38
+msgid "Sender name"
+msgstr "送信者名"
+
+#: .\base\templates\base\group_requests.html:52
+msgid "Club Name"
+msgstr "クラブ名"
+
+#: .\base\templates\base\group_requests.html:53
+msgid "Club Description"
+msgstr "クラブの説明"
+
+#: .\base\templates\base\group_requests.html:86
+msgid "Event description"
+msgstr "イベントの説明"
+
+#: .\base\templates\base\group_requests.html:87
+msgid "Event date"
+msgstr "開催日"
+
+#: .\base\templates\base\group_requests.html:88
+msgid "Event time"
+msgstr "イベント時間"
+
+#: .\base\templates\base\group_requests.html:91
+msgid "Create event"
+msgstr "イベントの作成"
+
+#: .\base\templates\base\home.html:10
+msgid "Groups"
+msgstr "グループ"
+
+#: .\base\templates\base\home.html:42
+msgid "You have not joined any groups."
+msgstr "どのグループにも参加していません。"
+
+#: .\base\templates\base\home.html:47
+msgid "You can search for groups using the search bar,"
+msgstr "検索バーを使用してグループを検索できます。"
+
+#: .\base\templates\base\home.html:47
+msgid " or you can create your own group."
+msgstr "または、独自のグループを作成することもできます。"
+
+#: .\base\templates\base\home.html:64
+msgid "What is Komyuniti?"
+msgstr ""
+
+#: .\base\templates\base\home.html:78 .\base\templates\base\home.html:86
+msgid "Log In"
+msgstr "ログイン"
+
+#: .\base\templates\base\home.html:81
+msgid "Email address"
+msgstr "電子メールアドレス"
+
+#: .\base\templates\base\home.html:83
+#: .\base\templates\base\login_register.html:32
+msgid "Password"
+msgstr "パスワード"
+
+#: .\base\templates\base\home.html:93
+msgid "New to Komyuniti? Create an account."
+msgstr "コミユニティを初めてご利用ですか? アカウントを作成する。"
+
+#: .\base\templates\base\invite_page.html:8
+msgid ""
+"To invite users, please input the exact username of the user in the search "
+"bar."
+msgstr "ユーザーを招待するには、検索バーにユーザーの正確なユーザー名を入力してください。"
+
+#: .\base\templates\base\invite_page.html:13 .\templates\navbar.html:55
+msgid "Search"
+msgstr "検索"
+
+#: .\base\templates\base\invite_page.html:20
+msgid "Send Invite"
+msgstr "招待を送る"
+
+#: .\base\templates\base\invite_requests_page.html:13
+msgid "reject"
+msgstr "拒否"
+
+#: .\base\templates\base\login_register.html:9
+msgid "Sign In"
+msgstr "サインイン"
+
+#: .\base\templates\base\login_register.html:17
+msgid "Username"
+msgstr "ユーザー名"
+
+#: .\base\templates\base\login_register.html:22
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr "必須。 150 文字以内。 文字、数字、@/./+/-/_ のみ。"
+
+#: .\base\templates\base\login_register.html:27
+msgid "Email"
+msgstr "Eメール"
+
+#: .\base\templates\base\login_register.html:35
+msgid ""
+"Your password must be 8-20 characters long, contain letters and numbers, and "
+"must not contain spaces, special characters, or emoji."
+msgstr "パスワードは 8 ～ 20 文字で、文字と数字を含む必要があり、スペース、特殊文字、絵文字を含めることはできません。"
+
+#: .\base\templates\base\login_register.html:39
+msgid "Password confirmation"
+msgstr "パスワードの確認"
+
+#: .\base\templates\base\login_register.html:43
+msgid "Register"
+msgstr "登録"
+
+#: .\base\templates\base\login_register.html:50
+msgid "Already have an account? Log in"
+msgstr "すでにアカウントをお持ちですか？ ログイン"
+
+#: .\base\templates\base\post_details_page.html:10
+msgid "Back to posts"
+msgstr "投稿に戻る"
+
+#: .\base\templates\base\post_details_page.html:190
+msgid "Write comment..."
+msgstr "コメントを書く..."
+
+#: .\base\templates\base\report_page.html:6
+msgid "This report will be sent to the admin for further review. "
+msgstr "このレポートはさらなる検討のために管理者に送信されます。"
+
+#: .\base\templates\base\report_page.html:11
+#: .\chat\templates\chat\chat_page.html:345
+#: .\chat\templates\chat\chat_page.html:488
+#: .\chat\templates\chat\club_chat.html:334
+#: .\chat\templates\chat\club_chat.html:500
+msgid "Send"
+msgstr "送信"
+
+#: .\base\templates\base\setting.html:6
+msgid "Select Language"
+msgstr "言語を選択する"
+
+#: .\base\templates\base\setting.html:27 .\templates\navbar.html:79
+msgid "Language"
+msgstr "言語"
+
+#: .\base\templates\base\setting.html:45
+msgid "Delete Account"
+msgstr "アカウントを削除する"
+
+#: .\base\templates\base\user_profile.html:126
+msgid "Member of komyuniti since"
+msgstr "日付より　Komyuniti　メンバー"
+
+#: .\base\templates\base\user_profile.html:131 .\templates\navbar.html:43
+msgid "Log Out"
+msgstr "ログアウト"
+
+#: .\base\templates\base\user_profile.html:135
+msgid "About Me"
+msgstr "私について"
+
+#: .\base\templates\base\user_profile.html:143
+msgid "Mutual Groups"
+msgstr "相互グループ"
+
+#: .\chat\templates\chat\chat_page.html:8
+#: .\chat\templates\chat\club_chat.html:9
+msgid "Clear Chat messages"
+msgstr "チャットメッセージをクリアする"
+
+#: .\chat\templates\chat\chat_page.html:12
+#: .\chat\templates\chat\club_chat.html:13
+msgid "Do you want to clear all the chat messages?"
+msgstr "すべてのチャット メッセージをクリアしますか?"
+
+#: .\chat\templates\chat\chat_page.html:16
+#: .\chat\templates\chat\club_chat.html:17
+msgid "Clear"
+msgstr "クリア"
+
+#: .\chat\templates\chat\chat_page.html:303
+#: .\chat\templates\chat\club_chat.html:292
+msgid "Clear chats"
+msgstr "チャットをクリアする"
+
+#: .\chat\templates\chat\chat_page.html:307
+#: .\chat\templates\chat\club_chat.html:296
+msgid "Please remember to maintain a respectful tone in the chat."
+msgstr "チャットでは敬意を持った口調を維持することを忘れないでください。"
+
+#: .\chat\templates\chat\chat_page.html:312
+#: .\chat\templates\chat\chat_page.html:597
+#: .\chat\templates\chat\club_chat.html:301
+#: .\chat\templates\chat\club_chat.html:628
+msgid "You"
+msgstr "あなた"
+
+#: .\chat\templates\chat\chat_page.html:342
+#: .\chat\templates\chat\chat_page.html:485
+#: .\chat\templates\chat\club_chat.html:331
+#: .\chat\templates\chat\club_chat.html:497
+msgid "Type a message!"
+msgstr "メッセージを入力してください！"
+
+#: .\chat\templates\chat\chat_page.html:432
+#: .\chat\templates\chat\club_chat.html:420
+msgid "This group is private. Join the group to participate in the discussion."
+msgstr "このグループは非公開です。 グループに参加してディスカッションに参加してください。"
+
+#: .\kominote\settings.py:39
+msgid "English"
+msgstr "英語"
+
+#: .\kominote\settings.py:40
+msgid "Japanese"
+msgstr "日本語"
+
+#: .\kominote\settings.py:41
+msgid "Simplified Chinese"
+msgstr "簡体字中国語"
+
+#: .\kominote\settings.py:42
+msgid "German"
+msgstr "ドイツ語"
+
+#: .\templates\navbar.html:28
+msgid "Home"
+msgstr "ホームページ"
+
+#: .\templates\navbar.html:35 .\templates\navbar.html:38
+msgid "Profile"
+msgstr "プロフィール"
+
+#: .\templates\navbar.html:39
+msgid "Settings"
+msgstr "設定"
+
+#: .\templates\navbar.html:40
+msgid "Invite Request"
+msgstr "招待リクエスト"
+
+#: .\templates\navbar.html:42 .\templates\navbar.html:58
+msgid "About"
+msgstr "このサイトについて"
+
+#: .\templates\navbar.html:48
+msgid "Logged in as"
+msgstr "ログイン名:"
+
+#: .\templates\navbar.html:54
+msgid "Search groups"
+msgstr "グループを検索"

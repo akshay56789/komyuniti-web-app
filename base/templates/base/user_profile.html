@@ -1,0 +1,170 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+{% comment %} <div>
+    <div class="row my-4 mx-4">
+        <div class="col-9">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{{user.avatar.url}}" style="height: 100px; width: 100px; border-radius: 50px;">
+                </div>
+                <div class="col-10">
+                    <h2>{{user.name}}</h2>
+                    <h5>@{{user.username}}</h5>
+                </div>
+            </div>
+            <div class="row my-4">
+                <h5>Member of Komyuniti since {{user.date_joined}}</h5>
+            </div>
+            <div class="row">
+                <div>
+                    <h4>About Me</h4>
+                    <p>
+                        {{user.bio}}
+                    </p>
+                </div>
+            </div>
+            <div>
+                {% if request.user == user %}
+                <a class="btn btn-outline-primary" href="{% url "edit-profile" request.user.id %}" role="button" >Edit Profile</a>
+                <a class="btn btn-outline-danger" href="{% url 'logout' %}" role="button" >Log Out</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-3">
+            <div>
+                <h3>Mutual Groups</h3>
+            </div>
+            <div class="my-2">
+                <ul class="list-group">
+                    {% for groups in mutual_groups %}
+                    <a href="#" style="text-decoration: none;">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="{{groups.image.url}}" style="height: 50px; width: 50px; border-radius: 5px;">
+                            </div>
+                            <div class="col-9">
+                                <h5>{{groups.name}}</h5>
+                            </div>
+                        </div>
+                    </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- <div style="text-align: center;">
+        <div style="position: relative; display: inline-block; border-radius: 50%; border: 2px solid var(--color-main); display: block; width: 8rem; height: 8rem; border-radius: 50%;">
+          <img src="{{user.avatar.url}}" style="height: 2rem; width: 2rem; border-radius: 5rem" />
+        </div>
+      </div>
+    <div>
+        Name
+        <h3>{{user.name}}</h3>
+    </div>
+    <div>
+        username
+        <h4>@{{user.username}}</h4>
+    </div>
+    <div>
+        bio
+        {% if user.bio is None %}
+        Add something in your bio.
+        {% else %}
+        <h5>{{user.bio}}</h5>
+        {% endif %}
+    </div>
+    <div>
+        Member of Komyuniti since
+        {{user.date_joined}}
+    </div>
+
+    <div>
+        #friend request#
+    </div>
+    <div>
+        Mutual groups
+        {% for groups in mutual_groups %}
+        <h3>{{groups.name}}</h3>
+        {% endfor %}
+
+    </div>
+    {% if request.user == user %}
+    <a href="{% url "edit-profile" request.user.id %}">Edit profile</a>
+    <a href="{% url 'logout' %}" >Log out</a>
+    {% endif %} -->
+    
+</div> {% endcomment %}
+<div id="body" >
+    <div class="row m-3" >
+      <div id="left-side" class=" col-xl-9 col-lg-9 col-md-9">
+        <div id="top-left" class="row">
+          <div id="image-left-side" class="d-flex col-xl-2 col-lg-2 col-md-2 justify-content-center">
+            <img src="{{user.avatar.url}}" style="height: 100px; width: 100px; border-radius: 50px;">
+          </div>
+          <div id="image-right-side" class="col-xl-10 col-lg-10 col-md-10 ">
+            <div id="name" class="d-flex justify-content-center d-sm-none">
+              <h2>{{user.name}}</h2>
+            </div>
+            <div id="name" class="d-none d-sm-block">
+              <h2>{{user.name}}</h2>
+            </div>
+            <div id="username" class="d-flex justify-content-center d-sm-none">
+              <h5>@{{user.username}}</h5>
+            </div>
+            <div id="username" class="d-none d-sm-block">
+              <h5>@{{user.username}}</h5>
+            </div>
+          </div>
+        </div>
+        <div id="member_of" class="my-4">
+          <h5>{% trans "Member of komyuniti since" %} {{user.date_joined}}</h5>
+        </div>
+        <div id="buttons" class="my-3">
+          {% if request.user == user %}
+                  <a class="btn btn-outline-primary" href="{% url "edit-profile" request.user.id %}" role="button" >{% trans "Edit Profile" %}</a>
+                  <a onclick="spinner()" class="btn btn-outline-danger" href="{% url 'logout' %}" role="button" >{% trans "Log Out" %}</a>
+                  {% endif %}
+        </div>
+        <div id="about-me">
+          <h4>{% trans "About Me" %}</h4>
+          <p>
+            {{user.bio}}
+        </p>
+        </div>
+        
+      </div>
+      <div id="right-side" class="col-xl-3 col-lg-3 col-md-3">
+        <h4>{% trans "Mutual Groups" %}</h4>
+        <div class="my-2">
+          <ul class="list-group">
+              {% for groups in mutual_groups %}
+              <a href="#" style="text-decoration: none;">
+              <li class="list-group-item my-2">
+                  <div class="row ">
+                      <div class="col-3">
+                          <img src="{{groups.image.url}}" style="height: 50px; width: 50px; border-radius: 5px;">
+                      </div>
+                      <div class="col-9">
+                          <h5>{{groups.name}}</h5>
+                      </div>
+                  </div>
+              </li>
+              </a>
+              {% endfor %}
+          </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}
+
+
+
+

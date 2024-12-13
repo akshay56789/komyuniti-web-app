@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% block content %}
+{% load i18n %}
+
+<div class="container">
+    <div class="my-3">
+        <p style="font-size: large;">
+            {% trans "Welcome to <strong>Komyuniti</strong>, your ultimate social hub where users can seamlessly connect and collaborate within groups and clubs. Create or join groups with customizable privacy settings, engage in lively discussions through group chats and post feeds, and stay updated with upcoming events. Dive deeper into shared interests by forming private clubs within groups, fostering tighter-knit communities with dedicated chat and post features. With support for multiple languages, Komyuniti ensures inclusivity and accessibility for users worldwide. Join us and experience the power of community like never before!" %}
+        </p>
+        <p style="font-size: large;">Komyuniti offers a robust set of features designed to foster community building and seamless interaction:</p>
+        <ul>
+            <h5>{% trans "Group Creation and Membership:" %}</h5>
+            <li>{% trans "Users can create groups based on shared interests, activities, or goals." %}</li>
+            <li>{% trans "Groups can be set as public for open access or private, requiring admin approval for membership." %}</li>
+            <li>{% trans "Users can send join requests to admins for private groups." %}</li>
+        </ul>
+        <ul>
+            <h5>{% trans "Post Feeds:" %}</h5>
+            <li>{% trans "Each group has a dedicated feed where members can post updates, share content, and engage in discussions." %}</li>
+            <li>{% trans "Similar to groups, each club within a group has its own post feed for focused conversations." %}</li>
+        </ul>
+        <ul>
+            <h5>{% trans "Chat Features:" %}</h5>
+            <li>{% trans "Real-time messaging within groups to facilitate immediate communication among members." %}</li>
+            <li>{% trans "Private messaging within clubs for more intimate and targeted discussions." %}</li>
+        </ul>
+        <ul>
+            <h5>{% trans "Subgroups (Clubs):" %}</h5>
+            <li>{% trans "Clubs are always private, ensuring focused and secure environments for specific interests within a group." %}</li>
+            <li>{% trans "Members can request to join clubs, which admins can approve or deny." %}</li>
+        </ul>
+        <ul>
+            <h5>{% trans "Multilingual Support:" %}</h5>
+            <li>{% trans "The platform supports multiple languages, making it accessible to a diverse user base worldwide." %}</li>
+        </ul>
+        <ul>
+            <h5>{% trans "Administrative Controls" %}</h5>
+            <li>{% trans "Admins have the power to manage membership requests, moderate content, and organize events within their groups or clubs." %}</li>
+            <li>{% trans "Admins can configure the privacy settings of their groups and clubs to control visibility and access." %}</li>
+        </ul>
+    </div>
+    <div class="row my-5">
+        <div class="col-xl-2 col-12 ">
+            <div class="d-flex justify-content-center">
+                <img src="https://res.cloudinary.com/dnj89k1rw/image/upload/v1715934565/images/komyuniti-post-image/WhatsApp_Image_2024-05-17_at_1.52.41_PM_a60qnl.jpg" class=" d-flex align-self-center" style="height: 100px; width: 100px; border-radius: 5px;">
+            </div>
+            
+        </div>
+        <div class="col-xl-6 col-12 ">
+            <div class="">
+                <h5>Akshay Bhisikar</h5>
+                <p>{% trans "Student of SRM Ramapuram, Chennai. I am a proficient web developer with strong backend focus." %}</p>
+                <p>Email - akshaybhisikar99@gmail.com</p>
+            </div>
+        </div>
+        <div class="col-xl-4 col-12">
+            <ul>
+                <li><a href="https://www.instagram.com/akshay_._15/">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/akshay-bhisikar-356489221/">LinkedIn</a></li>
+                <li><a href="https://github.com/akshay56789">GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="card bg-dark">
+    <div class="card-body ">
+        <div class="d-flex justify-content-center">
+            <h5 class="card-title text-light">Komyuniti</h5>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="card-text text-light">{% trans "Made with 💖" %}</p>
+        </div>
+    </div>
+  </div>
+
+{% endblock content %}

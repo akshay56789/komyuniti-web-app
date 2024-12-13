@@ -1,0 +1,127 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<h1></h1>
+
+{% if request.user.is_authenticated %}
+<div class="">
+    <h1 class="mx-4">{% trans "Groups" %}</h1>
+    <div class="row mx-3 my-2">
+        {% for group in groups %}
+    <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 d-none d-sm-block">
+        <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
+            <div>
+                <!-- <h1><a href="/group/{{group.id}}">{{group.name}}</a></h1> -->
+                <div class="card" style="width: 15rem; height: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <img src="{{group.image.url}}" class="card-img-top" style="height: 200px; width: 15rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{group.name}}</h5>
+                    </div>
+                  </div>
+            </div>
+        </a>
+    </div>
+    <div class="d-block d-sm-none">
+        <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
+            <li class="list-group-item my-1" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="row ">
+                    <div class="col-3">
+                        <img src="{{group.image.url}}" style="height: 50px; width: 50px; border-radius: 5px;">
+                    </div>
+                    <div class="col-9">
+                        <h5>{{group.name}}</h5>
+                    </div>
+                </div>
+            </li>
+        </a>
+    </div>
+    {% empty %}
+    
+    <h3 class="mx-4">{% trans "You have not joined any groups." %}</h3>
+    
+    {% endfor %}
+    </div>
+    <div class="mx-4">
+        <p>{% trans "You can search for groups using the search bar," %} <a href="{% url "create-group" %}">{% trans " or you can create your own group." %}</a></p>
+    </div>
+    
+    
+    
+</div>
+
+
+
+{% else %}
+<div>
+    {% comment %} <form action="" method="POST"> {% endcomment %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {% trans "What is Komyuniti?" %}
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    {% trans "Welcome to <strong>Komyuniti</strong>, your ultimate social hub where users can seamlessly connect and collaborate within groups and clubs. Create or join groups with customizable privacy settings, engage in lively discussions through group chats and post feeds, and stay updated with upcoming events. Dive deeper into shared interests by forming private clubs within groups, fostering tighter-knit communities with dedicated chat and post features. With support for multiple languages, Komyuniti ensures inclusivity and accessibility for users worldwide. Join us and experience the power of community like never before!" %}
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+        <div class="card " style="width: 18rem; background-color: #f9f9f9;">
+            <div class="card-body" style="margin-bottom: 3rem;">
+                <h5 class="card-title text-center">{% trans "Log In" %}</h5>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="exampleFormControlInput1" class="form-label">{% trans "Email address" %}</label>
+                    <input type="email" class="form-control" id="email" name='username' placeholder="name@gmail.com"></input>
+                    <label for="exampleFormControlInput1" class="form-label">{% trans "Password" %}</label>
+                    <input type="password" class="form-control" name='password' id="password"></input>
+                    <div class="d-flex justify-content-center">
+                        <button onclick="spinner()" type="submit" class="btn btn-primary my-2">{% trans "Log In" %}</button>
+                    </div>
+                    
+                    
+                </form>
+
+
+                <a href="{% url 'register' %}">{% trans "New to Komyuniti? Create an account." %}</a>
+                
+            </div>
+        </div>
+    </div>
+        <!-- <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login"> -->
+    {% comment %} </form> {% endcomment %}
+    
+</div>
+
+{% comment %} <a href="{% url 'register' %}">New to Komyuniti? Create an account.</a> {% endcomment %}
+<script type="text/javascript">
+    function spinner() {
+      document.getElementById("spinner").style.display = 'block'
+    }
+  </script>
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

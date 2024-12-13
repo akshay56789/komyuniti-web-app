@@ -1,0 +1,191 @@
+{% extends "main.html" %}
+{% block content %}
+{% load i18n %}
+{% load cloudinary %}
+<!-- {% if request.user not in members %}
+<div class="row justify-content-center mx-3">
+<div class="col-xl-4 col-lg-4 col-md-4  my-5 border border-primary d-flex justify-content-center bg-white">
+    <div class="">
+        <div id="image" class="d-flex my-4" style=" justify-content: center;">
+            <img src="{{club.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+        </div>
+        <div id="middle" class="d-flex justify-content-center">
+            <div class="my-2 ">
+              <div id="group-name" class="d-flex justify-content-center">
+                <h2>{{club.name}}</h2>
+              </div>
+              <div id="admin" class="d-flex justify-content-center">
+                {% comment %} <h4>Admin- <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h4> {% endcomment %}
+                <p>{% trans "Members" %}: {{members|length}}</p>
+              </div>
+              <div id="tag">
+                {% for tag in tags %}
+                <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+                {% endfor %} -->
+              <!-- </div>
+              <div class="d-flex justify-content-center my-2">
+                <a href="#" type="button" class="btn btn-outline-success">Become a member</a>
+              </div>
+              <p class="d-flex justify-content-center my-2">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Description
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% else %} --> 
+<div class="bg-dark">
+  {% include "base/components/club_offcanvas.html" %}
+
+  <div class="d-block d-sm-none bg-dark">
+    <div id="small-screen" class="container bg-dark">
+      {% if request.user in members or request.user == club.host %}
+        <div class="row">
+            {% for image in images %}
+                    {% if image.image %}
+                    <div class="col-6 my-2">
+                        <a target="_blank" href="{{image.image.url}}"><img src="{{image.image.url}}" alt="" style="height: 7rem; width: 7rem; border-color: aliceblue; border-width: 5px; border-style: solid;"></a>
+                    </div>
+                    {% endif %}
+                    
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+      </div>
+      {% elif request.user not in members and group.private == True %}
+      {% trans "This group is private. Join the group to see the feed." %}
+      {% endif %}
+    </div>
+  </div>
+
+
+
+<div class="d-none d-sm-block bg-dark">
+    <div class="row bg-dark mx-2" >
+        <div id="club-details" class="col-xl-3 col-lg-3 col-md-3 bg-dark my-3">
+          <a href="{% url 'club' club.group.id %}" class="btn btn-outline-primary" role="button">{% trans "Back to group page" %}</a>
+            {% include 'base/components/club_profile.html' %}
+        </div>
+        <div id="main-page" class="col-xl-6 col-lg-6 col-md-6">
+            <div class="d-flex bd-highlight list-group list-group-horizontal border ">
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white"  href="{% url "club-page" club.id 1 %}">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Feed" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white " href="#">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Events" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white" href="{% url "club-chat" club.id club.chat_room %}">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Chat" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item active border-white" aria-current="page" href="{% url "club-gallery" club.id %}">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Gallery" %}
+                  </div>
+                </a>
+              </div>
+              {% if request.user in members or request.user == club.host %}
+              <div class="my-3" id="large-scrollable" style="overflow-y: scroll; scrollbar-width: none; height: 35rem;background-color: black;">
+                <div class="container my-3">
+                    <div class="row">
+                    {% for image in images %}
+                    {% if image.image %}
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 my-2">
+                       <a target="_blank" href="{{image.image.url}}"><img src="{{image.image.url}}" alt="" style="height: 7rem; width: 7rem; border-color: aliceblue; border-width: 5px; border-style: solid;"></a>
+                    </div>
+                    {% endif %}
+          
+                    {% endfor %}
+                    </div>
+                </div>
+              </div>
+              {% elif request.user not in members and group.private == True %}
+              <div style="color: antiquewhite;">
+                {% trans "This group is private. Join the group to see the feed." %}
+              </div>
+              
+              {% endif %}
+        </div>
+        <div id="member" class="px-1 col-xl-3 col-lg-3 col-md-3 my-3" style="background-color: black; border-radius: 10px;">
+            <div>
+                <h5 class="my-3 text-white d-flex justify-content-center">{% trans "Members" %}</h5>
+                <div class=" mx-3 my-5">
+                
+                  {% for member in members %}
+                <div class="d-flex my-3 ">
+                <div>
+                    <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+                </div>
+                <div>
+                    <a href="{% url "user-profile" member.id %}" class="mx-3" style="color: white;font-size: large;text-decoration: none;">{{member.name}} {% if member == club.host %}({% trans "Admin" %}){% endif %}</a>
+                </div>
+                {% if request.user == club.host and member != club.host %}
+                <div>
+                <a href="{% url "remove-club-member" club.id member.id %}" aria-label="Kick">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16" aria-label="Kick">
+                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </a>
+                </div>
+                {% endif %}
+                </div>
+                {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-bottom d-block d-sm-none ">
+  <div class="d-flex bd-highlight list-group list-group-horizontal ">
+    
+    <a href="{% url "club-page" club.id 1 %}" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Feed" %}
+      </div>
+    </a>
+    <a href="#" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Events" %}
+      </div>
+    </a>
+    <button class="p-2 flex-fill bd-highlight list-group-item bg-dark text-white border-end-0 border-start-0 border-2 " style="font-size: small;" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasExample"
+    aria-controls="offcanvasExample">
+    <div class="d-flex justify-content-center">
+      {% trans "Club" %}
+    </div>
+    </button>
+    <a href="{% url "club-chat" club.id club.chat_room %}" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Chat" %}
+      </div>
+    </a>
+    <a href="{% url "club-gallery" club.id %}" style="font-size: small;" class=" bg-dark text-white p-2 flex-fill bd-highlight list-group-item active border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Gallery" %}
+      </div>
+    </a>
+  </div>
+</div>
+
+
+</div>
+<!-- {% endif %} -->
+
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<div>
+    <p>
+        {% trans "To invite users, please input the exact username of the user in the search bar." %}
+    </p>
+    <div>
+        <form class="d-flex" action="{% url 'invite-page' group.id %}" method="get">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search users" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>
+    <div>
+        {% if exact_user %}
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    {{exact_user.name}}&nbsp&nbsp<a href="{% url "user-profile" exact_user.id %}">@{{exact_user.username}}</a>
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary" href="{% url "send-group-invite" group.id exact_user.id %}">{% trans "Send Invite" %}</a>
+                </div>
+                
+            </li>
+          </ul> 
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+

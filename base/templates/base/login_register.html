@@ -1,0 +1,105 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+<div>
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+        <div class="card " style="width: 30rem">
+            <div class="card-body" style="margin-bottom: 3rem;">
+                <h5 class="card-title text-center">{% trans "Sign In" %}</h5>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <label for="validationCustom03" class="form-label">{% trans "Name" %}</label>
+                        {{form.name}}
+                    </div>
+                    <div>
+                        <label for="validationCustomUsername" class="form-label">{% trans "Username" %}</label>
+                        <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        {{form.username}}
+                        <div id="passwordHelpBlock" class="form-text">
+                            {% trans "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only." %}
+                        </div>
+                    </div>
+                    </div>
+                    <div>
+                        <label for="exampleInputEmail1" class="form-label">{% trans "Email" %}</label>
+                        {{form.email}}
+                        
+                    </div>
+                    <div>
+                        <label for="inputPassword5" class="form-label">{% trans "Password" %}</label>
+                        {{form.password2}}
+                        <div id="passwordHelpBlock" class="form-text">
+                            {% trans "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji." %}
+                          </div>
+                    </div>
+                    <div>
+                        <label for="inputPassword5" class="form-label">{% trans "Password confirmation" %}:</label>
+                        {{form.password1}}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button onclick="spinner()" type="submit" class="btn btn-primary my-2">{% trans "Register" %}</button>
+                    </div>
+                    
+                    
+                </form>
+
+
+                <a href='{% url 'home' %}'>{% trans "Already have an account? Log in" %}</a>
+                
+            </div>
+        </div>
+    </div>
+    <!-- <form class="mx-4" action="" method="post">
+        {% csrf_token %}
+        <!-- {{form.as_div}} -->
+        <!-- <div>
+            <label for="validationCustom03" class="form-label">Name</label>
+            {{form.name}}
+        </div>
+        <div>
+            <label for="validationCustomUsername" class="form-label">Username</label>
+            <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            {{form.username}}
+            <div id="passwordHelpBlock" class="form-text">
+                Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+            </div>
+        </div>
+        </div>
+        <div>
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            {{form.email}}
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div>
+            <label for="inputPassword5" class="form-label">Password</label>
+            {{form.password2}}
+            <div id="passwordHelpBlock" class="form-text">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+              </div>
+        </div>
+        <div>
+            <label for="inputPassword5" class="form-label">Password confirmation:</label>
+            {{form.password1}}
+            <div id="passwordHelpBlock" class="form-text">
+                Enter the same password as before, for verification.
+            </div>
+        </div>
+        
+        
+        <input type="submit" value="Register">
+    </form> --> 
+    
+    
+</div>
+<script type="text/javascript">
+    function spinner() {
+      document.getElementById("spinner").style.display = 'block'
+    }
+  </script>
+
+
+{% endblock content %}

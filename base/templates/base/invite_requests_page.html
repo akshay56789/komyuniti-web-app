@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+{% for request in requests %}
+<div>
+    <div class="alert alert-dark d-flex justify-content-between" role="alert">
+        <div>
+            <a href="{% url "user-profile" request.sender.id %}">{{request.sender.name}}</a> has invited you to join <a href="{% url "group" request.group.id 1 %}">{{request.group.name}}</a>!
+        </div>
+        <div>
+            <a class="btn btn-outline-primary" href="{% url "accept-invite" request.id %}">{% trans "Accept" %}</a>
+            <a class="btn btn-outline-danger" href="{% url "reject-invite" request.id %}">{% trans "Reject" %}</a>
+        </div>
+    </div>
+    
+    
+</div>
+{% empty %}
+<div>
+    <h3>{% trans "No requests." %}</h3>
+</div>
+{% endfor %}
+
+{% endblock content %}

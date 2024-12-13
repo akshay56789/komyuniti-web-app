@@ -1,0 +1,400 @@
+{% extends "main.html" %}
+{% block content %}
+{% load i18n %}
+{% load cloudinary %}
+<style>
+  .loading {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; 
+  width: 50px;
+  height: 50px;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 50px;
+  height: 50px;
+  margin-top: -0.5em;
+
+  border: 15px solid rgba(33, 150, 243, 1.0);
+  border-radius: 100%;
+  border-bottom-color: transparent;
+  -webkit-animation: spinner 1s linear 0s infinite;
+  animation: spinner 1s linear 0s infinite;
+
+
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+  
+</style>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans "Delete Club" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% trans "Are you sure about deleting the club? This cannot be undone." %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        <a onclick="spinner()" class="btn btn-danger" href="{% url "delete-club" club.id %}" role="button">{% trans "Delete" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans "Leave Club" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% trans "Are you sure about leaving the club? You have to request again." %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        <a onclick="spinner()" class="btn btn-danger" href="{% url "leave-club" club.id %}" role="button">{% trans "Leave" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% if request.user not in members and request.user != club.host %}
+<a class="btn btn-outline-primary mx-3 my-1 text-white" href="{% url "club" club.group.id %}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+         <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+      </svg> {% trans "Back to clubs" %}
+</a>
+<div class="row justify-content-center mx-3">
+  
+<div class="col-xl-4 col-lg-4 col-md-4  my-5 border border-primary d-flex justify-content-center bg-white">
+    <div class="">
+        <div id="image" class="d-flex my-4" style=" justify-content: center;">
+            <img src="{{club.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+        </div>
+        <div id="middle" class="d-flex justify-content-center">
+            <div class="my-2 ">
+              <div id="group-name" class="d-flex justify-content-center">
+                <h2>{{club.name}}</h2>
+              </div>
+              <div id="admin" class="d-flex justify-content-center">
+                {% comment %} <h4>Admin- <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h4> {% endcomment %}
+                <p>{% trans "Members" %}: {{members|length}}</p>
+              </div>
+              <div id="host" class="d-flex justify-content-center">
+                <h5 class="">{% trans "Host" %}- <a href="{% url "user-profile" club.host.id %}">@{{club.host.username}}</a></h5>
+              </div>
+              <!-- <div id="tag">
+                {% for tag in tags %}
+                <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+                {% endfor %}
+              </div> -->
+              {% if sent %}
+              <div class="d-flex justify-content-center my-2">
+                <a href="#" type="button" class="btn btn-outline-success">{% trans "Request Pending" %}</a>
+              </div>
+              {% else %}
+              <div class="d-flex justify-content-center my-2">
+                <a href="{% url "club-join-request" club.id %}" type="button" class="btn btn-outline-success">{% trans "Become a member" %}</a>
+              </div>
+              {% endif %}
+              
+              <p class="d-flex justify-content-center my-2">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  {% trans "Description" %}
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  {{club.description}}
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% else %}
+<div class="bg-dark">
+
+
+  {% include "base/components/club_offcanvas.html" %}
+
+
+  <div class="d-block d-sm-none bg-dark">
+    <div id="small-screen" class="container bg-dark">
+      {% if request.user in members or request.user == club.host %}
+      <div>
+        {% include "base/components/new_post_form_small.html" %}
+      </div>
+      <div id="feed" class="list-group d-block d-sm-none">
+        {% for post in posts %}
+          {% include "base/components/small_club_posts.html" %}
+        {% empty %}
+        <h5 class="text-light d-flex justify-content-center">{% trans "Be the first one to post!" %}</h5>
+        {% endfor %}
+        {% if posts and nextpage == False %}<p class="text-light d-flex justify-content-center" style="font-size: small">--{% trans "End of posts" %}--</p>{% endif %}
+        <nav class="bg-dark d-flex justify-content-center" aria-label="Page navigation example">
+          <ul class="pagination bg-dark">
+            {% if previous != 0 %}
+            <li class="page-item"><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{previous}}">Previous</a></li>
+            {% endif %}
+            
+            {% if nextpage %}
+            <li class="page-item "><a class="page-link bg-dark text-light" href="#">{{pageno}}</a></li>
+            <li class="page-item "><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{pageno|add:'1'}}">{{pageno|add:'1'}}</a></li>
+            <li class="page-item "><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{pageno|add:'1'}}">Next</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        <br>
+        <br>
+      </div>
+      {% elif request.user not in members and group.private == True %}
+      {% trans "This group is private. Join the group to see the feed." %}
+      {% endif %}
+    </div>
+  </div>
+
+
+
+  <div class="d-none d-sm-block">
+    <div class="row bg-dark mx-2" >
+        <div id="club-details" class="col-xl-3 col-lg-3 col-md-3 bg-dark my-3">
+          <a href="{% url 'club' club.group.id %}" class="btn btn-outline-primary" role="button">{% trans "Back to group page" %}</a>
+            {% include 'base/components/club_profile.html' %}
+        </div>
+        <div id="main-page" class="col-xl-6 col-lg-6 col-md-6 bg-dark">
+            <div class="d-flex bd-highlight list-group list-group-horizontal border ">
+                <a class="p-2 flex-fill bd-highlight list-group-item active border-white" aria-current="page" href="#">
+                  <div class="d-flex justify-content-center">
+                    {% trans "Feed" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white " href="#">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Events" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white" href="{% url "club-chat" club.id club.chat_room %}">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Chat" %}
+                  </div>
+                </a>
+                <a class="p-2 flex-fill bd-highlight list-group-item bg-secondary border-white" href="{% url "club-gallery" club.id %}">
+                  <div class="d-flex justify-content-center text-white">
+                    {% trans "Gallery" %}
+                  </div>
+                </a>
+              </div>
+              {% if request.user in members or request.user == club.host %}
+              <div class="my-3" id="large-scrollable" style="overflow-y: scroll; scrollbar-width: none; height: 35rem;">
+                {% include "base/components/new_club_post_form.html" %}
+                <div id="club_feed_post">
+                  {% for post in posts %}
+                    {% include "base/components/large_club_posts.html" %}
+                    {% empty %}
+                    <div class="d-flex justify-content-center">
+                      <h5 class="text-light">{% trans "No post as of now. Be the first one to post!" %}</h5>
+                    </div>
+                  {% endfor %}
+                  {% if posts and nextpage == False %}<p class="d-flex justify-content-center text-light" style="font-size: medium">-- {% trans "End of posts" %} --</p>{% endif %}
+                  <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+                    <ul class="pagination">
+                      {% if previous != 0 %}
+                      <li class="page-item"><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{previous}}">Previous</a></li>
+                      {% endif %}
+                      
+                      {% if nextpage %}
+                      <li class="page-item"><a class="page-link bg-dark text-light" href="#">{{pageno}}</a></li>
+                      <li class="page-item"><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{pageno|add:'1'}}">{{pageno|add:'1'}}</a></li>
+                      <li class="page-item"><a class="page-link bg-dark text-light" href="/club/{{club.id}}/{{pageno|add:'1'}}">Next</a></li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              {% elif request.user not in members and group.private == True %}
+              <div style="color: antiquewhite;">
+                {% trans "This group is private. Join the group to see the feed." %}
+              </div>
+              
+              {% endif %}
+        </div>
+        <div id="member" class="px-1 col-xl-3 col-lg-3 col-md-3 my-3" style="background-color: black; border-radius: 10px;">
+            <div>
+                <h5 class="my-3 text-white d-flex justify-content-center">{% trans "Members" %}</h5>
+                <div class=" mx-3 my-5">
+                
+                
+                  {% for member in members %}
+                <div class="d-flex my-3  ">
+                <div>
+                    <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+                </div>
+                <div>
+                    <a href="{% url "user-profile" member.id %}" class="mx-3" style="color: white;font-size: large;text-decoration: none;">{{member.name}} {% if member == club.host %}({% trans "Admin" %}){% endif %}</a>
+                </div>
+                {% if request.user == club.host and member != club.host %}
+                <div>
+                <a onclick="spinner()" href="{% url "remove-club-member" club.id member.id %}" aria-label="Kick">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16" aria-label="Kick">
+                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </a>
+                </div>
+                {% endif %}
+                </div>
+                {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="fixed-bottom d-block d-sm-none ">
+  <div class="d-flex bd-highlight list-group list-group-horizontal ">
+    
+    <a href="{% url "club-page" club.id 1 %}" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item active border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Feed" %}
+      </div>
+    </a>
+    <a href="#" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Events" %}
+      </div>
+    </a>
+    <button class="p-2 flex-fill bd-highlight list-group-item bg-dark text-white border-end-0 border-start-0 border-2 " style="font-size: small;" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasExample"
+    aria-controls="offcanvasExample">
+    <div class="d-flex justify-content-center">
+      {% trans "Club" %}
+    </div>
+    </button>
+    <a href="{% url "club-chat" club.id club.chat_room %}" style="font-size: small;" class="bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2"> 
+      <div class="d-flex justify-content-center">
+        {% trans "Chat" %}
+      </div>
+    </a>
+    <a href="{% url "club-gallery" club.id %}" style="font-size: small;" class=" bg-dark text-white p-2 flex-fill bd-highlight list-group-item border-end-0 border-start-0 border-2">
+      <div class="d-flex justify-content-center">
+        {% trans "Gallery" %}
+      </div>
+    </a>
+  </div>
+</div>
+
+
+</div>
+<script type="text/javascript">
+  function spinner() {
+    document.getElementById("spinner").style.display = 'block'
+  }
+</script>
+{% endif %}
+
+{% endblock content %}
+
+

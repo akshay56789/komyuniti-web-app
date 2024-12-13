@@ -1,0 +1,146 @@
+
+{% load i18n %}
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans "Leave the group" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% trans "Are you sure about leaving the group?" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        <a class="btn btn-danger" href="{% url "leave-group" group.id %}" role="button">{% trans "Leave" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3 d-flex justify-content-center bg-white">
+        <div id="top-left" class="">
+          <div id="image" class="d-flex" style=" justify-content: center;">
+            <img src="{{group.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+          </div>
+          <div id="middle" class="">
+            <div class="my-2 ">
+              <div id="group-name" class="d-flex justify-content-center">
+                <h2>{{group.name}}</h2>
+              </div>
+              <div id="admin" class="d-flex justify-content-center">
+                {% comment %} <h4>Admin- <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h4> {% endcomment %}
+                <p>{% trans "Members" %}: {{members|length}}</p>
+              </div>
+              <div id="tag">
+                {% for tag in tags %}
+                <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div id="buttons" class="my-3 ">
+
+            
+            
+            
+                  <div class="d-grid gap-2">
+                    <a href="{% url "group-details" group.id %}" class="btn btn-outline-primary" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                    </svg> {% trans "Group details" %}</a>
+                    {% if request.user == group.creator %}
+                      <a href="{% url "edit-group" group.id %}" class="btn btn-outline-primary" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg> {% trans "Edit Group" %}</a>
+                      <a href="{% url "pending_requests" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Requests" %}</a>
+                      
+                      <a href="{% url "invite-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+                  
+      
+                  {% elif request.user in members %}
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                  </svg> {% trans "Leave the group" %}</a>
+                  <a href="{% url "invite-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+                  {% else %}
+                  {% if group.private %}
+                  {% if sent %}
+                  <a href="{% url "delete-request" sent.id %}" class="btn btn-outline-primary" role="button">{% trans "Request pending...(Click to delete)" %}</a>
+                  {% else %}
+                  <a href="{% url "join-request-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Request to Join" %}</a>
+                  {% endif %}
+                  {% else %}
+                  <a href="{% url "group-join" group.id %}" class="btn btn-outline-primary" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                  </svg> {% trans "Join" %}</a>
+                  {% endif %}
+                  {% endif %}
+                  
+                </div>
+                  
+          </div>
+        </div>
+        <!-- {% comment %} <div id="description-rules" class="my-3">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="list-group-item list-group-item-action active" id="list-description-list" data-bs-toggle="list" href="#list-description" role="tab" aria-controls="list-description">Description</a>
+            </li>
+            <li class="nav-item">
+                <a class="list-group-item list-group-item-action" id="list-rules-list" data-bs-toggle="list" href="#list-rules" role="tab" aria-controls="list-rules">Rules</a>
+            </li>
+            <li class="nav-item d-block d-sm-none">
+              <a class="list-group-item list-group-item-action" id="list-members-list" data-bs-toggle="list" href="#list-members" role="tab" aria-controls="list-members">Members</a>
+            </li>
+          </ul>
+          <div class="my-4">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-description" role="tabpanel" aria-labelledby="list-description-list">
+                    <h5>
+                        {{group.description}}
+                    </h5>
+                </div>
+                <div class="tab-pane fade" id="list-rules" role="tabpanel" aria-labelledby="list-rules-list">
+                    <h5>
+                        {{group.notice}}
+                    </h5>
+                </div>
+                <div class="tab-pane fade" id="list-members" role="tabpanel" aria-labelledby="list-members-list">
+                  <div>
+                    <h4><a href="{% url "user-profile" group.creator.id %}" style="text-decoration: none;">@{{group.creator.username}}</a></h4>
+                  </div>
+                {% for member in members %}
+                <div>
+                <h4><a href="{% url "user-profile" member.id %}" style="text-decoration: none;">@{{member.username}}</a></h4>
+                </div>
+                {% endfor %}
+                </div> 
+              </div>
+            </div>
+          </div>
+      </div> {% endcomment %} -->
+      <!-- {% comment %} <div class="col-xl-3 col-lg-3 col-md-3 d-none d-sm-block">
+        <div id="membersid">
+          <div>
+            <h3>Members</h3>
+          </div>
+          <div>
+            <div>
+              <h4><a href="{% url "user-profile" group.creator.id %}" style="text-decoration: none;">@{{group.creator.username}}</a></h4>
+            </div>
+            {% for member in members %}
+            <div>
+              <h4><a href="{% url "user-profile" member.id %}" style="text-decoration: none;">@{{member.username}}</a></h4>
+            </div>
+            {% endfor %}
+            </div> 
+          </div>
+        </div>
+      </div> {% endcomment %} -->
+      
+      
+    
+  </div>

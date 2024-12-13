@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Komyuniti - Groups</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load bootstrap5 %}
+    {% load cloudinary %} 
+    {% bootstrap_css %} 
+    {%  bootstrap_javascript %} {% comment %}
+    <link rel="stylesheet" href="" />
+    {% endcomment %}
+  </head>
+  <body
+    class="bg-{% if color %}{{color}}{% else %}light{% endif %}"
+    style="background-color: {% if color %}{{color}}{% else %}#f8f9fa{% endif %};"
+  >
+    <style>
+      .loading {
+        position: fixed;
+        z-index: 999;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+      }
+
+      /* Transparent Overlay */
+      .loading:before {
+        content: "";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* :not(:required) hides these rules from IE9 and below */
+      .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+      }
+
+      .loading:not(:required):after {
+        content: "";
+        display: block;
+        font-size: 10px;
+        width: 50px;
+        height: 50px;
+        margin-top: -0.5em;
+
+        border: 15px solid rgba(33, 150, 243, 1);
+        border-radius: 100%;
+        border-bottom-color: transparent;
+        -webkit-animation: spinner 1s linear 0s infinite;
+        animation: spinner 1s linear 0s infinite;
+      }
+
+      /* Animation */
+
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @-o-keyframes spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    {% load cloudinary %}
+    <div class="loading" id="spinner" style="display: none">Loading&#8230;</div>
+    {% include "navbar.html" %} {% if messages %}
+    <ul
+      style="z-index: 999; position: fixed; width: 100%;"
+      class="messages d-flex justify-content-center"
+    >
+      {% for message in messages %}
+      <div
+        class="alert js-alert alert-primary d-flex align-items-center alert-dismissible fade show"
+        role="alert"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+      </svg>
+        <div> &nbsp{{ message }}</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="">{% block content %} {% endblock content %}</div>
+    <script type="text/javascript">
+      function spinner() {
+        document.getElementById("spinner").style.display = "block";
+      }
+
+      setTimeout(function() {
+        bootstrap.Alert.getOrCreateInstance(document.querySelector(".js-alert")).close();
+      }, 2000)
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="" async defer></script>
+  </body>
+</html>
