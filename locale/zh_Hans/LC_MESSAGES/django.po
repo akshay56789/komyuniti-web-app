@@ -1,0 +1,1168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-18 00:16+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\base\templates\base\about.html:8 .\base\templates\base\home.html:69
+msgid ""
+"Welcome to <strong>Komyuniti</strong>, your ultimate social hub where users "
+"can seamlessly connect and collaborate within groups and clubs. Create or "
+"join groups with customizable privacy settings, engage in lively discussions "
+"through group chats and post feeds, and stay updated with upcoming events. "
+"Dive deeper into shared interests by forming private clubs within groups, "
+"fostering tighter-knit communities with dedicated chat and post features. "
+"With support for multiple languages, Komyuniti ensures inclusivity and "
+"accessibility for users worldwide. Join us and experience the power of "
+"community like never before!"
+msgstr ""
+"欢迎来到 <strong>Komyuniti</strong>，您的终极社交中心，用户可以在群组和俱乐部"
+"内无缝连接和协作。 创建或加入具有可自定义隐私设置的群组，通过群组聊天和帖子提"
+"要参与热烈的讨论，并随时了解即将发生的活动。 通过在团体内组建私人俱乐部，通过"
+"专门的聊天和帖子功能培育更紧密的社区，更深入地探讨共同兴趣。 通过支持多种语"
+"言，Komyuniti 确保了全球用户的包容性和可访问性。 加入我们，体验前所未有的社区"
+"力量！"
+
+#: .\base\templates\base\about.html:12
+msgid "Group Creation and Membership:"
+msgstr ""
+
+#: .\base\templates\base\about.html:13
+msgid ""
+"Users can create groups based on shared interests, activities, or goals."
+msgstr ""
+
+#: .\base\templates\base\about.html:14
+msgid ""
+"Groups can be set as public for open access or private, requiring admin "
+"approval for membership."
+msgstr ""
+
+#: .\base\templates\base\about.html:15
+msgid "Users can send join requests to admins for private groups."
+msgstr ""
+
+#: .\base\templates\base\about.html:18
+#, fuzzy
+#| msgid "Posts"
+msgid "Post Feeds:"
+msgstr "帖子"
+
+#: .\base\templates\base\about.html:19
+msgid ""
+"Each group has a dedicated feed where members can post updates, share "
+"content, and engage in discussions."
+msgstr ""
+
+#: .\base\templates\base\about.html:20
+msgid ""
+"Similar to groups, each club within a group has its own post feed for "
+"focused conversations."
+msgstr ""
+
+#: .\base\templates\base\about.html:23
+msgid "Chat Features:"
+msgstr ""
+
+#: .\base\templates\base\about.html:24
+msgid ""
+"Real-time messaging within groups to facilitate immediate communication "
+"among members."
+msgstr ""
+
+#: .\base\templates\base\about.html:25
+msgid ""
+"Private messaging within clubs for more intimate and targeted discussions."
+msgstr ""
+
+#: .\base\templates\base\about.html:28
+msgid "Subgroups (Clubs):"
+msgstr ""
+
+#: .\base\templates\base\about.html:29
+msgid ""
+"Clubs are always private, ensuring focused and secure environments for "
+"specific interests within a group."
+msgstr ""
+
+#: .\base\templates\base\about.html:30
+msgid "Members can request to join clubs, which admins can approve or deny."
+msgstr ""
+
+#: .\base\templates\base\about.html:33
+msgid "Multilingual Support:"
+msgstr ""
+
+#: .\base\templates\base\about.html:34
+msgid ""
+"The platform supports multiple languages, making it accessible to a diverse "
+"user base worldwide."
+msgstr ""
+
+#: .\base\templates\base\about.html:37
+msgid "Administrative Controls"
+msgstr ""
+
+#: .\base\templates\base\about.html:38
+msgid ""
+"Admins have the power to manage membership requests, moderate content, and "
+"organize events within their groups or clubs."
+msgstr ""
+
+#: .\base\templates\base\about.html:39
+msgid ""
+"Admins can configure the privacy settings of their groups and clubs to "
+"control visibility and access."
+msgstr ""
+
+#: .\base\templates\base\about.html:52
+msgid ""
+"Student of SRM Ramapuram, Chennai. I am a proficient web developer with "
+"strong backend focus."
+msgstr ""
+
+#: .\base\templates\base\about.html:71
+msgid "Made with 💖"
+msgstr ""
+
+#: .\base\templates\base\change_password.html:8
+#: .\base\templates\base\setting.html:42
+msgid "Change Password"
+msgstr "更改密码"
+
+#: .\base\templates\base\change_password.html:11
+msgid "Old Password"
+msgstr "密码"
+
+#: .\base\templates\base\change_password.html:13
+#, fuzzy
+#| msgid "Password"
+msgid "New Password"
+msgstr "密码"
+
+#: .\base\templates\base\change_password.html:15
+msgid "New Password (again)"
+msgstr "确认新密码"
+
+#: .\base\templates\base\change_password.html:18
+msgid "Change"
+msgstr "改变"
+
+#: .\base\templates\base\club_gallery.html:20
+#: .\base\templates\base\club_gallery.html:126
+#: .\base\templates\base\club_page.html:60
+#: .\base\templates\base\club_page.html:178
+#: .\base\templates\base\components\club_offcanvas.html:31
+#: .\base\templates\base\components\club_offcanvas.html:79
+#: .\base\templates\base\components\club_profile.html:35
+#: .\base\templates\base\components\group_offcanvas.html:67
+#: .\base\templates\base\group_details.html:229
+#: .\base\templates\base\group_details.html:281
+#: .\base\templates\base\group_details.html:333
+#: .\base\templates\base\group_info_2.html:52
+#: .\chat\templates\chat\club_chat.html:432
+msgid "Members"
+msgstr "会员"
+
+#: .\base\templates\base\club_gallery.html:66
+#: .\base\templates\base\club_gallery.html:119
+#: .\base\templates\base\club_page.html:120
+#: .\base\templates\base\club_page.html:171
+#: .\base\templates\base\group_page.html:94
+#: .\base\templates\base\group_page.html:170
+#: .\base\templates\base\group_page.txt:359
+#: .\base\templates\base\group_page.txt:1241
+msgid "This group is private. Join the group to see the feed."
+msgstr "该群组是私人的。 加入群组即可查看动态。"
+
+#: .\base\templates\base\club_gallery.html:76
+#: .\base\templates\base\club_page.html:130
+#: .\base\templates\base\group_details.html:8
+#: .\base\templates\base\group_requests.html:9
+#: .\chat\templates\chat\club_chat.html:206
+msgid "Back to group page"
+msgstr "返回群组页面"
+
+#: .\base\templates\base\club_gallery.html:83
+#: .\base\templates\base\club_gallery.html:160
+#: .\base\templates\base\club_page.html:137
+#: .\base\templates\base\club_page.html:213
+#: .\chat\templates\chat\club_chat.html:217
+#: .\chat\templates\chat\club_chat.html:535
+msgid "Feed"
+msgstr "动态"
+
+#: .\base\templates\base\club_gallery.html:88
+#: .\base\templates\base\club_gallery.html:165
+#: .\base\templates\base\club_page.html:142
+#: .\base\templates\base\club_page.html:218
+#: .\base\templates\base\group_clubs.html:108
+#: .\base\templates\base\group_clubs.html:244
+#: .\base\templates\base\group_events.html:150
+#: .\base\templates\base\group_events.html:305
+#: .\base\templates\base\group_page.html:136
+#: .\base\templates\base\group_page.html:204
+#: .\base\templates\base\group_page.txt:393
+#: .\base\templates\base\group_page.txt:753
+#: .\chat\templates\chat\chat_page.html:235
+#: .\chat\templates\chat\chat_page.html:540
+#: .\chat\templates\chat\club_chat.html:222
+#: .\chat\templates\chat\club_chat.html:540
+msgid "Events"
+msgstr "活动"
+
+#: .\base\templates\base\club_gallery.html:93
+#: .\base\templates\base\club_gallery.html:177
+#: .\base\templates\base\club_page.html:147
+#: .\base\templates\base\club_page.html:230
+#: .\chat\templates\chat\club_chat.html:227
+#: .\chat\templates\chat\club_chat.html:552
+msgid "Chat"
+msgstr "聊天"
+
+#: .\base\templates\base\club_gallery.html:98
+#: .\base\templates\base\club_gallery.html:182
+#: .\base\templates\base\club_page.html:152
+#: .\base\templates\base\club_page.html:235
+#: .\chat\templates\chat\club_chat.html:232
+#: .\chat\templates\chat\club_chat.html:557
+msgid "Gallery"
+msgstr "图片库"
+
+#: .\base\templates\base\club_gallery.html:135
+#: .\base\templates\base\club_page.html:188
+#: .\base\templates\base\components\group_offcanvas.html:64
+#: .\base\templates\base\group_details.html:228
+#: .\base\templates\base\group_details.html:303
+#: .\base\templates\base\group_details.html:341
+msgid "Admin"
+msgstr "行政"
+
+#: .\base\templates\base\club_gallery.html:172
+#: .\base\templates\base\club_page.html:225
+#: .\chat\templates\chat\club_chat.html:547
+msgid "Club"
+msgstr "俱乐部"
+
+#: .\base\templates\base\club_page.html:9
+#, fuzzy
+#| msgid "Create Club"
+msgid "Delete Club"
+msgstr "创建俱乐部"
+
+#: .\base\templates\base\club_page.html:13
+#, fuzzy
+#| msgid "Are you sure about deleting the group? This cannot be undone."
+msgid "Are you sure about deleting the club? This cannot be undone."
+msgstr "您确定要删除该群组吗？ 这不能被撤消。"
+
+#: .\base\templates\base\club_page.html:16
+#: .\base\templates\base\club_page.html:33
+#: .\base\templates\base\components\club_profile.html:13
+#: .\base\templates\base\components\group_offcanvas.html:32
+#: .\base\templates\base\group_details.html:190
+#: .\base\templates\base\group_details.html:208
+#: .\base\templates\base\group_info.html:14
+#: .\base\templates\base\group_info_2.html:14
+#: .\base\templates\base\group_info_2.html:32
+#: .\chat\templates\chat\chat_page.html:15
+#: .\chat\templates\chat\club_chat.html:16
+msgid "Close"
+msgstr "关闭"
+
+#: .\base\templates\base\club_page.html:17
+#: .\base\templates\base\club_page.html:34
+#: .\base\templates\base\club_post_details.html:241
+#: .\base\templates\base\components\club_offcanvas.html:60
+#: .\base\templates\base\components\club_profile.html:60
+#: .\base\templates\base\components\group_offcanvas.html:33
+#: .\base\templates\base\components\group_offcanvas.html:98
+#: .\base\templates\base\components\large_club_posts.html:51
+#: .\base\templates\base\components\large_screen_posts.html:49
+#: .\base\templates\base\group_details.html:191
+#: .\base\templates\base\group_details.html:248
+#: .\base\templates\base\group_events.html:257
+#: .\base\templates\base\group_info_2.html:33
+#: .\base\templates\base\group_info_2.html:79
+#: .\base\templates\base\group_page.txt:71
+#: .\base\templates\base\group_page.txt:503
+#: .\base\templates\base\group_page.txt:952
+#: .\base\templates\base\post_details_page.html:47
+#: .\base\templates\base\post_details_page.html:235
+msgid "Delete"
+msgstr "删除"
+
+#: .\base\templates\base\club_page.html:26
+#: .\base\templates\base\components\club_profile.html:6
+msgid "Leave Club"
+msgstr "离开俱乐部"
+
+#: .\base\templates\base\club_page.html:30
+#, fuzzy
+#| msgid "Are you sure about leaving the club? You have to request again"
+msgid "Are you sure about leaving the club? You have to request again."
+msgstr "你确定要离开俱乐部吗？ 您必须再次请求"
+
+#: .\base\templates\base\club_page.html:43
+msgid "Back to clubs"
+msgstr "返回俱乐部页面"
+
+#: .\base\templates\base\club_page.html:63
+#: .\base\templates\base\components\club_offcanvas.html:28
+#: .\base\templates\base\components\club_profile.html:32
+#: .\base\templates\base\group_events.html:244
+msgid "Host"
+msgstr "主持人"
+
+#: .\base\templates\base\club_page.html:72
+msgid "Request Pending"
+msgstr "请求待处理"
+
+#: .\base\templates\base\club_page.html:76
+msgid "Become a member"
+msgstr "成为会员"
+
+#: .\base\templates\base\club_page.html:82
+#: .\base\templates\base\components\club_offcanvas.html:37
+#: .\base\templates\base\components\club_profile.html:48
+#: .\base\templates\base\create_event.html:19
+#: .\base\templates\base\group_details.html:275
+msgid "Description"
+msgstr "描述"
+
+#: .\base\templates\base\club_page.html:113
+msgid "Be the first one to post!"
+msgstr "成为第一个发帖的人！"
+
+#: .\base\templates\base\club_page.html:115
+#: .\base\templates\base\group_page.html:87
+#, fuzzy
+#| msgid "Back to posts"
+msgid "End of posts"
+msgstr "返回帖子"
+
+#: .\base\templates\base\club_page.html:164
+msgid "No post as of now. Be the first one to post!"
+msgstr "成为第一个发帖的人！"
+
+#: .\base\templates\base\club_post_details.html:10
+msgid "Back to Club"
+msgstr "返回俱乐部页面"
+
+#: .\base\templates\base\club_post_details.html:89
+#: .\base\templates\base\club_post_details.html:330
+#: .\base\templates\base\components\small_club_posts.html:80
+#: .\base\templates\base\components\small_screen_posts.html:78
+#: .\base\templates\base\group_page.txt:175
+#: .\base\templates\base\group_page.txt:654
+#: .\base\templates\base\group_page.txt:1056
+#: .\base\templates\base\post_details_page.html:149
+#: .\base\templates\base\post_details_page.html:381
+msgid "(edited)"
+msgstr "（已编辑）"
+
+#: .\base\templates\base\club_post_details.html:200
+#: .\base\templates\base\post_details_page.html:184
+msgid "Comments"
+msgstr "评论"
+
+#: .\base\templates\base\club_post_details.html:225
+#: .\base\templates\base\club_post_details.html:330
+#: .\base\templates\base\components\large_club_posts.html:13
+msgid "ago"
+msgstr "前"
+
+#: .\base\templates\base\club_post_details.html:233
+#: .\base\templates\base\components\large_club_posts.html:37
+#: .\base\templates\base\components\large_screen_posts.html:35
+#: .\base\templates\base\group_page.txt:57
+#: .\base\templates\base\group_page.txt:489
+#: .\base\templates\base\group_page.txt:938
+#: .\base\templates\base\post_details_page.html:39
+#: .\base\templates\base\post_details_page.html:221
+msgid "Edited"
+msgstr "已编辑"
+
+#: .\base\templates\base\club_post_details.html:238
+#: .\base\templates\base\components\large_club_posts.html:46
+#: .\base\templates\base\components\large_screen_posts.html:44
+#: .\base\templates\base\edit_club_post.html:10
+#: .\base\templates\base\edit_post.html:10
+#: .\base\templates\base\edit_profile.html:13
+#: .\base\templates\base\group_events.html:258
+#: .\base\templates\base\group_page.txt:66
+#: .\base\templates\base\group_page.txt:498
+#: .\base\templates\base\group_page.txt:947
+#: .\base\templates\base\post_details_page.html:44
+#: .\base\templates\base\post_details_page.html:230
+msgid "Edit"
+msgstr "编辑"
+
+#: .\base\templates\base\club_post_details.html:247
+#: .\base\templates\base\components\large_club_posts.html:64
+#: .\base\templates\base\components\large_screen_posts.html:62
+#: .\base\templates\base\group_page.txt:84
+#: .\base\templates\base\group_page.txt:516
+#: .\base\templates\base\group_page.txt:965
+#: .\base\templates\base\post_details_page.html:56
+#: .\base\templates\base\post_details_page.html:243
+msgid "Report"
+msgstr "报告"
+
+#: .\base\templates\base\club_requests.html:9
+#, fuzzy
+#| msgid "Back to clubs"
+msgid "Back to club page"
+msgstr "返回俱乐部页面"
+
+#: .\base\templates\base\club_requests.html:12
+#, fuzzy
+#| msgid "Club requests"
+msgid "Club join requests"
+msgstr "俱乐部要求"
+
+#: .\base\templates\base\club_requests.html:16
+msgid "wants to join the club."
+msgstr "想加入俱乐部"
+
+#: .\base\templates\base\club_requests.html:17
+#: .\base\templates\base\group_requests.html:41
+#: .\base\templates\base\group_requests.html:56
+#: .\base\templates\base\invite_requests_page.html:12
+msgid "Accept"
+msgstr "接受"
+
+#: .\base\templates\base\club_requests.html:18
+#: .\base\templates\base\club_requests.html:39
+#: .\base\templates\base\group_requests.html:42
+#: .\base\templates\base\group_requests.html:57
+#: .\base\templates\base\group_requests.html:74
+#: .\base\templates\base\group_requests.html:92
+msgid "Reject"
+msgstr "拒绝"
+
+#: .\base\templates\base\club_requests.html:23
+#: .\base\templates\base\club_requests.html:44
+#: .\base\templates\base\invite_requests_page.html:21
+msgid "No requests."
+msgstr "没有要求。"
+
+#: .\base\templates\base\club_requests.html:27
+#, fuzzy
+#| msgid "Post reports"
+msgid "Post Report"
+msgstr "发布报告"
+
+#: .\base\templates\base\club_requests.html:30
+#: .\base\templates\base\group_requests.html:65
+#: .\base\templates\base\group_requests.html:83
+msgid "Sender"
+msgstr "发件人"
+
+#: .\base\templates\base\club_requests.html:31
+#: .\base\templates\base\group_requests.html:39
+#: .\base\templates\base\group_requests.html:51
+#: .\base\templates\base\group_requests.html:66
+#: .\base\templates\base\group_requests.html:84
+#, fuzzy
+#| msgid "Create"
+msgid "Created"
+msgstr "创造"
+
+#: .\base\templates\base\club_requests.html:32
+#: .\base\templates\base\group_requests.html:67
+msgid "Post Creator"
+msgstr "帖子创建者"
+
+#: .\base\templates\base\club_requests.html:33
+#: .\base\templates\base\group_requests.html:68
+msgid "Post Creator Email"
+msgstr "帖子创建者电子邮件"
+
+#: .\base\templates\base\club_requests.html:34
+#: .\base\templates\base\group_requests.html:69
+msgid "Post Body"
+msgstr "帖子正文"
+
+#: .\base\templates\base\club_requests.html:35
+#: .\base\templates\base\group_requests.html:70
+msgid "Report Reason"
+msgstr "举报原因"
+
+#: .\base\templates\base\club_requests.html:37
+#: .\base\templates\base\group_requests.html:72
+msgid "Delete post"
+msgstr "删除帖子"
+
+#: .\base\templates\base\club_requests.html:38
+#, fuzzy
+#| msgid "Post"
+msgid "View Post"
+msgstr "邮政"
+
+#: .\base\templates\base\components\club_offcanvas.html:16
+msgid "Club details"
+msgstr "俱乐部详情"
+
+#: .\base\templates\base\components\club_offcanvas.html:49
+msgid "Back to group"
+msgstr "返回群组页面"
+
+#: .\base\templates\base\components\club_offcanvas.html:55
+#: .\base\templates\base\components\club_profile.html:57
+msgid "Edit Club"
+msgstr "编辑俱乐部"
+
+#: .\base\templates\base\components\club_offcanvas.html:63
+#: .\base\templates\base\components\club_profile.html:61
+msgid "Club requests"
+msgstr "俱乐部要求"
+
+#: .\base\templates\base\components\club_offcanvas.html:70
+#: .\base\templates\base\components\club_profile.html:65
+msgid "Leave the club"
+msgstr "离开俱乐部"
+
+#: .\base\templates\base\components\club_offcanvas.html:73
+#: .\base\templates\base\components\club_profile.html:66
+#: .\base\templates\base\components\group_offcanvas.html:111
+#: .\base\templates\base\group_info.html:45
+#: .\base\templates\base\group_info_2.html:87
+msgid "Invite"
+msgstr "邀请"
+
+#: .\base\templates\base\components\club_profile.html:10
+msgid "Are you sure about leaving the club? You have to request again"
+msgstr "你确定要离开俱乐部吗？ 您必须再次请求"
+
+#: .\base\templates\base\components\club_profile.html:14
+#: .\base\templates\base\group_details.html:209
+#: .\base\templates\base\group_info.html:15
+#: .\base\templates\base\group_info_2.html:15
+msgid "Leave"
+msgstr "离开"
+
+#: .\base\templates\base\components\club_profile.html:58
+#: .\base\templates\base\components\group_offcanvas.html:101
+#: .\base\templates\base\group_details.html:245
+#: .\base\templates\base\group_info.html:42
+#: .\base\templates\base\group_info_2.html:75
+msgid "Requests"
+msgstr "要求"
+
+#: .\base\templates\base\components\club_profile.html:70
+#: .\base\templates\base\components\group_offcanvas.html:115
+#: .\base\templates\base\group_details.html:259
+#: .\base\templates\base\group_info.html:49
+#: .\base\templates\base\group_info_2.html:91
+msgid "Request pending...(Click to delete)"
+msgstr "请求待处理...（点击删除）"
+
+#: .\base\templates\base\components\club_profile.html:72
+#: .\base\templates\base\group_details.html:261
+#: .\base\templates\base\group_info.html:51
+#: .\base\templates\base\group_info_2.html:93
+msgid "Request to Join"
+msgstr "请求加入"
+
+#: .\base\templates\base\components\club_profile.html:75
+#: .\base\templates\base\components\group_offcanvas.html:127
+#: .\base\templates\base\group_details.html:267
+#: .\base\templates\base\group_info.html:54
+#: .\base\templates\base\group_info_2.html:99
+msgid "Join"
+msgstr "加入"
+
+#: .\base\templates\base\components\group_offcanvas.html:11
+#: .\base\templates\base\group_details.html:205
+#: .\base\templates\base\group_info.html:11
+#: .\base\templates\base\group_info_2.html:11
+msgid "Are you sure about leaving the group?"
+msgstr "您确定要退团吗？"
+
+#: .\base\templates\base\components\group_offcanvas.html:25
+#: .\base\templates\base\group_info_2.html:25
+msgid "Delete the group"
+msgstr "删除群组"
+
+#: .\base\templates\base\components\group_offcanvas.html:29
+#: .\base\templates\base\group_info_2.html:29
+msgid "Are you sure about deleting the group? This cannot be undone."
+msgstr "您确定要删除该群组吗？ 这不能被撤消。"
+
+#: .\base\templates\base\components\group_offcanvas.html:52
+#: .\base\templates\base\components\group_offcanvas.html:87
+#: .\base\templates\base\group_info.html:39
+#: .\base\templates\base\group_info_2.html:69
+msgid "Group details"
+msgstr "团体详情"
+
+#: .\base\templates\base\components\group_offcanvas.html:93
+#: .\base\templates\base\group_details.html:244
+#: .\base\templates\base\group_info_2.html:74
+msgid "Edit Group"
+msgstr "编辑组"
+
+#: .\base\templates\base\components\group_offcanvas.html:108
+#, fuzzy
+#| msgid "Leave Group"
+msgid "Leave group"
+msgstr "离开组"
+
+#: .\base\templates\base\components\large_club_posts.html:56
+#: .\base\templates\base\components\large_club_posts.html:69
+#: .\base\templates\base\components\large_screen_posts.html:54
+#: .\base\templates\base\components\large_screen_posts.html:67
+#: .\base\templates\base\group_page.txt:76
+#: .\base\templates\base\group_page.txt:89
+#: .\base\templates\base\group_page.txt:508
+#: .\base\templates\base\group_page.txt:521
+#: .\base\templates\base\group_page.txt:957
+#: .\base\templates\base\group_page.txt:970
+#: .\base\templates\base\post_details_page.html:50
+#: .\base\templates\base\post_details_page.html:59
+msgid "See comments"
+msgstr "看评论"
+
+#: .\base\templates\base\components\new_club_post_form.html:12
+#: .\base\templates\base\components\new_post_form.html:12
+#: .\base\templates\base\components\new_post_form_small.html:28
+#: .\base\templates\base\group_page.txt:14
+#: .\base\templates\base\group_page.txt:417
+#: .\base\templates\base\group_page.txt:446
+#: .\base\templates\base\group_page.txt:566
+#: .\base\templates\base\group_page.txt:820
+#: .\base\templates\base\group_page.txt:860
+#: .\base\templates\base\group_page.txt:895
+msgid "What's happening,"
+msgstr "发生了什么，"
+
+#: .\base\templates\base\components\new_club_post_form.html:19
+#: .\base\templates\base\components\new_post_form.html:22
+#: .\base\templates\base\components\new_post_form_small.html:39
+msgid "Attach"
+msgstr "依恋"
+
+#: .\base\templates\base\components\new_club_post_form.html:21
+#: .\base\templates\base\components\new_club_post_form.html:23
+#: .\base\templates\base\components\new_post_form.html:24
+#: .\base\templates\base\components\new_post_form.html:26
+#: .\base\templates\base\components\new_post_form_small.html:41
+#: .\base\templates\base\components\new_post_form_small.html:43
+#: .\base\templates\base\group_page.txt:579
+#: .\base\templates\base\group_page.txt:873
+msgid "Post"
+msgstr "邮政"
+
+#: .\base\templates\base\components\new_club_post_form.html:27
+#: .\base\templates\base\components\new_post_form.html:30
+#: .\base\templates\base\components\new_post_form_small.html:47
+#: .\base\templates\base\create_event.html:31
+msgid "Image"
+msgstr "图像"
+
+#: .\base\templates\base\components\new_club_post_form.html:29
+#: .\base\templates\base\components\new_post_form.html:32
+#: .\base\templates\base\components\new_post_form_small.html:49
+msgid "Embed Youtube Link"
+msgstr "嵌入 YouTube 链接"
+
+#: .\base\templates\base\components\small_club_posts.html:63
+#: .\base\templates\base\components\small_screen_posts.html:63
+#: .\base\templates\base\group_events.html:231
+#: .\base\templates\base\group_page.txt:165
+#: .\base\templates\base\group_page.txt:644
+#: .\base\templates\base\group_page.txt:1046
+#: .\base\templates\base\post_details_page.html:134
+msgid "see more.."
+msgstr "查看更多.."
+
+#: .\base\templates\base\create_club.html:9
+msgid "Create Club"
+msgstr "创建俱乐部"
+
+#: .\base\templates\base\create_club.html:40
+#: .\base\templates\base\create_event.html:41
+msgid "Create"
+msgstr "创造"
+
+#: .\base\templates\base\create_club.html:41
+#: .\base\templates\base\create_event.html:42
+#: .\base\templates\base\create_group.html:12
+#: .\base\templates\base\edit_club_post.html:11
+#: .\base\templates\base\edit_post.html:11
+#: .\base\templates\base\edit_profile.html:14
+msgid "Cancel"
+msgstr "取消"
+
+#: .\base\templates\base\create_event.html:6
+#: .\base\templates\base\group_events.html:216
+#: .\base\templates\base\group_events.html:219
+msgid "Create an event"
+msgstr "创建活动"
+
+#: .\base\templates\base\create_event.html:15
+#: .\base\templates\base\create_event.html:16
+#: .\base\templates\base\group_requests.html:85
+#: .\base\templates\base\login_register.html:13
+msgid "Name"
+msgstr "姓名"
+
+#: .\base\templates\base\create_event.html:23
+#: .\base\templates\base\event_details.html:14
+msgid "Time"
+msgstr "时间"
+
+#: .\base\templates\base\create_event.html:27
+#: .\base\templates\base\event_details.html:15
+msgid "Date"
+msgstr "日期"
+
+#: .\base\templates\base\create_event.html:37
+#: .\base\templates\base\group_requests.html:40
+#: .\base\templates\base\group_requests.html:54
+#: .\base\templates\base\group_requests.html:89
+msgid "Message"
+msgstr "信息"
+
+#: .\base\templates\base\create_group.html:6
+msgid "Create Group"
+msgstr "创建组"
+
+#: .\base\templates\base\create_group.html:11
+msgid "Create group"
+msgstr "创建组"
+
+#: .\base\templates\base\edit_profile.html:9
+#: .\base\templates\base\user_profile.html:130
+msgid "Edit Profile"
+msgstr "编辑个人资料"
+
+#: .\base\templates\base\event_details.html:6
+msgid "Back to events"
+msgstr "返回活动"
+
+#: .\base\templates\base\event_details.html:16
+msgid "Created by"
+msgstr "创建者："
+
+#: .\base\templates\base\event_details.html:18
+#: .\base\templates\base\event_details.html:20
+#: .\base\templates\base\group_events.html:252
+msgid "Interested"
+msgstr "感兴趣的"
+
+#: .\base\templates\base\event_details.html:26
+msgid "Interested members"
+msgstr "有兴趣的会员"
+
+#: .\base\templates\base\group_clubs.html:93
+#: .\base\templates\base\group_clubs.html:227
+#: .\base\templates\base\group_events.html:135
+#: .\base\templates\base\group_events.html:288
+#: .\base\templates\base\group_page.html:117
+#: .\base\templates\base\group_page.html:187
+#: .\base\templates\base\group_page.txt:383
+#: .\base\templates\base\group_page.txt:743
+#: .\chat\templates\chat\chat_page.html:218
+#: .\chat\templates\chat\chat_page.html:523
+msgid "Posts"
+msgstr "帖子"
+
+#: .\base\templates\base\group_clubs.html:100
+#: .\base\templates\base\group_clubs.html:232
+#: .\base\templates\base\group_events.html:142
+#: .\base\templates\base\group_events.html:293
+#: .\base\templates\base\group_page.html:125
+#: .\base\templates\base\group_page.html:192
+#: .\base\templates\base\group_page.txt:388
+#: .\base\templates\base\group_page.txt:748
+#: .\chat\templates\chat\chat_page.html:226
+#: .\chat\templates\chat\chat_page.html:528
+msgid "Clubs"
+msgstr "俱乐部"
+
+#: .\base\templates\base\group_clubs.html:116
+#: .\base\templates\base\group_events.html:158
+#: .\base\templates\base\group_page.html:147
+#: .\base\templates\base\group_page.txt:398
+#: .\base\templates\base\group_page.txt:758
+#: .\chat\templates\chat\chat_page.html:243
+msgid "Discussion"
+msgstr "讨论"
+
+#: .\base\templates\base\group_clubs.html:171
+#: .\base\templates\base\group_clubs.html:175
+msgid "Create a club"
+msgstr "创建俱乐部"
+
+#: .\base\templates\base\group_clubs.html:176
+#: .\base\templates\base\group_clubs.html:184
+msgid ""
+"After creating the club, a request will be sent to the group admin, and the "
+"club will only be displayed here after approval."
+msgstr "创建俱乐部后，会向群管理员发送请求，批准后俱乐部才会显示在此处。"
+
+#: .\base\templates\base\group_clubs.html:206
+#: .\base\templates\base\group_events.html:270
+msgid "This group is private. Join the group to see the clubs."
+msgstr "该群组是私人的。 加入小组参观俱乐部。"
+
+#: .\base\templates\base\group_clubs.html:239
+#: .\base\templates\base\group_events.html:300
+#: .\base\templates\base\group_page.html:199
+#: .\chat\templates\chat\chat_page.html:535
+msgid "Group"
+msgstr "团体"
+
+#: .\base\templates\base\group_clubs.html:250
+#: .\base\templates\base\group_events.html:311
+#: .\base\templates\base\group_page.html:210
+#: .\chat\templates\chat\chat_page.html:546
+msgid "Chats"
+msgstr "聊天记录"
+
+#: .\base\templates\base\group_details.html:183
+msgid "Delete group"
+msgstr "删除组"
+
+#: .\base\templates\base\group_details.html:187
+msgid "Are you sure about deleting the group"
+msgstr "您确定要删除该群组吗"
+
+#: .\base\templates\base\group_details.html:187
+msgid "This cannot be undone."
+msgstr "这不能被撤消。"
+
+#: .\base\templates\base\group_details.html:201
+#: .\base\templates\base\group_info.html:7
+msgid "Leave Group"
+msgstr "离开组"
+
+#: .\base\templates\base\group_details.html:255
+#: .\base\templates\base\group_info.html:44
+#: .\base\templates\base\group_info_2.html:7
+#: .\base\templates\base\group_info_2.html:86
+msgid "Leave the group"
+msgstr "离开群组"
+
+#: .\base\templates\base\group_details.html:278
+msgid "Rules"
+msgstr "规则"
+
+#: .\base\templates\base\group_events.html:220
+msgid ""
+"After creating the event, a request will be sent to the group admin, and the "
+"event will only be displayed here after approval."
+msgstr "创建活动后，会向群管理员发送请求，审核通过后才会在此处显示活动。"
+
+#: .\base\templates\base\group_events.html:242
+msgid "Event details"
+msgstr "活动详情"
+
+#: .\base\templates\base\group_requests.html:13
+#, fuzzy
+#| msgid "Join Requests"
+msgid "Choose Request"
+msgstr "加入请求"
+
+#: .\base\templates\base\group_requests.html:17
+#: .\base\templates\base\group_requests.html:27
+msgid "Join Requests"
+msgstr "加入请求"
+
+#: .\base\templates\base\group_requests.html:18
+#: .\base\templates\base\group_requests.html:28
+msgid "Club Creation Requests"
+msgstr "俱乐部创建请求"
+
+#: .\base\templates\base\group_requests.html:19
+#: .\base\templates\base\group_requests.html:29
+msgid "Post reports"
+msgstr "发布报告"
+
+#: .\base\templates\base\group_requests.html:20
+#: .\base\templates\base\group_requests.html:30
+msgid "Event requests"
+msgstr "活动请求"
+
+#: .\base\templates\base\group_requests.html:38
+#, fuzzy
+#| msgid "Sender"
+msgid "Sender name"
+msgstr "发件人"
+
+#: .\base\templates\base\group_requests.html:52
+msgid "Club Name"
+msgstr "俱乐部名称"
+
+#: .\base\templates\base\group_requests.html:53
+msgid "Club Description"
+msgstr "俱乐部描述"
+
+#: .\base\templates\base\group_requests.html:86
+msgid "Event description"
+msgstr "活动描述"
+
+#: .\base\templates\base\group_requests.html:87
+msgid "Event date"
+msgstr "活动日期"
+
+#: .\base\templates\base\group_requests.html:88
+msgid "Event time"
+msgstr "活动时间"
+
+#: .\base\templates\base\group_requests.html:91
+msgid "Create event"
+msgstr "创建活动"
+
+#: .\base\templates\base\home.html:10
+msgid "Groups"
+msgstr "团体"
+
+#: .\base\templates\base\home.html:42
+msgid "You have not joined any groups."
+msgstr "您还没有加入任何群组。"
+
+#: .\base\templates\base\home.html:47
+msgid "You can search for groups using the search bar,"
+msgstr "您可以使用搜索栏搜索群组, "
+
+#: .\base\templates\base\home.html:47
+msgid " or you can create your own group."
+msgstr "或者您可以创建自己的组。"
+
+#: .\base\templates\base\home.html:64
+msgid "What is Komyuniti?"
+msgstr "Komyuniti 是什么?"
+
+#: .\base\templates\base\home.html:78 .\base\templates\base\home.html:86
+msgid "Log In"
+msgstr "登录"
+
+#: .\base\templates\base\home.html:81
+msgid "Email address"
+msgstr "电子邮件地址"
+
+#: .\base\templates\base\home.html:83
+#: .\base\templates\base\login_register.html:32
+msgid "Password"
+msgstr "密码"
+
+#: .\base\templates\base\home.html:93
+msgid "New to Komyuniti? Create an account."
+msgstr "Komyuniti 新手？ 创建一个帐户。"
+
+#: .\base\templates\base\invite_page.html:8
+msgid ""
+"To invite users, please input the exact username of the user in the search "
+"bar."
+msgstr "要邀请用户，请在搜索栏中输入用户的确切用户名。"
+
+#: .\base\templates\base\invite_page.html:13 .\templates\navbar.html:55
+msgid "Search"
+msgstr "搜索"
+
+#: .\base\templates\base\invite_page.html:20
+msgid "Send Invite"
+msgstr "发送邀请"
+
+#: .\base\templates\base\invite_requests_page.html:13
+msgid "reject"
+msgstr "拒绝"
+
+#: .\base\templates\base\login_register.html:9
+msgid "Sign In"
+msgstr "登入"
+
+#: .\base\templates\base\login_register.html:17
+msgid "Username"
+msgstr "用户名"
+
+#: .\base\templates\base\login_register.html:22
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr "必需的。 150 个字符或更少。 仅限字母、数字和@/./+/-/_。"
+
+#: .\base\templates\base\login_register.html:27
+msgid "Email"
+msgstr "电子邮件"
+
+#: .\base\templates\base\login_register.html:35
+msgid ""
+"Your password must be 8-20 characters long, contain letters and numbers, and "
+"must not contain spaces, special characters, or emoji."
+msgstr ""
+"您的密码长度必须为 8-20 个字符，包含字母和数字，并且不得包含空格、特殊字符或"
+"表情符号。"
+
+#: .\base\templates\base\login_register.html:39
+msgid "Password confirmation"
+msgstr "确认密码"
+
+#: .\base\templates\base\login_register.html:43
+msgid "Register"
+msgstr "登记"
+
+#: .\base\templates\base\login_register.html:50
+msgid "Already have an account? Log in"
+msgstr "已经有帐户？ 登录"
+
+#: .\base\templates\base\post_details_page.html:10
+msgid "Back to posts"
+msgstr "返回帖子"
+
+#: .\base\templates\base\post_details_page.html:190
+msgid "Write comment..."
+msgstr "写评论..."
+
+#: .\base\templates\base\report_page.html:6
+msgid "This report will be sent to the admin for further review. "
+msgstr "该报告将发送给管理员以供进一步审核。"
+
+#: .\base\templates\base\report_page.html:11
+#: .\chat\templates\chat\chat_page.html:345
+#: .\chat\templates\chat\chat_page.html:488
+#: .\chat\templates\chat\club_chat.html:334
+#: .\chat\templates\chat\club_chat.html:500
+msgid "Send"
+msgstr "发送"
+
+#: .\base\templates\base\setting.html:6
+#, fuzzy
+#| msgid "Language"
+msgid "Select Language"
+msgstr "语言"
+
+#: .\base\templates\base\setting.html:27 .\templates\navbar.html:79
+msgid "Language"
+msgstr "语言"
+
+#: .\base\templates\base\setting.html:45
+#, fuzzy
+#| msgid "Delete post"
+msgid "Delete Account"
+msgstr "删除帖子"
+
+#: .\base\templates\base\user_profile.html:126
+msgid "Member of komyuniti since"
+msgstr "起成为 komyuniti 成员"
+
+#: .\base\templates\base\user_profile.html:131 .\templates\navbar.html:43
+msgid "Log Out"
+msgstr "登出"
+
+#: .\base\templates\base\user_profile.html:135
+msgid "About Me"
+msgstr "关于我"
+
+#: .\base\templates\base\user_profile.html:143
+msgid "Mutual Groups"
+msgstr "相互团体"
+
+#: .\chat\templates\chat\chat_page.html:8
+#: .\chat\templates\chat\club_chat.html:9
+#, fuzzy
+#| msgid "Type a message!"
+msgid "Clear Chat messages"
+msgstr "输入消息！"
+
+#: .\chat\templates\chat\chat_page.html:12
+#: .\chat\templates\chat\club_chat.html:13
+msgid "Do you want to clear all the chat messages?"
+msgstr ""
+
+#: .\chat\templates\chat\chat_page.html:16
+#: .\chat\templates\chat\club_chat.html:17
+msgid "Clear"
+msgstr ""
+
+#: .\chat\templates\chat\chat_page.html:303
+#: .\chat\templates\chat\club_chat.html:292
+#, fuzzy
+#| msgid "Chats"
+msgid "Clear chats"
+msgstr "聊天记录"
+
+#: .\chat\templates\chat\chat_page.html:307
+#: .\chat\templates\chat\club_chat.html:296
+msgid "Please remember to maintain a respectful tone in the chat."
+msgstr "请记住在聊天中保持尊重的语气。"
+
+#: .\chat\templates\chat\chat_page.html:312
+#: .\chat\templates\chat\chat_page.html:597
+#: .\chat\templates\chat\club_chat.html:301
+#: .\chat\templates\chat\club_chat.html:628
+msgid "You"
+msgstr "你"
+
+#: .\chat\templates\chat\chat_page.html:342
+#: .\chat\templates\chat\chat_page.html:485
+#: .\chat\templates\chat\club_chat.html:331
+#: .\chat\templates\chat\club_chat.html:497
+msgid "Type a message!"
+msgstr "输入消息！"
+
+#: .\chat\templates\chat\chat_page.html:432
+#: .\chat\templates\chat\club_chat.html:420
+msgid "This group is private. Join the group to participate in the discussion."
+msgstr "该群组是私人的。 加入群组参与讨论。"
+
+#: .\kominote\settings.py:39
+msgid "English"
+msgstr "英语"
+
+#: .\kominote\settings.py:40
+msgid "Japanese"
+msgstr "日语"
+
+#: .\kominote\settings.py:41
+msgid "Simplified Chinese"
+msgstr "简体中文"
+
+#: .\kominote\settings.py:42
+msgid "German"
+msgstr "德语"
+
+#: .\templates\navbar.html:28
+msgid "Home"
+msgstr "主页"
+
+#: .\templates\navbar.html:35 .\templates\navbar.html:38
+msgid "Profile"
+msgstr "轮廓"
+
+#: .\templates\navbar.html:39
+msgid "Settings"
+msgstr "设置"
+
+#: .\templates\navbar.html:40
+msgid "Invite Request"
+msgstr "邀请请求"
+
+#: .\templates\navbar.html:42 .\templates\navbar.html:58
+#, fuzzy
+#| msgid "About Me"
+msgid "About"
+msgstr "关于我"
+
+#: .\templates\navbar.html:48
+msgid "Logged in as"
+msgstr "登录身份："
+
+#: .\templates\navbar.html:54
+msgid "Search groups"
+msgstr "离开群组"

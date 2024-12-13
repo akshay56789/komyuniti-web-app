@@ -1,0 +1,88 @@
+{% load i18n %}
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans "Leave Club" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% trans "Are you sure about leaving the club? You have to request again" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        <a class="btn btn-danger" href="{% url "leave-club" club.id %}" role="button">{% trans "Leave" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3 d-flex justify-content-center my-3" style="background-color: black; border-radius: 10px;">
+        <div id="top-left" class="">
+          <div id="image" class="d-flex justify-content-center">
+            <img src="{{club.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+          </div>
+          <div id="middle" class="">
+            <div class="my-2 ">
+              <div id="group-name" class="d-flex justify-content-center">
+                <h2 class="text-white">{{club.name}}</h2>
+              </div>
+              <div id="admin" class="d-flex justify-content-center">
+                <h5 class="text-white">{% trans "Host" %}- <a href="{% url "user-profile" club.host.id %}">@{{club.host.username}}</a></h5>
+              </div>
+              <div id="member" class="d-flex justify-content-center" >
+                <p class="text-white">{% trans "Members" %}: {{members|length}}</p> 
+              </div>
+              
+            </div>
+          </div>
+          <div id="buttons" class="my-3 ">
+
+            
+            
+            
+                  <div class="d-grid gap-2">
+                    <p class="d-flex justify-content-center my-2">
+                      <a class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        {% trans "Description" %}
+                      </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        {{club.description}}
+                      </div>
+                    </div>
+                    {% if request.user == club.host %}
+                      <a href="{% url "edit-club" club.id %}" class="btn btn-outline-primary" role="button">{% trans "Edit Club" %}</a>
+                      <!-- <a href="#" class="btn btn-outline-primary" role="button">{% trans "Requests" %}</a> -->
+                      
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-outline-danger" role="button">{% trans "Delete" %}</a>
+                      <a href="{% url "club-requests" club.id %}" class="btn btn-outline-primary" role="button">{% trans "Club requests" %}</a>
+                  
+      
+                  {% elif request.user in members %}
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-outline-danger" role="button">{% trans "Leave the club" %}</a>
+                  <a href="#" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+                  
+                  <!-- {% if group.private %}
+                  {% if sent %}
+                  <a href="#" class="btn btn-outline-primary" role="button">{% trans "Request pending...(Click to delete)" %}</a>
+                  {% else %}
+                  <a href="#" class="btn btn-outline-primary" role="button">{% trans "Request to Join" %}</a>
+                  {% endif %}
+                  {% else %}
+                  <a href="#" class="btn btn-outline-primary" role="button">{% trans "Join" %}</a>
+                  {% endif %} -->
+                  {% endif %}
+                  
+                  <!-- <a href="#" class="btn btn-outline-primary" role="button">Group details</a> -->
+                </div>
+                  
+          </div>
+        </div>
+        
+      
+      
+    
+  </div>

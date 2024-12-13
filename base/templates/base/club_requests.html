@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<a class="btn btn-outline-primary mx-3 my-1" href="{% url "club-page" club_id 1 %}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+           <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+        </svg> {% trans "Back to club page" %}
+  </a>
+
+<h4>{% trans "Club join requests" %}</h4>
+{% for request in requests %}
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="{% url "user-profile" request.sender.id %}">{{request.sender.name}}</a> {% trans "wants to join the club." %}
+        <a href="{% url "club-join" request.id %}">{% trans "Accept" %}</a>
+        <a href="{% url "reject-club-request" request.id %}">{% trans "Reject" %}</a>
+    </li>
+</ul>
+{% empty %}
+<div>
+    <p>{% trans "No requests." %}</p>
+</div>
+{% endfor %}
+
+<h4>{% trans "Post Report" %}</h4>
+{% for request in requests2 %}
+<div class="alert alert-success" role="alert">
+    <h5>{% trans "Sender" %}: <a href="{% url "user-profile" request.sender.id %}">@{{request.sender.username}}</a></h5>
+    <h5>{% trans "Created" %}: {{request.created}}</h5>
+    <h5>{% trans "Post Creator" %}: <a href="{% url "user-profile" request.club_post.creator.id %}">{{request.club_post.creator.name}}</a></h5>
+    <h5>{% trans "Post Creator Email" %}: {{request.club_post.creator.email}}</h5>
+    <h5>{% trans "Post Body" %}: {{request.club_post.body}}</h5>
+    <h5>{% trans "Report Reason" %}: {{request.report_reason}}</h5>
+
+    <a href="{% url "delete-club-post" request.club_post.id %}">{% trans "Delete post" %}</a>
+    <a href="{% url "club-post-details" request.club_post.id%}">{% trans "View Post" %}</a>
+    <a href="{% url "reject-club-request" request.id %}">{% trans "Reject" %}</a>
+
+</div>
+{% empty %}
+<div>
+    <p>{% trans "No requests." %}</p>
+</div>
+{% endfor %}
+
+
+{% endblock content %}

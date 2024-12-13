@@ -1,0 +1,398 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-2">
+          Announcements
+        </div>
+        <div class="col-10 my-2">
+            {% include "base/group_info.html" %}
+            <div>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/group/{{group.id}}">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/clubs/{{group.id}}">Clubs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/events/{{group.id}}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    
+                  </ul>
+                
+                <div>
+                    <hr>
+                {% if request.user == group.creator %}
+                
+                <a class="btn btn-primary my-2" href="{% url "create-club-request" group.id %}" role="button">Create a club</a>
+                
+                {% elif request.user in members %}
+                <a class="btn btn-primary my-2" href="{% url "create-club-request" group.id %}" role="button">Create a club</a>
+                <p>After creating the club, a request will be sent to the group admin and only after approval, the club will be shown here.</p>
+                {% endif %}
+                {% if request.user in members or group.private == False %}
+                <div class="list-group">
+                  {% for club in clubs %}
+                  <a href="#" class="list-group-item list-group-item-action my-1" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{club.name}}</h5>
+                      <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1">{{club.description}}</p>
+                    <small>And some small print.</small>
+                  </a>
+                  {% endfor %}
+                  
+                </div>
+                {% elif group.private == True %}
+                This group is private. Join the group to see the clubs.
+                {% endif %}
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+            
+                
+            
+                
+            </div>
+        </div>
+      </div>
+</div> -->
+{% load cloudinary%}
+{% include "base/components/group_offcanvas.html" %}
+
+<div class="loading" id="spinner" style="display: none;">Loading&#8230;</div>
+
+<style>
+  .loading {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; 
+  width: 50px;
+  height: 50px;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 50px;
+  height: 50px;
+  margin-top: -0.5em;
+
+  border: 15px solid rgba(33, 150, 243, 1.0);
+  border-radius: 100%;
+  border-bottom-color: transparent;
+  -webkit-animation: spinner 1s linear 0s infinite;
+  animation: spinner 1s linear 0s infinite;
+
+
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+  
+</style>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-0 d-none d-sm-block my-2">
+      {% include "base/group_info_2.html" %}
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 my-2">
+      {% comment %} <div class="d-none d-sm-block">
+        {% include "base/group_info.html" %}
+      </div> {% endcomment %}
+      <div class="d-none d-sm-block">
+        <div class="d-flex bd-highlight list-group list-group-horizontal ">
+          <a class="p-2 flex-fill bd-highlight list-group-item  " aria-current="page" href="{% url "group" group.id 1 %}">
+            <div class="d-flex justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 5px; margin-right: 5px" width="16" height="16" fill="currentColor" class="bi bi-file-post" viewBox="0 0 16 16">
+                <path d="M4 3.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5z"/>
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
+              </svg> {% trans "Posts" %}
+            </div>
+          </a>
+          <a class="p-2 flex-fill bd-highlight list-group-item active " href="{% url "club" group.id %}">
+            <div class="d-flex justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 5px; margin-right: 5px" width="16" height="16" fill="currentColor" class="bi bi-suit-club-fill" viewBox="0 0 16 16">
+                <path d="M11.5 12.5a3.5 3.5 0 0 1-2.684-1.254 20 20 0 0 0 1.582 2.907c.231.35-.02.847-.438.847H6.04c-.419 0-.67-.497-.438-.847a20 20 0 0 0 1.582-2.907 3.5 3.5 0 1 1-2.538-5.743 3.5 3.5 0 1 1 6.708 0A3.5 3.5 0 1 1 11.5 12.5"/>
+              </svg> {% trans "Clubs" %}
+            </div>
+          </a>
+          <a class="p-2 flex-fill bd-highlight list-group-item  " href="{% url "events" group.id %}">
+            <div class="d-flex justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 5px; margin-right: 5px" width="13" height="13" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+              </svg> {% trans "Events" %}
+            </div>
+          </a>
+          <a class="p-2 flex-fill bd-highlight list-group-item  "  href="{% url "discussion" group.id group.chat_room %}">
+            <div class="d-flex justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 5px; margin-right: 5px" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+              </svg> {% trans "Discussion" %}
+            </div>
+          </a>
+      </div>
+      </div>
+      <!-- <div class="d-flex d-sm-none row">
+        <div class="col-2">
+          <button
+          class="btn btn-light"
+          type="button"
+            data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+        
+        <div class="col-3 offset-3">
+          <h1>Clubs</h1>
+        </div> -->
+        <!-- <div class="dropdown">
+          <button
+            class="btn btn-secondary btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Clubs
+          </button>
+    
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item " href="/group/{{group.id}}">Posts</a></li>
+            <li><a class="dropdown-item active" href="#">Clubs</a></li>
+            <li><a class="dropdown-item" href="/events/{{group.id}}">Events</a></li>
+            <li><a class="dropdown-item" href="#">Discussion</a></li>
+          </ul>
+        </div> -->
+      <!-- </div> -->
+      
+      
+    
+        
+          
+        
+        
+        
+
+        <!-- {% if request.user in members or request.user == group.creator %}
+        
+        
+        {% endif %} -->
+        <div class="" style="overflow-y: scroll; scrollbar-width: none; height: 33.5rem;">
+          {% if request.user == group.creator %}
+                
+                <a class="btn btn-primary my-2" href="{% url "create-club-request" group.id %}" role="button">{% trans "Create a club" %}</a>
+                
+                {% elif request.user in members %}
+                <div class="d-flex">
+                  <a onclick="spinner()" class="btn btn-primary my-2" href="{% url "create-club-request" group.id %}" role="button">{% trans "Create a club" %}</a>
+                <button type="button" class="btn " data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans "After creating the club, a request will be sent to the group admin, and the club will only be displayed here after approval." %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="bottom" title="After creating the club, a request will be sent to the group admin, and the club will only be displayed here after approval." width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                  </svg>
+                </button>
+                </div>
+                
+                <p class="d-block d-sm-none">{% trans "After creating the club, a request will be sent to the group admin, and the club will only be displayed here after approval." %}</p>
+                
+                {% endif %}
+                {% if request.user in members or group.private == False %}
+                <div class="list-group">
+                  {% for club in clubs %}
+                  <a href="{% url "club-page" club.id 1 %}" class="d-flex list-group-item list-group-item-action my-1" aria-current="true">
+                    <div>
+                      <img src="{{club.image.url}}" style="height: 70px; width: 70px; border-radius: 5px;" alt="">
+                    </div>
+                    <div class="mx-3">
+                      <div class="d-flex w-100 ">
+                        <h4 class="mb-1">{{club.name}}</h4>
+                      </div>
+                      <small>{{club.description}}</small>
+                    </div>  
+                  </a>
+                  {% endfor %}
+                  
+                
+                {% elif group.private == True %}
+                <div class="d-flex justify-content-center my-3">
+                  {% trans "This group is private. Join the group to see the clubs." %}
+                </div>
+                
+                {% endif %}
+                
+          
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<br>
+<br>
+<div class="fixed-bottom d-block d-sm-none">
+  <div class="d-flex bd-highlight list-group list-group-horizontal">
+    <a href="{% url "group" group.id 1 %}" style="font-size: small;" class="p-2 flex-fill bd-highlight list-group-item border-0">
+      <div class="d-flex justify-content-center">
+        {% trans "Posts" %}
+      </div>
+    </a>
+    <a href="{% url "club" group.id %}" style="font-size: small;" class="p-2 flex-fill bd-highlight list-group-item active border-0">
+      <div class="d-flex justify-content-center">
+        {% trans "Clubs" %}
+      </div>
+    </a>
+    <button class="p-2 flex-fill bd-highlight list-group-item border-0 " style="font-size: small;" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasExample"
+    aria-controls="offcanvasExample">
+    <div class="d-flex justify-content-center">
+      {% trans "Group" %}
+    </div>
+    </button>
+    <a href="{% url "events" group.id %}" style="font-size: small;" class="p-2 flex-fill bd-highlight list-group-item border-0">
+      <div class="d-flex justify-content-center">
+        {% trans "Events" %}
+      </div>
+    </a>
+    <a href="{% url "discussion" group.id group.chat_room%}" style="font-size: small;" class="p-2 flex-fill bd-highlight list-group-item border-0">
+      
+      <div class="d-flex justify-content-center">
+        {% trans "Chats" %}
+      </div>
+    </a>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function spinner() {
+    document.getElementById("spinner").style.display = 'block'
+  }
+</script>
+  
+      
+      
+
+
+
+
+
+
+
+
+{% endblock content %}

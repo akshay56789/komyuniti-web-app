@@ -1,0 +1,86 @@
+{% load cloudinary %}
+{% load i18n %}
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{% trans "Leave Group" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Are you sure about leaving the group?" %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+          <a class="btn btn-danger" href="#" role="button">{% trans "Leave" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+    <div class="row">
+        <div class="col-xl-1 col-lg-2 col-md-3 col-sm-0">
+            {% comment %} {% cloudinary group.image.url quality='auto:low' height=80 width=80 crop='fill' radius='20:20' %} {% endcomment %}
+            <img src="{{group.image.url}}" style="height: 80px; width: 80px; border-radius: 5px;">
+        </div>
+        <div class="col-xl-11 col-lg-10 col-md-9 col-sm-12">
+            <h1>{{group.name}}</h1>
+            {% comment %} <div>
+              <p style="display: inline;">Members - {{members|length}}
+              {% for tag in tags %}
+              <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+              {% endfor %}
+            </p>
+            </div> {% endcomment %}
+    
+    
+    <a href="#" class="btn btn-outline-primary" role="button">{% trans "Group details" %}</a>
+
+    {% if request.user == group.creator %}
+    <a href="{% url "pending_requests" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Requests" %}</a>
+    {% elif request.user in members %}
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger" role="button">{% trans "Leave the group" %}</a>
+        <a href="#" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+    {% else %}
+        {% if group.private %}
+            {% if sent %}
+            <a href="{% url "delete-request" sent.id %}" class="btn btn-outline-danger" role="button">{% trans "Request pending...(Click to delete)" %}</a>
+            {% else %}
+            <a href="{% url "join-request-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Request to Join" %}</a>
+            {% endif %}
+        {% else %}
+        <a href="{% url "group-join" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Join" %}</a>
+        {% endif %}
+    {% endif %}
+    
+        </div>
+    
+    </div>
+    
+    
+
+     
+    
+    
+</div>
+<hr>
+{% comment %} posts {% endcomment %}
+{% comment %} <a href="/group/{{group.id}}">Posts</a>
+<a href="/clubs/{{group.id}}">Clubs</a>
+<a href="/events/{{group.id}}">Events</a>
+<a href="#">Announcements</a>
+<a href="">Discussion(Coming soon...)</a> {% endcomment %}
+{% comment %} <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/group/{{group.id}}">Posts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/clubs/{{group.id}}">Clubs</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/events/{{group.id}}">Events</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">Discussion(Coming soon...)</a>
+    </li>
+  </ul> {% endcomment %}

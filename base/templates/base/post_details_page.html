@@ -1,0 +1,555 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load cloudinary %}
+{% load i18n %}
+{% load tz %}
+<div class="d-flex justify-content-center my-1">
+  <div class="spinner-border" id="loader" role="status" style="display: none;">
+      <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div class="loading" id="spinner" style="display: none;">Loading&#8230;</div>
+
+<style>
+  .loading {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 50px;
+  height: 50px;
+  margin-top: -0.5em;
+
+  border: 15px solid rgba(33, 150, 243, 1.0);
+  border-radius: 100%;
+  border-bottom-color: transparent;
+  -webkit-animation: spinner 1s linear 0s infinite;
+  animation: spinner 1s linear 0s infinite;
+
+
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+</style>
+
+
+
+<a onclick="spinner()" class="btn btn-outline-primary mx-3" href="{% url "group" post.group.id 1 %}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+     </svg> {% trans "Back to posts" %}
+</a>
+
+<div class="container">
+    <div>
+      <div class="d-none d-sm-block">
+        <div class="list-group py-2 ">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-xl-1 col-lg-2 col-md-3 ">
+                <img src="{{post.creator.avatar.url}}" class="w-sm-25" style="height: 3rem; width: 3rem; border-radius: 5rem; margin-left: 1rem;" />
+              </div>
+              <div class="col-xl-11 col-lg-10 col-md-9">
+                <div>
+                  <div class="d-flex w-100 ">
+                    <h5 class="mb-1">{{post.creator.name}}&nbsp;</h5><a href="{% url "user-profile" post.creator.id %}" style="text-decoration: none;"> @{{post.creator.username}}&nbsp; </a> ● <p>&nbsp;{{post.created|timezone:"Asia/Kolkata"}}</p>
+                  </div>
+                  <div>
+                    <p class="mb-1">{{post.body}}</p>
+                    {% if post.image %}
+                    <!-- <img src="{{post.image.url}}" alt=""> -->
+                    <a href="{{post.image.url}}"><img style="max-width: 100%;max-width: 400px; height: auto;" src="{{post.image.url}}" alt=""></a>
+                    {% endif %}
+                    {% if post.embed %}
+                    <iframe width="560" height="315" src="{{post.embed}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    {% endif %}
+                  </div>
+
+                  {% if post.created|time:"H:i" != post.post_updated|time:"H:i" %}
+                  <small>{% trans "Edited" %}</small>
+                  {% endif %}
+
+                  {% if request.user == post.creator %}
+                  <div class="row">
+                    <div class="col-2">
+                      <a href="{% url "edit-post" post.id %}" style="text-decoration: none;">{% trans "Edit" %}</a>
+                    </div>
+                    <div class="col-2">
+                      <a href="{% url "delete-post" post.id %}" style="text-decoration: none;">{% trans "Delete" %}</a>
+                    </div>
+                    <div class="col-2">
+                      <a href="{% url "post-details" post.id %}" style="text-decoration: none;">{% trans "See comments" %}({{post.no_of_comments}})</a>
+                    </div>
+                  </div>
+                  {% else %}
+                  <div class="row">
+                    <div class="col-2">
+                      <a href="{% url "create-post-report-request" post.id %}" style="text-decoration: none;">{% trans "Report" %}</a>
+                    </div>
+                    <!-- <div class="col-2">
+                      <a href="{% url "post-details" post.id %}" style="text-decoration: none;">{% trans "See comments" %}({{post.no_of_comments}})</a>
+                    </div> -->
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+          </li>
+
+
+
+        </div>
+
+
+      </div>
+      <div class=" d-block d-sm-none">
+        <li class="list-group-item my-1 d-block d-sm-none">
+          <div class="row">
+            <div class="col-1">
+              <a href="{% url "user-profile" post.creator.id %}">
+              <img
+                src="{{post.creator.avatar.url}}"
+                style="
+                  height: 2.5rem;
+                  width: 2.5rem;
+                  border-radius: 5rem;
+                  margin-left: 0rem;
+                "
+              />
+            </a>
+            </div>
+            <div class="col-9">
+              <div>
+                <div class="container">
+                  <div class="mb-1 fs-6">{{post.creator.name}}&nbsp;</div>
+                  <div class="d-flex w-100" style="margin-top: -7px;">
+                    <a href="{% url "user-profile" post.creator.id %}" class="fs-6 text-black" style="text-decoration: underline">
+                      @{{post.creator.username}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% comment %} <div class="col-1">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-light"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                </svg>
+                </button>
+                <ul class="dropdown-menu">
+                    {% if request.user == post.creator %}
+                  <li><a class="dropdown-item" href="{% url "edit-post" post.id %}">{% trans "Edit" %}</a></li>
+                  <li><a class="dropdown-item" href="{% url "delete-post" post.id %}"> {% trans "Delete" %}</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url "post-details" post.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-quote-fill" viewBox="0 0 16 16">
+                      <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM7.194 4.766q.13.188.227.401c.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667S4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324q.128.125.227.272M11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666S9.112 4 10.069 4c.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324q.128.125.227.272.131.188.228.401c.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
+                    </svg> {% trans "See comments" %}</a>
+                  </li>
+                  {% else %}
+                  <li><a class="dropdown-item" href="{% url "create-post-report-request" post.id %}">{% trans "Report" %}</a></li>
+                  <li><a class="dropdown-item" href="{% url "post-details" post.id %}">{% trans "See comments" %}</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div> {% endcomment %}
+          </div>
+
+          <div class="my-1">{{post.body}}</div>
+          <div class="my-1">
+
+            {% if post.image %}
+            <!-- <img src="{{post.image.url}}" alt=""> -->
+            <a class="d-flex justify-content-center" href="{{post.image.url}}"><img style="max-width: 100%;max-width: 260px; height: auto;" src="{{post.image.url}}" alt=""></a>
+            {% endif %}
+            {% if post.embed %}
+            <div class="d-flex justify-content-center">
+            <iframe width="250" height="150" src="{{post.embed}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex w-100">
+            <p class="text-secondary" style="font-size: small;">{{post.created|timezone:"Asia/Kolkata"}} ago</p>{% if post.created|time:"H:i" != post.post_updated|time:"H:i" %}<p class="text-secondary" style="font-size: small;"> {% trans "(edited)" %}</p>{% endif %}
+          </div>
+          {% if request.user == post.creator %}
+                <div class="row">
+                  <div class="col-4 d-flex justify-content-center" >
+                    <a href="{% url "edit-post" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg></a>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center">
+                    <a href="{% url "delete-post" post.id %}" id="deletebtn" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                    </svg> </a>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center">
+                    <a href="{% url "post-details" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-quote-fill" viewBox="0 0 16 16">
+                      <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM7.194 4.766q.13.188.227.401c.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667S4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324q.128.125.227.272M11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666S9.112 4 10.069 4c.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324q.128.125.227.272.131.188.228.401c.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
+                    </svg> {{post.no_of_comments}}</a>
+                  </div>
+                </div>
+                {% else %}
+                <div class="row">
+                  <div class="col-4 d-flex justify-content-center">
+                    <a href="{% url "create-post-report-request" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                      <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"/>
+                    </svg> </a>
+                  </div>
+
+                </div>
+
+              {% endif %}
+        </li>
+      </div>
+    <div>
+        <h3 class="d-flex justify-content-center">{% trans "Comments" %}</h3>
+        <form class="my-1" action="" method="post">
+            {% csrf_token %}
+            <div class="list-group py-2" style="display: flex; flex-direction: column; align-items: flex-start;">
+              <li class="list-group-item px-2" style="width: 100%;">
+              <div class="mx-4 d-flex justify-content-between my-2">
+                <input type="text" name='body' placeholder="{% trans "Write comment..." %}" style="width: 90%;">
+
+
+                <button class=" btn btn-primary" onclick="spinner()" type="submit" id="load1">
+                  <span class="" id="load2">Post</span>
+                </button>
+
+              </div>
+
+            </li>
+            </div>
+          </form>
+    </div>
+    {% for comment1 in comments1 %}
+    <div class="d-none d-sm-block">
+      <div class="list-group py-1 ">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xl-1 col-lg-2 col-md-2 " >
+              <img src="{{comment1.creator.avatar.url}}" class="w-sm-25" style="height: 2.5rem; width: 2.5rem; border-radius: 5rem; margin-left: 1rem;" />
+            </div>
+            <div class="col-xl-11 col-lg-10 col-md-10" style="margin-top: 2px;">
+              <div>
+                <div class="d-flex w-100 ">
+                  <h5 class="mb-1">{{comment1.creator.name}}&nbsp;</h5><a href="{% url "user-profile" post.creator.id %}" style="text-decoration: none;"> @{{comment1.creator.username}}&nbsp; </a> ● <p>&nbsp;{{post.created|timesince}}</p>
+                </div>
+                <div class="my-1">
+                  <p class="mb-1">{{comment1.body}}</p>
+
+
+                </div>
+
+                {% if comment1.created != comment1.updated %}
+                <small>{% trans "Edited" %}</small>
+                {% endif %}
+                <hr>
+                {% if request.user == comment1.creator %}
+                <div class="row">
+                  <div class="col-2">
+                    <a href="{% url "edit-post-comment" comment1.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg> {% trans "Edit" %}</a>
+                  </div>
+                  <div class="col-2">
+                    <a onclick="spinner()" href="{% url "delete-comment" comment1.id %}" id="deletebtn" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                    </svg> {% trans "Delete" %}</a>
+                  </div>
+                </div>
+                {% else %}
+                <div class="row">
+                  <div class="col-2">
+                    <a href="{% url "create-post-report-request" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                      <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"/>
+                    </svg> {% trans "Report" %}</a>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+        </li>
+
+
+
+      </div>
+    </div>
+    <div class="d-block d-sm-none">
+      {% comment %} <div class="list-group py-1">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-1">
+              <img
+                src="{{comment1.creator.avatar.url}}"
+                style="
+                  height: 2rem;
+                  width: 2rem;
+                  border-radius: 5rem;
+                  margin-left: 0rem;
+                "
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <div class="container">
+                  <div class="mb-1 fs-6">{{comment1.creator.name}}&nbsp;</div>
+                  <div class="d-flex w-100" style="margin-top: -7px;">
+                    <a href="{% url "user-profile" post.creator.id %}" class="fs-6" style="text-decoration: none">
+                      @{{comment1.creator.username}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="my-1">{{comment1.body}}</div>
+
+
+          <div class="d-flex w-100">
+            <p>{{comment1.created|timesince}}</p>{% if comment1.created != post.updated %}<p> {% trans "(edited)" %}</p>{% endif %}
+          </div>
+          <hr>
+          {% if request.user == comment1.creator %}
+                <div class="row d-flex justify-content-around">
+                  <div class="col-4 d-flex justify-content-center" >
+                    <a href="#" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg></a>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center">
+                    <a href="#" id="deletebtn" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                    </svg> </a>
+                  </div>
+                </div>
+                {% else %}
+                <div class="row">
+                  <div class="col-4 d-flex justify-content-center">
+                    <a href="#" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                      <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"/>
+                    </svg> </a>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+        </li>
+      </div> {% endcomment %}
+      <li class="list-group-item my-1 d-block d-sm-none">
+        <div class="row">
+          <div class="col-1">
+            <img
+              src="{{comment1.creator.avatar.url}}"
+              style="
+                height: 2.5rem;
+                width: 2.5rem;
+                border-radius: 5rem;
+                margin-left: 0rem;
+              "
+            />
+          </div>
+          <div class="col-9">
+            <div>
+              <div class="container">
+                <div class="mb-1 fs-6 ">{{comment1.creator.name}}&nbsp;</div>
+                <div class="d-flex w-100" style="margin-top: -7px;">
+                  <a href="{% url "user-profile" post.creator.id %}" class="fs-6" style="text-decoration: underline">
+                    @{{comment1.creator.username}}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% comment %} <div class="col-1">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-sm btn-light"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+              </svg>
+              </button>
+              <ul class="dropdown-menu">
+                  {% if request.user == post.creator %}
+                <li><a class="dropdown-item" href="{% url "edit-post" post.id %}">{% trans "Edit" %}</a></li>
+                <li><a class="dropdown-item" href="{% url "delete-post" post.id %}"> {% trans "Delete" %}</a></li>
+                <li>
+                  <a class="dropdown-item" href="{% url "post-details" post.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-quote-fill" viewBox="0 0 16 16">
+                    <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM7.194 4.766q.13.188.227.401c.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667S4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324q.128.125.227.272M11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666S9.112 4 10.069 4c.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324q.128.125.227.272.131.188.228.401c.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
+                  </svg> {% trans "See comments" %}</a>
+                </li>
+                {% else %}
+                <li><a class="dropdown-item" href="{% url "create-post-report-request" post.id %}">{% trans "Report" %}</a></li>
+                <li><a class="dropdown-item" href="{% url "post-details" post.id %}">{% trans "See comments" %}</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div> {% endcomment %}
+        </div>
+
+        <div class="my-1 ">{{comment1.body}}</div>
+
+
+          <div class="d-flex w-100">
+          <p class="text-secondary" style="font-size: small">{{comment1.created|timesince}} ago</p>{% if comment1.created != comment1.updated %}<p class="text-secondary" style="font-size: small"> {% trans "(edited)" %}</p>{% endif %}
+          </div>
+          {% if request.user == comment1.creator %}
+              <div class="row">
+                <div class="col-6 d-flex justify-content-center" >
+                  <a onclick="spinner()" href="{% url "edit-post-comment" comment1.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg></a>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                  <a onclick="spinner()" href="{% url "delete-comment" comment1.id %}" id="deletebtn" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                  </svg> </a>
+                </div>
+              </div>
+              {% else %}
+              <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                  <a href="#" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                    <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"/>
+                  </svg> </a>
+                </div>
+              </div>
+
+            {% endif %}
+      </li>
+    </div>
+
+    {% empty %}
+    <h5 class="d-flex justify-content-center">No comments.</h5>
+    {% endfor %}
+
+</div>
+
+<script type="text/javascript">
+  function spinner() {
+    document.getElementById("spinner").style.display = 'block'
+  }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,160 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<a class="btn btn-outline-primary mx-3 my-1" href="{% url "group" group.id 1 %}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+           <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+        </svg> {% trans "Back to group page" %}
+  </a>
+  <div class="dropdown d-block d-sm-none">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      {% trans "Choose Request" %}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">{% trans "Join Requests" %} {% if join_requests|length > 0 %}<span class="badge bg-secondary">{{join_requests|length}}</span>{% endif %}</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">{% trans "Club Creation Requests" %} {% if club_requests|length > 0 %}<span class="badge bg-secondary">{{club_requests|length}}</span>{% endif %}</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">{% trans "Post reports" %} {% if report_requests|length > 0 %}<span class="badge bg-secondary">{{report_requests|length}}</span>{% endif %}</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">{% trans "Event requests" %} {% if event_requests|length > 0 %}<span class="badge bg-secondary">{{event_requests|length}}</span>{% endif %}</a>
+          </div>
+    </ul>
+  </div>
+<div class="row">
+    <div class="col-xl-4 col-lg-2 col-md-2 d-none d-sm-block">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">{% trans "Join Requests" %} {% if join_requests|length > 0 %}<span class="badge bg-secondary">{{join_requests|length}}</span>{% endif %}</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">{% trans "Club Creation Requests" %} {% if club_requests|length > 0 %}<span class="badge bg-secondary">{{club_requests|length}}</span>{% endif %}</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">{% trans "Post reports" %} {% if report_requests|length > 0 %}<span class="badge bg-secondary">{{report_requests|length}}</span>{% endif %}</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">{% trans "Event requests" %} {% if event_requests|length > 0 %}<span class="badge bg-secondary">{{event_requests|length}}</span>{% endif %}</a>
+      </div>
+    </div>
+    <div class="col-xl-8 col-lg-10 col-md-10">
+        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            {% for request1 in join_requests %}
+            <div class="alert alert-primary" role="alert">
+                <h5>{% trans "Sender name" %}: <a href="{% url "user-profile" request1.sender.id %}">@{{request1.sender.username}}</a></h5>
+                <h5>{% trans "Created" %}: {{request1.created}}</h5>
+                <h5>{% trans "Message" %}: {{request1.message}}</h5>
+                <a href="{% url "accept-request" request1.id %}">{% trans "Accept" %}</a>
+                <a href="{% url "reject-request" request1.id %}">{% trans "Reject" %}</a>
+            </div>
+
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            {% for request2 in club_requests %}
+        <div class="alert alert-info" role="alert">
+        <h5>Sender name: <a href="{% url "user-profile" request2.sender.id %}">@{{request2.sender.username}}</a></h5>
+        <h5>{% trans "Created" %}: {{request2.created}}</h5>
+        <h5>{% trans "Club Name" %}: {{request2.name}}</h5>
+        <h5>{% trans "Club Description" %}: {{request2.description}}</h5>
+        <h5>{% trans "Message" %}: {{request2.message}}</h5>
+
+        <a href="{% url "create-club" request2.id %}">{% trans "Accept" %}</a>
+        <a href="{% url "reject-request" request2.id %}">{% trans "Reject" %}</a>
+    </div>
+    <hr>
+    {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+            {% for request3 in report_requests %}
+    <div class="alert alert-success" role="alert">
+        <h5>{% trans "Sender" %}: <a href="{% url "user-profile" request3.sender.id %}">@{{request3.sender.username}}</a></h5>
+        <h5>{% trans "Created" %}: {{request3.created}}</h5>
+        <h5>{% trans "Post Creator" %}: <a href="{% url "user-profile" request3.post.creator.id %}">{{request3.post.creator.name}}</a></h5>
+        <h5>{% trans "Post Creator Email" %}: {{request3.post.creator.email}}</h5>
+        <h5>{% trans "Post Body" %}: {{request3.post.body}}</h5>
+        <h5>{% trans "Report Reason" %}: {{request3.report_reason}}</h5>
+
+        <a href="{% url "delete-post" request3.post.id %}">{% trans "Delete post" %}</a>
+        <a href="{% url "post-details" request3.post.id%}">View Post</a>
+        <a href="{% url "reject-request" request3.id %}">{% trans "Reject" %}</a>
+        
+    </div>
+    <hr>
+    {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+            {% for request4 in event_requests %}
+    <div class="alert alert-secondary" role="alert">
+        <h5>{% trans "Sender" %}: <a href="{% url "user-profile" request4.sender.id %}">@{{request4.sender.username}}</a></h5>
+        <h5>{% trans "Created" %}: {{request4.created}}</h5>
+        <h5>{% trans "Name" %}: {{request4.name}}</h5>
+        <h5>{% trans "Event description" %}: {{request4.description}}</h5>
+        <h5>{% trans "Event date" %}: {{request4.event_date}}</h5>
+        <h5>{% trans "Event time" %}: {{request4.event_time}}</h5>
+        <h5>{% trans "Message" %}: {{request4.message}}</h5>
+
+        <a href="{% url "create-event" request4.id%}">{% trans "Create event" %}</a>
+        <a href="{% url "reject-request" request4.id %}">{% trans "Reject" %}</a>
+        
+    </div>
+    <hr>
+    {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+    {% comment %} <h1>Join Requests</h1>
+    {% for request1 in join_requests %}
+    <div>
+        <h3>@{{request1.sender.username}}</h3>
+        <h3>{{request1.created}}</h3>
+        <h3>{{request1.message}}</h3>
+        <a href="{% url "accept-request" request1.id %}">Accept</a>
+        <a href="{% url "reject-request" request1.id %}">Reject</a>
+    </div>
+    <hr>
+    {% endfor %}
+    <h1>Club Requests</h1>
+    {% for request2 in club_requests %}
+    <div>
+        <h3>@{{request2.sender.username}}</h3>
+        <h3>{{request2.created}}</h3>
+        <h3>Club Name: {{request2.name}}</h3>
+        <h3>Club Description: {{request2.description}}</h3>
+        <h3>Message: {{request2.message}}</h3>
+
+        <a href="{% url "create-club" request2.id %}">Accept</a>
+        <a href="{% url "reject-request" request2.id %}">Reject</a>
+    </div>
+    <hr>
+    {% endfor %}
+    <h1>Post reports</h1>
+    {% for request3 in report_requests %}
+    <div>
+        <h3>Sender: @{{request3.sender.username}}</h3>
+        <h3>{{request3.created}}</h3>
+        <h3>Post Creator: {{request3.post.creator.name}}</h3>
+        <h3>Post Creator Email: {{request3.post.creator.email}}</h3>
+        <h3>Post Body: {{request3.post.body}}</h3>
+        <h3>Report Reason: {{request3.message}}</h3>
+
+        <a href="{% url "delete-post" request3.post.id %}">Delete the post</a>
+        <a href="">Reject</a>
+    </div>
+    <hr>
+    {% endfor %}
+    <h1>Event requests</h1>
+    {% for request4 in event_requests %}
+    <div>
+        <h3>Sender: <a href="{% url "user-profile" request4.sender.id %}">@{{request4.sender.username}}</a></h3>
+        <h3>{{request4.created}}</h3>
+        <h3>Name: {{request4.name}}</h3>
+        <h3>Event description: {{request4.description}}</h3>
+        <h3>Event date: {{request4.event_date}}</h3>
+        <h3>Event time: {{request4.event_time}}</h3>
+        <h3>Message: {{request4.message}}</h3>
+
+        <a href="{% url "create-event" request4.id%}">Create event</a>
+        <a href="">Reject</a>
+    </div>
+    <hr>
+    {% endfor %} {% endcomment %}
+</div>
+
+{% endblock content %}

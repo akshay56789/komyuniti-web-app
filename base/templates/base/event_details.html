@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load cloudinary %}
+{% load i18n %}
+
+<a class="btn btn-outline-primary my-2 mx-2" href="{% url "events" event.group.id %}">{% trans "Back to events" %}</a>
+<div class="list-group-item py-2 mx-2">
+    <div>
+        <div>
+            <h4>{{event.name}}</h4>
+        </div>
+        <div class="d-block d-sm-none fs-6">
+            {{event.description}}
+        </div>
+        <div class="d-none d-sm-block">
+            {{event.description}}
+        </div>
+        {% if event.image %}
+        <div class="container">
+            <img src="{{event.image.url}}" alt="">
+        </div>
+        
+        {% endif %}
+        
+        <div>
+            {% trans "Host" %} - {{event.creator.name}}
+        </div>
+    </div>
+    <div>
+        <div>
+            {{event.event_date}} {{event.event_time}}
+        </div>
+        
+    </div>
+    
+        {% if request.user == group.creator %}
+        <a class="btn btn-primary" role="button" href="{% url "delete-event" event.id %}">{% trans "Delete" %}</a>
+        <a class="btn btn-danger" role="button" href="{% url "edit-event" event.id %}">{% trans "Edit" %}</a>
+        {% endif %}
+
+        {% if request.user not in participants %}
+    <a href="{% url "event-interested" event.id %}">{% trans "Interested" %}</a>
+    {% else %}
+    <a aria-disabled="true" >{% trans "Interested" %}</a>
+    {% endif %}
+
+  </div>
+
+<div class="mx-2 my-2">
+    <h4>{% trans "Interested members" %} - {{participants|length}}</h4>
+    {% for member in participants %}
+    <div class="d-flex my-3  ">
+        <div>
+            <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+        </div>
+        <div>
+            <a href="{% url "user-profile" member.id %}" class="mx-3" style="font-size: large;text-decoration: none;">{{member.name}}</a>
+        </div>
+        
+      </div>
+    {% endfor %}
+    
+</div>
+
+{% endblock content %}
+

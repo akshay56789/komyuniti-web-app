@@ -1,0 +1,103 @@
+{% load i18n %}
+{% load cloudinary %}
+<div
+  class="offcanvas offcanvas-start bg-dark"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+  >
+    <div class="offcanvas-header d-block d-sm-none">
+      <button
+      type="button"
+      class="btn-close text-reset bg-white"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      ></button>
+      <h5 class="offcanvas-title text-light" id="offcanvasExampleLabel">{% trans "Club details" %}</h5>
+      
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex justify-content-center">
+        <img src="{{club.image.url}}" class=" d-flex align-self-center" style="height: 100px; width: 100px; border-radius: 5px;">
+
+      </div>
+      <div class="d-flex justify-content-center my-2">
+        <h3 class="text-light">{{club.name}}</h3>
+      </div>
+      <div id="admin" class="d-flex justify-content-center my-2">
+        <p class="text-light" >{% trans "Host" %}- <a class="text-light" href="{% url "user-profile" club.host.id %}">@{{club.host.username}}</a></p>
+      </div>
+      <div id="member" class="d-flex justify-content-center my-2" >
+        <p class="text-light">{% trans "Members" %}: {{members|length}}</p> 
+      </div>
+      <p class="d-grid mx-5">
+        <a class="btn btn-outline-light" role="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+          </svg> {% trans "Description" %}
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          {{club.description}}
+        </div>
+      </div>
+      <div class="mx-5">
+        <div class="d-grid gap-1">
+          <a href="{% url "club" club.group.id %}" class="btn btn-outline-light" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+          </svg> {% trans "Back to group" %}</a>
+          {% if request.user == club.host %}
+          
+            <a href="{% url "edit-club" club.id %}" class="btn btn-outline-light" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+            </svg> {% trans "Edit Club" %}</a>
+          
+          
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+            </svg> {% trans "Delete" %}</a>
+          
+          
+            <a href="{% url "club-requests" club.id %}" class="btn btn-outline-light" role="button">{% trans "Club requests" %}</a>
+          
+          {% elif request.user in members %}
+          
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+              <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+              <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+            </svg> {% trans "Leave the club" %}</a>
+          
+          
+            <a href="#" class="btn btn-outline-light" role="button">{% trans "Invite" %}</a>
+          
+          {% endif %}
+        </div>
+      </div>
+      <div class="my-4">
+        <h5 class="my-4 text-white d-flex justify-content-center">{% trans "Members" %}</h5>
+        {% for member in members %}
+        <div class="d-flex my-3  ">
+        <div>
+            <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+        </div>
+        <div>
+            <a href="{% url "user-profile" member.id %}" class="mx-3" style="color: white;font-size: large;text-decoration: none;">{{member.name}}</a>
+        </div>
+        {% if request.user == club.host and member != club.host %}
+                <div>
+                <a href="{% url "remove-club-member" club.id member.id %}" aria-label="Kick">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16" aria-label="Kick">
+                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </a>
+                </div>
+                {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    
+  </div>

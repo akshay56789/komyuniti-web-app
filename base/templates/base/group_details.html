@@ -1,0 +1,501 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% load i18n %}
+<style>
+  .loading {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; 
+  width: 50px;
+  height: 50px;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 50px;
+  height: 50px;
+  margin-top: -0.5em;
+
+  border: 15px solid rgba(33, 150, 243, 1.0);
+  border-radius: 100%;
+  border-bottom-color: transparent;
+  -webkit-animation: spinner 1s linear 0s infinite;
+  animation: spinner 1s linear 0s infinite;
+
+
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+  
+</style>
+
+ <a class="btn btn-outline-primary mx-3 my-1" href="{% url "group" group.id 1 %}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+         <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+      </svg> {% trans "Back to group page" %}
+</a>
+{% comment %} <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete group</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure about deleting the group '{{group.name}}'? This cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a class="btn btn-danger" href="{% url "delete-group" group.id %}" role="button">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Leave Group</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure about leaving the group?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a class="btn btn-danger" href="{% url "leave-group" group.id %}" role="button">Leave</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div>
+<div class="row mx-4 justify-content-between">
+    <div class="col-9 py-2 px-2" style="background-color: aliceblue;">
+        <div class="row">
+            <div class="col-2">
+                <img src="{{group.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+            </div>
+            <div class="col-7">
+                <h2>{{group.name}}</h2>
+                <h4>Admin- <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h4>
+                <div>
+                    <p>Members: {{members|length|add:"1"}}</p>
+                </div>
+                <div>
+                    {% for tag in tags %}
+              <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+              {% endfor %}
+                </div>
+            </div>
+            <div class="col-3">
+                {% if request.user == group.creator %}
+                <div class="d-grid gap-2">
+                    <a href="{% url "edit-group" group.id %}" class="btn btn-outline-primary" role="button">Edit Group</a>
+                    <a href="{% url "pending_requests" group.id %}" class="btn btn-outline-primary" role="button">Requests</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-outline-danger" role="button">Delete</a>
+                </div>
+    
+                {% elif request.user in members %}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-outline-danger" role="button">Leave the group</a>
+                {% else %}
+                {% if group.private %}
+                {% if sent %}
+                <a href="{% url "delete-request" sent.id %}" class="btn btn-outline-primary" role="button">Request pending...(Click to delete)</a>
+                {% else %}
+                <a href="{% url "join-request-page" group.id %}" class="btn btn-outline-primary" role="button">Request to Join</a>
+                {% endif %}
+                {% else %}
+                <a href="{% url "group-join" group.id %}" class="btn btn-outline-primary" role="button">Join</a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-8">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="list-group-item list-group-item-action active" id="list-description-list" data-bs-toggle="list" href="#list-description" role="tab" aria-controls="list-description">Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="list-group-item list-group-item-action" id="list-rules-list" data-bs-toggle="list" href="#list-rules" role="tab" aria-controls="list-rules">Rules</a>
+                </li>
+            </ul>
+            <div class="my-4">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-description" role="tabpanel" aria-labelledby="list-description-list">
+                        <h5>
+                            {{group.description}}
+                        </h5>
+                    </div>
+                    <div class="tab-pane fade" id="list-rules" role="tabpanel" aria-labelledby="list-rules-list">
+                        <h5>
+                            {{group.notice}}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 py-2" style="background-color: aliceblue; margin-right: 3rem; border-radius: 1rem;">
+        <div>
+            <h3>Members</h3>
+        </div>
+        <div>
+            <div>
+                <h4><a href="{% url "user-profile" group.creator.id %}" style="text-decoration: none;">@{{group.creator.username}}</a></h4>
+            </div>
+            {% for member in members %}
+            <div>
+            <h4><a href="{% url "user-profile" member.id %}" style="text-decoration: none;">@{{member.username}}</a></h4>
+            </div>
+            {% endfor %}
+            </div> 
+        </div>
+    </div>
+    <!-- <div>
+        <h1>{{group.name}}</h1>
+    </div>
+    <div>
+        <h3>{{group.description}}</h3>
+    </div>
+    <div>
+        <h3>Admin: <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h3>
+    </div>
+    <div>
+        <h3>Rules</h3>
+        <p>
+            {{group.notice}}
+        </p>
+    </div>
+    <div>
+        <p>Members: {{members|length|add:"1"}}</p>
+    </div>
+    {% if request.user == group.creator %}
+    <a href="{% url "edit-group" group.id %}">Edit Group</a>
+    <a href="{% url "pending_requests" group.id %}">Requests</a>
+    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+    </a>
+    {% elif request.user in members %}
+        <a href="{% url "leave-group" group.id %}">Leave the group</a>
+    {% else %}
+        {% if group.private %}
+            {% if sent %}
+            <a href="{% url "delete-request" sent.id %}">Request pending...(Click to delete)</a>
+            {% else %}
+            <a href="{% url "join-request-page" group.id %}">Request to Join</a>
+            {% endif %}
+        {% else %}
+        <a href="{% url "group-join" group.id %}">Join</a>
+        {% endif %}
+    {% endif %}
+
+    <h3>Members</h3>
+    <div>
+        <h3><a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}} (Admin)</a></h3>
+    </div>
+    {% for member in members %}
+    <div>
+        <h3><a href="{% url "user-profile" member.id %}">@{{member.username}}</a></h3>
+    </div>
+    {% endfor %} -->
+
+
+</div> {% endcomment %}
+<div class="loading" id="spinner" style="display: none;">Loading&#8230;</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{% trans "Delete group" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Are you sure about deleting the group" %} '{{group.name}}'? {% trans "This cannot be undone." %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+          <a onclick="spinner()" class="btn btn-danger" href="{% url "delete-group" group.id %}" role="button">{% trans "Delete" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{% trans "Leave Group" %}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {% trans "Are you sure about leaving the group?" %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+              <a onclick="spinner()" class="btn btn-danger" href="{% url "leave-group" group.id %}" role="button">{% trans "Leave" %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div>
+
+<div class="p-3">
+    <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-9">
+        <div id="top-left" class="row">
+          <div id="image" class="d-flex col-xl-2 col-lg-2 col-md-3" style=" justify-content: center;">
+            <img src="{{group.image.url}}" style="height: 100px; width: 100px; border-radius: 5px;">
+          </div>
+          <div id="middle" class="col-xl-7 col-lg-7 col-md-6">
+            <div class="my-2">
+              <div id="group-name">
+                <h2>{{group.name}}</h2>
+              </div>
+              <div id="admin">
+                <h4>{% trans "Admin" %}- <a href="{% url "user-profile" group.creator.id %}">@{{group.creator.username}}</a></h4>
+                <p>{% trans "Members" %}: {{members|length|add:"1"}}</p>
+              </div>
+              <div id="tag">
+                {% for tag in tags %}
+                <button style="border-radius: 16px; background-color: {{tag.color}};color: white; padding: 3px 7px; margin: 4px 2px; border: none">{{tag.name}}</button>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div id="buttons" class="col-xl-3 col-lg-3 col-md-3 my-3">
+            {% if request.user == group.creator %}
+                  <div class="d-grid gap-2">
+                      <a href="{% url "edit-group" group.id %}" class="btn btn-outline-primary" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg> {% trans "Edit Group" %}</a>
+                      <a href="{% url "pending_requests" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Requests" %}</a>
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                      </svg> {% trans "Delete" %}</a>
+                  </div>
+      
+                  {% elif request.user in members %}
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                  </svg> {% trans "Leave the group" %}</a>
+                  {% else %}
+                  {% if group.private %}
+                  {% if sent %}
+                  <a onclick="spinner()" href="{% url "delete-request" sent.id %}" class="btn btn-outline-primary" role="button">{% trans "Request pending...(Click to delete)" %}</a>
+                  {% else %}
+                  <a href="{% url "join-request-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Request to Join" %}</a>
+                  {% endif %}
+                  {% else %}
+                  <a onclick="spinner()" href="{% url "group-join" group.id %}" class="btn btn-outline-primary" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                  </svg> {% trans "Join" %}</a>
+                  {% endif %}
+                  {% endif %}
+          </div>
+        </div>
+        <div id="description-rules" class="my-3">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="list-group-item list-group-item-action active" style="font-size: small;" id="list-description-list" data-bs-toggle="list" href="#list-description" role="tab" aria-controls="list-description">{% trans "Description" %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="list-group-item list-group-item-action" style="font-size: small;" id="list-rules-list" data-bs-toggle="list" href="#list-rules" role="tab" aria-controls="list-rules">{% trans "Rules" %}</a>
+            </li>
+            <li class="nav-item d-block d-sm-none">
+              <a class="list-group-item list-group-item-action" style="font-size: small;" id="list-members-list" data-bs-toggle="list" href="#list-members" role="tab" aria-controls="list-members">{% trans "Members" %}</a>
+            </li>
+          </ul>
+          <div class="my-4">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-description" role="tabpanel" aria-labelledby="list-description-list">
+                    <h5>
+                        {{group.description}}
+                    </h5>
+                </div>
+                <div class="tab-pane fade" id="list-rules" role="tabpanel" aria-labelledby="list-rules-list">
+                    <h5>
+                        {{group.notice}}
+                    </h5>
+                </div>
+                <div class="tab-pane fade" id="list-members" role="tabpanel" aria-labelledby="list-members-list">
+                  
+                  <div class="d-flex my-3  ">
+                    <div>
+                      <img src="{{group.creator.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+                    </div>
+                    <div>
+                      <a href="{% url "user-profile" group.creator.id %}" class="mx-3" style=";font-size: large;text-decoration: none;">{{group.creator.name}}({% trans "Admin" %})</a>
+                    </div>
+                  </div>
+                {% for member in members %}
+                <div class="d-flex my-3  ">
+                  <div>
+                      <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+                  </div>
+                  <div>
+                      <a href="{% url "user-profile" member.id %}" class="mx-3" style="font-size: large;text-decoration: none;">{{member.name}}</a>
+                  </div>
+                  {% if request.user == group.creator %}
+              <div>
+                <a onclick="spinner()" href="{% url "remove-group-member" group.id member.id %}" aria-label="Kick">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16" aria-label="Kick">
+                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </a>
+              </div>
+              {% endif %}
+                </div>
+                {% endfor %}
+                </div> 
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 d-none d-sm-block">
+        <div id="membersid">
+          <div>
+            <h3>{% trans "Members" %}</h3>
+          </div>
+          <div>
+            <div class="d-flex my-3  ">
+            <div>
+              <img src="{{group.creator.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+            </div>
+            <div>
+              <a href="{% url "user-profile" group.creator.id %}" class="mx-3" style=";font-size: large;text-decoration: none;">{{group.creator.name}} ({% trans "Admin" %})</a>
+            </div>
+          </div>
+            {% for member in members %}
+            <div class="d-flex my-3  ">
+              <div>
+                  <img src="{{member.avatar.url}}" style="border: 10px;height: 23px; width: 23px; border-radius: 10px;" alt="">
+              </div>
+              <div>
+                  <a href="{% url "user-profile" member.id %}" class="mx-3" style=";font-size: large;text-decoration: none;">{{member.name}}</a>
+              </div>
+              {% if request.user == group.creator %}
+              <div>
+                <a href="{% url "remove-group-member" group.id member.id %}" aria-label="Kick">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16" aria-label="Kick">
+                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+            </div> 
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function spinner() {
+      document.getElementById("spinner").style.display = 'block'
+    }
+  </script>
+{% endblock content %}
