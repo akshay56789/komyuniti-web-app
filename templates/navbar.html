@@ -23,7 +23,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0; 
+  right: 0;
   width: 50px;
   height: 50px;
 }
@@ -134,7 +134,7 @@
   }
 }
 
-  
+
 </style>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0e0e0;">
     <div class="container-fluid">
@@ -143,13 +143,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url "home" %}">{% trans "Home" %}</a>
           </li>
-          
-          
+
+
           {% if request.user.is_authenticated %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,14 +162,14 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url "about-me" %}">{% trans "About" %}</a></li>
               <li><a onclick="spinner()" class="dropdown-item" href="{% url 'logout' %}">{% trans "Log Out" %}</a></li>
-              
+
             </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">{% trans "Logged in as" %} @{{request.user.username}}</a>
           </li>
-          
-          
+
+
         </ul>
         <form class="d-flex" action="{% url 'home' %}" method="get">
           <input class="form-control me-2" type="search" name="q" placeholder="{% trans "Search groups" %}" aria-label="Search">
@@ -211,7 +211,7 @@
           </ul>
         </div>
         {% endif %}
-        
+
       </div>
     </div>
   </nav>
