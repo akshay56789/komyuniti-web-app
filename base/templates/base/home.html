@@ -5,6 +5,18 @@
 
 <h1></h1>
 
+<style>
+.block-button {
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+
+.block-button:active {
+  transform: translateY(2px);
+}
+</style>
+
 {% if request.user.is_authenticated %}
 <div class="">
     <h1 class="mx-4">{% trans "Groups" %}</h1>
@@ -14,7 +26,7 @@
         <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
             <div>
                 <!-- <h1><a href="/group/{{group.id}}">{{group.name}}</a></h1> -->
-                <div class="card" style="width: 15rem; height: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="card block-button" style="width: 15rem; height: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                     <img src="{{group.image.url}}" class="card-img-top" style="height: 200px; width: 15rem;">
                     <div class="card-body">
                       <h5 class="card-title">{{group.name}}</h5>
@@ -23,7 +35,7 @@
             </div>
         </a>
     </div>
-    <div class="d-block d-sm-none">
+    <div class="d-block d-sm-none block-button ">
         <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
             <li class="list-group-item my-1" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <div class="row ">
