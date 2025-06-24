@@ -33,7 +33,7 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale/',
 ]
 
-ALLOWED_HOSTS = ['akshay34567.pythonanywhere.com']
+ALLOWED_HOSTS = ['akshay34567.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 LANGUAGES = [
     ("en", _("English")),
