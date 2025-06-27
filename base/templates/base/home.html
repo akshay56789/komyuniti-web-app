@@ -19,34 +19,77 @@
 
 {% if request.user.is_authenticated %}
 <div class="">
-    <h1 class="mx-4">{% trans "Groups" %}</h1>
+    <div class="mx-3 mx-md-4 my-4 d-flex flex-column flex-sm-row align-items-start align-items-sm-center">
+        <h1 class="d-flex align-items-center mb-2 mb-sm-0" style="font-weight: 800; color: #3730a3; letter-spacing: 1px; font-size: 2rem;">
+            <span class="d-inline-flex align-items-center" style="background: linear-gradient(90deg, #6366f1 60%, #818cf8 100%); border-radius: 10px; padding: 0.3em 0.7em 0.3em 0.5em; margin-right: 0.7rem;">
+                <i class="bi bi-people-fill" style="color: #fff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
+                <span class="d-none d-sm-inline" style="color: #fff;">{% trans "Your Groups" %}</span>
+            </span>
+            <span class="d-inline d-sm-none" style="color: #6366f1; margin-left: 0.2em;">{% trans "Your Groups" %}</span>
+        </h1>
+    </div>
     <div class="row mx-3 my-2">
         {% for group in groups %}
-    <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 d-none d-sm-block">
+    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-4 d-none d-sm-block">
         <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
-            <div>
-                <!-- <h1><a href="/group/{{group.id}}">{{group.name}}</a></h1> -->
-                <div class="card block-button" style="width: 15rem; height: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <img src="{{group.image.url}}" class="card-img-top" style="height: 200px; width: 15rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">{{group.name}}</h5>
+            <div class="card block-button group-card" style="width: 100%; height: 20rem; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px 0 rgba(0,0,0,0.12), 0 1.5px 4px 0 rgba(0,0,0,0.10); background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%); border: none;">
+                <div style="position: relative;">
+                    <img src="{{group.image.url}}" class="card-img-top" style="height: 180px; width: 100%; object-fit: cover; border-top-left-radius: 18px; border-top-right-radius: 18px;">
+                    <span style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.85); color: #6366f1; font-size: 1.2rem; padding: 0.3em 0.7em; border-radius: 12px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-people-fill"></i>
+                        {{ group.members.count }}
+                    </span>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 110px;">
+                    <h5 class="card-title mb-2" style="color: #3730a3; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{group.name}}</h5>
+                    <p class="card-text" style="font-size: 0.98rem; color: #64748b; height: 2.5em; overflow: hidden; text-overflow: ellipsis;">
+                        {{ group.description|truncatechars:60 }}
+                    </p>
+                    <div class="mt-auto d-flex align-items-center">
+                        <span class="badge rounded-pill" style="background: #6366f1; color: #fff; font-size: 0.85em; margin-right: 0.5em;">
+                            <i class="bi bi-chat-dots"></i> {{ group.posts.count }}
+                        </span>
+                        <span class="badge rounded-pill" style="background: #f59e42; color: #fff; font-size: 0.85em;">
+                            <i class="bi bi-calendar-event"></i> {{ group.events.count }}
+                        </span>
                     </div>
-                  </div>
+                </div>
             </div>
         </a>
     </div>
-    <div class="d-block d-sm-none block-button ">
+    <style>
+    .group-card {
+        margin-right: 12px;
+        margin-left: 6px;
+    }
+    .group-card:hover {
+        box-shadow: 0 12px 32px 0 rgba(99,102,241,0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
+        transform: translateY(-4px) scale(1.03);
+        transition: all 0.18s cubic-bezier(.4,2.3,.3,1);
+    }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <div class="d-block d-sm-none block-button">
         <a href="{% url "group" group.id 1 %}" style="text-decoration: none;">
-            <li class="list-group-item my-1" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                <div class="row ">
-                    <div class="col-3">
-                        <img src="{{group.image.url}}" style="height: 50px; width: 50px; border-radius: 5px;">
-                    </div>
-                    <div class="col-9">
-                        <h5>{{group.name}}</h5>
+            <div class="card my-2 shadow-sm" style="border-radius: 16px; overflow: hidden; background: linear-gradient(120deg, #e0e7ff 60%, #f8fafc 100%); border: none;">
+                <div class="d-flex align-items-center p-2">
+                    <img src="{{group.image.url}}" style="height: 56px; width: 56px; border-radius: 12px; object-fit: cover; margin-right: 12px; border: 2px solid #6366f1;">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1" style="color: #3730a3; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{group.name}}</h6>
+                        <div class="mt-1 d-flex align-items-center">
+                            <span class="badge rounded-pill me-1" style="background: #6366f1; color: #fff; font-size: 0.82em;">
+                                <i class="bi bi-people-fill"></i> {{ group.members.count }}
+                            </span>
+                            <span class="badge rounded-pill me-1" style="background: #f59e42; color: #fff; font-size: 0.82em;">
+                                <i class="bi bi-chat-dots"></i> {{ group.posts.count }}
+                            </span>
+                            <span class="badge rounded-pill" style="background: #10b981; color: #fff; font-size: 0.82em;">
+                                <i class="bi bi-calendar-event"></i> {{ group.events.count }}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </li>
+            </div>
         </a>
     </div>
     {% empty %}
@@ -55,8 +98,21 @@
     
     {% endfor %}
     </div>
-    <div class="mx-4">
-        <p>{% trans "You can search for groups using the search bar," %} <a href="{% url "create-group" %}">{% trans " or you can create your own group." %}</a></p>
+    <div class="mx-4 my-4">
+        <div class="card shadow-sm border-0" style="border-radius: 18px; background: linear-gradient(120deg, #e0e7ff 60%, #f8fafc 100%);">
+            <div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="mb-3 mb-md-0 d-flex align-items-center">
+                    <i class="bi bi-search" style="font-size: 2rem; color: #6366f1; margin-right: 1rem;"></i>
+                    <span style="font-size: 1.1rem; color: #374151;">
+                        {% trans "Looking for a group? Use the" %} <strong>{% trans "search bar" %}</strong> {% trans "above to find communities that match your interests." %}
+                    </span>
+                </div>
+                <a href="{% url 'create-group' %}" class="btn btn-primary d-flex align-items-center" style="background: linear-gradient(90deg, #6366f1 60%, #818cf8 100%); border: none; border-radius: 12px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 2px 8px rgba(99,102,241,0.10); transition: background 0.2s;">
+                    <i class="bi bi-plus-circle me-2" style="font-size: 1.3rem;"></i>
+                    {% trans "Create Your Own Group" %}
+                </a>
+            </div>
+        </div>
     </div>
     
     
@@ -68,7 +124,7 @@
 {% else %}
 <div>
     {% comment %} <form action="" method="POST"> {% endcomment %}
-        <div class="accordion" id="accordionExample">
+        <!-- <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -81,28 +137,56 @@
                   </div>
                 </div>
               </div>
-        </div>
+        </div> -->
         
     <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
-        <div class="card " style="width: 18rem; background-color: #f9f9f9;">
-            <div class="card-body" style="margin-bottom: 3rem;">
-                <h5 class="card-title text-center">{% trans "Log In" %}</h5>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <label for="exampleFormControlInput1" class="form-label">{% trans "Email address" %}</label>
-                    <input type="email" class="form-control" id="email" name='username' placeholder="name@gmail.com"></input>
-                    <label for="exampleFormControlInput1" class="form-label">{% trans "Password" %}</label>
-                    <input type="password" class="form-control" name='password' id="password"></input>
-                    <div class="d-flex justify-content-center">
-                        <button onclick="spinner()" type="submit" class="btn btn-primary my-2">{% trans "Log In" %}</button>
+        <div class="card shadow-lg border-0" style="width: 22rem; border-radius: 22px; background: linear-gradient(135deg, #e0e7ff 60%, #f8fafc 100%); box-shadow: 0 8px 32px 0 rgba(99,102,241,0.10);">
+            <div class="card-body px-4 py-4" style="margin-bottom: 2rem;">
+                <div class="d-flex flex-column align-items-center mb-3">
+                    <div style="background: linear-gradient(90deg, #6366f1 60%, #818cf8 100%); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.7rem;">
+                        <i class="bi bi-people-fill" style="color: #fff; font-size: 2rem;"></i>
                     </div>
-                    
-                    
+                    <h4 class="card-title fw-bold text-center" style="color: #3730a3; letter-spacing: 1px;">{% trans "Welcome Back!" %}</h4>
+                    <p class="text-muted text-center mb-0" style="font-size: 1rem;">{% trans "Log in to connect with your community" %}</p>
+                </div>
+                <form action="" method="POST" autocomplete="on">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold" style="color: #6366f1;">{% trans "Email address" %}</label>
+                        <input type="email" class="form-control" id="email" name="username" placeholder="name@gmail.com" required style="border-radius: 10px; border: 1.5px solid #c7d2fe;">
+                    </div>
+                    <div class="mb-2">
+                        <label for="password" class="form-label fw-semibold" style="color: #6366f1;">{% trans "Password" %}</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="••••••••" required style="border-radius: 10px; border: 1.5px solid #c7d2fe;">
+                    </div>
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="#" class="small" style="color: #6366f1; text-decoration: underline;">{% trans "Forgot password?" %}</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button onclick="spinner()" type="submit" class="btn btn-primary w-100" style="background: linear-gradient(90deg, #6366f1 60%, #818cf8 100%); border: none; border-radius: 12px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(99,102,241,0.10); transition: background 0.2s;">
+                            <i class="bi bi-box-arrow-in-right me-2"></i> {% trans "Log In" %}
+                        </button>
+                    </div>
                 </form>
-
-
-                <a href="{% url 'register' %}">{% trans "New to Komyuniti? Create an account." %}</a>
-                
+                <div class="text-center mt-4">
+                    <span class="text-muted">{% trans "New to Komyuniti?" %}</span>
+                    <a href="{% url 'register' %}" style="color: #6366f1; font-weight: 600; text-decoration: underline;">{% trans "Create an account" %}</a>
+                </div>
+                <hr class="my-4" style="border-top: 1.5px solid #e0e7ff;">
+                <div class="d-flex flex-column align-items-center">
+                    <span class="text-muted mb-2" style="font-size: 0.95rem;">{% trans "Or log in with" %}</span>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-primary rounded-circle" style="width: 42px; height: 42px; border: none; background: #fff; box-shadow: 0 2px 8px rgba(99,102,241,0.08);">
+                            <i class="bi bi-facebook" style="font-size: 1.3rem; color: #1877f3;"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger rounded-circle" style="width: 42px; height: 42px; border: none; background: #fff; box-shadow: 0 2px 8px rgba(99,102,241,0.08);">
+                            <i class="bi bi-google" style="font-size: 1.3rem; color: #ea4335;"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-dark rounded-circle" style="width: 42px; height: 42px; border: none; background: #fff; box-shadow: 0 2px 8px rgba(99,102,241,0.08);">
+                            <i class="bi bi-github" style="font-size: 1.3rem;"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
