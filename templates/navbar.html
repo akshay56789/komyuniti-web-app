@@ -136,98 +136,84 @@
 
 
 </style>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0e0e0;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url "home" %}"><h1>Komyuniti</h1></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%); box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+      <img src="https://img.icons8.com/fluency/48/000000/community-grants.png" alt="Logo" width="40" height="40" class="me-2" style="border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: 2px;">Komyuniti</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-
-
-        
-
-        
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "home" %}">{% trans "Home" %}</a>
-          </li>
-
-
-
-
-          {% if request.user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {% trans "Profile" %}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{% url "user-profile" request.user.id %}">{% trans "Profile" %}</a></li>
-              <li><a class="dropdown-item" href="{% url "settings" %}">{% trans "Settings" %}</a></li>
-              <li><a class="dropdown-item" href="{% url "group-invites" %}">{% trans "Invite Request" %}</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url "about-me" %}">{% trans "About" %}</a></li>
-              <li><a onclick="spinner()" class="dropdown-item" href="{% url 'logout' %}">{% trans "Log Out" %}</a></li>
-
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">{% trans "Logged in as" %} @{{request.user.username}}</a>
-          </li>
-
-
-
-
-        </ul>
-        <form class="d-flex" action="{% url 'home' %}" method="get">
-          <input class="form-control me-2" type="search" name="q" placeholder="{% trans "Search groups" %}" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">{% trans "Search" %}</button>
-        </form>
-        {% else %}
-        <a class="nav-link"  href="{% url "about-me" %}">{% trans "About" %}</a>
-        <div class="dropdown">
-          <button
-            class="btn btn-light dropdown-toggle"
-            type="button"
-            id="dropdownMenu2"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-globe-central-south-asia"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M4.882 1.731a.48.48 0 0 0 .14.291.487.487 0 0 1-.126.78l-.291.146a.7.7 0 0 0-.188.135l-.48.48a1 1 0 0 1-1.023.242l-.02-.007a1 1 0 0 0-.462-.04 7 7 0 0 1 2.45-2.027m-3 9.674.86-.216a1 1 0 0 0 .758-.97v-.184a1 1 0 0 1 .445-.832l.04-.026a1 1 0 0 0 .152-1.54L3.121 6.621a.414.414 0 0 1 .542-.624l1.09.818a.5.5 0 0 0 .523.047.5.5 0 0 1 .724.447v.455a.8.8 0 0 0 .131.433l.795 1.192a1 1 0 0 1 .116.238l.73 2.19a1 1 0 0 0 .949.683h.058a1 1 0 0 0 .949-.684l.73-2.189a1 1 0 0 1 .116-.238l.791-1.187A.45.45 0 0 1 11.743 8c.16 0 .306.084.392.218.557.875 1.63 2.282 2.365 2.282l.04-.001a7.003 7.003 0 0 1-12.658.905Z"
-              />
-            </svg>
-            {% trans "Language" %}
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages%}
-            {% for lang in languages %}
-            <li class="dropdown-item border-1">
-              <a style="text-decoration: none" href="/{{lang.code}}/"
-                >{{lang.name_local}}</a
-              >
-            </li>
-            {% endfor %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+            <i class="bi bi-house-door-fill"></i> {% trans "Home" %}
+          </a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'group-invites' %}">
+            <i class="bi bi-people-fill"></i> {% trans "Invites" %}
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% if request.user.profile.avatar %}{{ request.user.profile.avatar.url }}{% else %}https://ui-avatars.com/api/?name={{request.user.username}}{% endif %}" alt="Avatar" width="32" height="32" class="rounded-circle me-2" style="object-fit: cover;">
+            <span>{% trans "Profile" %}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'user-profile' request.user.id %}"><i class="bi bi-person"></i> {% trans "My Profile" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'settings' %}"><i class="bi bi-gear"></i> {% trans "Settings" %}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'about-me' %}"><i class="bi bi-info-circle"></i> {% trans "About" %}</a></li>
+            <li><a onclick="spinner()" class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> {% trans "Log Out" %}</a></li>
           </ul>
-        </div>
-        {% endif %}
-
+        </li>
+        <li class="nav-item d-flex align-items-center ms-2">
+          <span class="badge rounded-pill bg-light text-primary" style="font-size: 1rem;">
+            <i class="bi bi-person-circle"></i> @{{request.user.username}}
+          </span>
+        </li>
+      </ul>
+      <form class="d-flex ms-lg-3" action="{% url 'home' %}" method="get">
+        <input class="form-control me-2" type="search" name="q" placeholder="{% trans 'Search groups' %}" aria-label="Search" style="border-radius: 20px;">
+        <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      {% else %}
+      </ul>
+      <form class="d-flex ms-lg-3" action="{% url 'home' %}" method="get">
+        <input class="form-control me-2" type="search" name="q" placeholder="{% trans 'Search groups' %}" aria-label="Search" style="border-radius: 20px;">
+        <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <a class="nav-link ms-3" href="{% url 'about-me' %}"><i class="bi bi-info-circle"></i> {% trans "About" %}</a>
+      <div class="dropdown ms-2">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-globe"></i> {% trans "Language" %}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for lang in languages %}
+          <li class="dropdown-item border-1">
+            <a style="text-decoration: none" href="/{{lang.code}}/">{{lang.name_local}}</a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
+      {% endif %}
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <script type="text/javascript">
-    function spinner() {
-      document.getElementById("spinner").style.display = 'block'
-    }
-  </script>
+<!-- Optionally include Bootstrap Icons CDN for icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<script type="text/javascript">
+  function spinner() {
+    document.getElementById("spinner").style.display = 'block'
+  }
+</script>
