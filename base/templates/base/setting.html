@@ -1,6 +1,46 @@
 {% extends "main.html" %} {% block content %} {% load i18n %}
 <div class="container">
-  <h3>Settings</h3>
+  <h2 class="mb-4">Settings</h2>
+
+  <div class="list-group settings-list">
+    <a href="{% url "user-profile" request.user.id %}" class="list-group-item list-group-item-action">{% trans "Profile" %}</a>
+    <a href="{% url "change-password" %}" class="list-group-item list-group-item-action">{% trans "Change Password" %}</a>
+    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Notifications</a>
+    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Privacy</a>
+    <div class="list-group-item p-0">
+      <div class="dropdown">
+      <button
+        class="btn btn-link w-100 text-start px-3 py-2 dropdown-toggle"
+        type="button"
+        id="languageDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        style="text-decoration: none; color: inherit;"
+      >
+        Language &amp; Region
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="languageDropdown">
+        {% load i18n %}
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for lang in languages %}
+        <li>
+        <a class="dropdown-item" href="/{{ lang.code }}/">
+          {{ lang.name_local }}
+          {% if lang.code == LANGUAGE_CODE %} <span class="text-success">&#10003;</span> {% endif %}
+        </a>
+        </li>
+        {% endfor %}
+      </ul>
+      </div>
+    </div>
+    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Billing</a>
+    <a href="#" class="list-group-item list-group-item-action text-danger" >{% trans "Delete Account" %}</a>
+  </div>
+
+
+  <!-- <h3>Settings</h3>
   <div class="my-4">
     <div class="my-2 alert alert-primary">
       {% trans "Select Language" %}
@@ -45,7 +85,7 @@
       <a style="text-decoration: none; color: black;" href="#">{% trans "Delete Account" %}</a>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
