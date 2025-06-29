@@ -18,7 +18,7 @@ jobs:
         curl -s -X POST \
         "https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USERNAME }}/consoles/33956834/send_input/" \
         -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-        -d '{"input": "cd komyuniti-web-app && git pull origin main --no-edit\n"}' \
+        -d '{"input": "[[ $(basename $PWD) == \"komyuniti-web-app\" ]] && git pull origin main --no-edit || (cd Komyuniti && git pull origin main --no-edit)\n"}' \
         -H "Content-Type: application/json"
 
     - name: Reload PythonAnywhere Web App
