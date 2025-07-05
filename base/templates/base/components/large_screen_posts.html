@@ -1,79 +1,61 @@
 {% load i18n %}
 {% load cloudinary %}
 
-<div class="list-group py-1 ">
-    <li class="list-group-item">
-      <div class="row">
-        <div class="col-xl-1 col-lg-2 col-md-2 " >
-          <a onclick="spinner()" href="{% url "user-profile" post.creator.id %}"><img src="{{post.creator.avatar.url}}" class="w-sm-25" style="height: 2.5rem; width: 2.5rem; border-radius: 5rem; margin-left: 1rem;" /></a>
-        </div>
-        <div class="col-xl-11 col-lg-10 col-md-10" style="margin-top: 2px;">
-          <div>
-            <div class="d-flex w-100 ">
-              <a onclick="spinner()" href="{% url "user-profile" post.creator.id %}" style="text-decoration: none; color: black"><h5 class="mb-1">{{post.creator.name}}&nbsp;</h5></a><a onclick="spinner()" href="{% url "user-profile" post.creator.id %}" style="text-decoration: none;"> @{{post.creator.username}}&nbsp; </a> ● <p>&nbsp;{{post.created|timesince}}</p>
-            </div>
-            <div class="my-1">
-              <p class="mb-1">{{post.body}}</p>
-              <div>
-
-                  {% if post.image %}
-              <!-- <img src="{{post.image.url}}" alt=""> -->
-                  <a href="{{post.image.url}}"><img style="max-width: 100%;max-width: 400px; height: auto;" src="{{post.image.url}}" alt=""></a>
-                  {% endif %}
-                  {% if post.embed %}
-                  <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="{{post.embed}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                  </div>
-                  {% endif %}
-
-
-              </div>
-
-            </div>
-
-            {% if post.created|time:"H:i" != post.post_updated|time:"H:i" %}
-            <small>{% trans "Edited" %}</small>
-            {% endif %}
-            <hr>
-            {% if request.user == post.creator %}
-            <div class="row">
-              <div class="col-2">
-                <a onclick="spinner()" href="{% url "edit-post" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                </svg> {% trans "Edit" %}</a>
-              </div>
-              <div class="col-2">
-                <a onclick="spinner()" href="{% url "delete-post" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-                </svg> {% trans "Delete" %}</a>
-              </div>
-              <div class="col-3">
-                <a onclick="spinner()" href="{% url "post-details" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-quote-fill" viewBox="0 0 16 16">
-                  <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM7.194 4.766q.13.188.227.401c.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667S4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324q.128.125.227.272M11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666S9.112 4 10.069 4c.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324q.128.125.227.272.131.188.228.401c.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
-                </svg> {% trans "See comments" %}({{post.no_of_comments}})</a>
-              </div>
-            </div>
-            {% else %}
-            <div class="row">
-              <div class="col-2">
-                <a onclick="spinner()" href="{% url "create-post-report-request" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
-                  <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"/>
-                </svg> {% trans "Report" %}</a>
-              </div>
-              <div class="col-3">
-                <a onclick="spinner()" href="{% url "post-details" post.id %}" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-quote-fill" viewBox="0 0 16 16">
-                  <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM7.194 4.766q.13.188.227.401c.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667S4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324q.128.125.227.272M11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666S9.112 4 10.069 4c.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324q.128.125.227.272.131.188.228.401c.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
-                </svg> {% trans "See comments" %}({{post.no_of_comments}})</a>
-              </div>
-            </div>
-          </div>
+<div class="card mb-4 shadow rounded-4 border-0 position-relative" style="overflow: hidden;">
+  <div class="card-body pb-2 pt-4 px-4">
+    <div class="d-flex align-items-center mb-2">
+      <a onclick="spinner()" href="{% url 'user-profile' post.creator.id %}">
+        <img src="{{post.creator.avatar.url}}" class="rounded-circle border border-3 border-primary shadow-sm me-3" style="height: 56px; width: 56px; object-fit: cover;" />
+      </a>
+      <div>
+        <div class="d-flex align-items-center">
+          <a onclick="spinner()" href="{% url 'user-profile' post.creator.id %}" class="fw-bold text-dark text-decoration-none fs-5">{{post.creator.name}}</a>
+          <span class="text-muted ms-2">@{{post.creator.username}}</span>
+          <span class="text-muted ms-2" style="font-size: 0.95em;">• {{post.created|timesince}}</span>
+          {% if post.created|time:"H:i" != post.post_updated|time:"H:i" %}
+            <span class="badge bg-light text-muted ms-2" style="font-size: 0.8em;">{% trans "Edited" %}</span>
           {% endif %}
         </div>
+        <span class="badge bg-gradient bg-primary bg-opacity-10 text-primary mt-1" style="font-size: 0.8em;">{{ post.creator.profile_tagline|default:"Member" }}</span>
       </div>
-
-    </li>
-
-
-
+    </div>
+    <div class="mb-3 ps-2 border-start border-3 border-primary-subtle">
+      <p class="mb-2 fs-5" style="white-space: pre-line;">{{post.body}}</p>
+      {% if post.embed %}
+        <div class="ratio ratio-16x9 mb-2 rounded-3 overflow-hidden border border-2 border-primary-subtle">
+          <iframe src="{{post.embed}}" title="Embedded media" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      {% endif %}
+      {% if post.image %}
+        <div class="mb-2 mt-3" style="background: #000; display: flex; justify-content: center; align-items: center;">
+          <img src="{{post.image.url}}" alt="" class="rounded-3 shadow w-100" style="max-height: 450px; object-fit: contain; background: #fff; border: 2px solid #fff;">
+        </div>
+      {% endif %}
+    </div>
+    <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-2" style="gap: 2rem;">
+      <div class="d-flex align-items-center" style="gap: 1.5rem;">
+        <a onclick="spinner()" href="{% url 'post-details' post.id %}" class="text-primary text-decoration-none d-flex align-items-center" style="gap: 0.4rem;">
+          <i class="bi bi-chat-dots-fill"></i>
+          <span class="fw-semibold">{% trans "Comments" %} ({{post.no_of_comments}})</span>
+        </a>
+        {% if request.user == post.creator %}
+          <a onclick="spinner()" href="{% url 'edit-post' post.id %}" class="text-secondary text-decoration-none d-flex align-items-center" style="gap: 0.3rem;">
+            <i class="bi bi-pencil-square"></i> <span>{% trans "Edit" %}</span>
+          </a>
+          <a onclick="spinner()" href="{% url 'delete-post' post.id %}" class="text-danger text-decoration-none d-flex align-items-center" style="gap: 0.3rem;">
+            <i class="bi bi-trash3"></i> <span>{% trans "Delete" %}</span>
+          </a>
+        {% else %}
+          <a onclick="spinner()" href="{% url 'create-post-report-request' post.id %}" class="text-warning text-decoration-none d-flex align-items-center" style="gap: 0.3rem;">
+            <i class="bi bi-flag"></i> <span>{% trans "Report" %}</span>
+          </a>
+        {% endif %}
+      </div>
+      <div>
+        <span class="badge rounded-pill bg-light text-secondary px-3 py-2 shadow-sm" style="font-size: 0.9em;">
+          <i class="bi bi-globe-americas me-1"></i> {% trans "Public" %}
+        </span>
+      </div>
+    </div>
   </div>
+</div>

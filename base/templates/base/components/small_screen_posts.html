@@ -2,7 +2,66 @@
 {% load cloudinary %}
 
 
-    <li class="list-group-item my-1 d-block d-sm-none">
+    <li class="list-group-item border-0 rounded-4 shadow-sm my-3 px-2 py-3 d-block d-sm-none" style="background: #fff;">
+      <div class="d-flex align-items-center mb-2">
+        <a href="{% url 'user-profile' post.creator.id %}">
+          <img src="{{post.creator.avatar.url}}" alt="avatar" class="me-2" style="height: 2.7rem; width: 2.7rem; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;">
+        </a>
+        <div class="flex-grow-1">
+          <a href="{% url 'user-profile' post.creator.id %}" class="fw-bold text-dark" style="text-decoration: none; font-size: 1.08rem;">{{post.creator.name}}</a>
+          <div>
+            <a href="{% url 'user-profile' post.creator.id %}" class="text-muted" style="font-size: 0.95rem; text-decoration: none;">@{{post.creator.username}}</a>
+          </div>
+        </div>
+        <div>
+          {% if request.user == post.creator %}
+          <a href="{% url 'edit-post' post.id %}" class="btn btn-link p-1" title="{% trans 'Edit' %}"><i class="bi bi-pencil-square"></i></a>
+          <a href="{% url 'delete-post' post.id %}" class="btn btn-link p-1" title="{% trans 'Delete' %}"><i class="bi bi-trash3"></i></a>
+          {% else %}
+          <a href="{% url 'create-post-report-request' post.id %}" class="btn btn-link p-1" title="{% trans 'Report' %}"><i class="bi bi-flag"></i></a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="mb-2" style="font-size: 1.05rem; line-height: 1.5;">
+        {% if post.body|length > 120 %}
+          {{post.body|slice:":120"}}<span class="text-primary">...</span>
+          <a href="{% url 'post-details' post.id %}" class="text-decoration-none text-primary" style="font-size: 0.98rem;">{% trans "see more" %}</a>
+        {% else %}
+          {{post.body}}
+        {% endif %}
+      </div>
+
+      {% if post.image %}
+        <div class="d-flex justify-content-center mb-2">
+          <a href="{{post.image.url}}" target="_blank" style="display: block;">
+            <img src="{{post.image.url}}" alt="post image" class="rounded-3" style="max-width: 100%; max-width: 270px; height: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+          </a>
+        </div>
+      {% endif %}
+      {% if post.embed %}
+        <div class="d-flex justify-content-center mb-2">
+          <iframe width="250" height="150" src="{{post.embed}}" title="Embedded media" frameborder="0" allowfullscreen style="border-radius: 0.7rem;"></iframe>
+        </div>
+      {% endif %}
+
+      <div class="d-flex align-items-center justify-content-between mt-2">
+        <div class="text-secondary" style="font-size: 0.93rem;">
+          <i class="bi bi-clock"></i> {{post.created|timesince}} {% trans "ago" %}
+          {% if post.created|time:"H:i" != post.post_updated|time:"H:i" %}
+            <span class="text-muted" style="font-size: 0.9rem;">{% trans "(edited)" %}</span>
+          {% endif %}
+        </div>
+        <div>
+          <a href="{% url 'post-details' post.id %}" class="btn btn-sm btn-light rounded-pill px-3 me-1" style="font-size: 0.97rem;">
+            <i class="bi bi-chat-right-quote-fill"></i> {{post.no_of_comments}}
+          </a>
+        </div>
+      </div>
+    </li>
+
+
+<!-- <li class="list-group-item my-1 d-block d-sm-none">
       <div class="row">
         <div class="col-1">
           <a href="{% url "user-profile" post.creator.id %}">
@@ -63,7 +122,7 @@
       <div class="my-1">
 
         {% if post.image %}
-        <!-- <img src="{{post.image.url}}" alt=""> -->
+        <!-- <img src="{{post.image.url}}" alt="">
         <a class="d-flex justify-content-center" href="{{post.image.url}}"><img style="max-width: 100%;max-width: 260px; height: auto;" src="{{post.image.url}}" alt=""></a>
         {% endif %}
         {% if post.embed %}
@@ -116,4 +175,6 @@
       function spinner() {
         document.getElementById("spinner").style.display = 'block'
       }
-    </script>
+    </script> -->
+
+    
