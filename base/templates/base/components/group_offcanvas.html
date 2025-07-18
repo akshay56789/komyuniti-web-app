@@ -208,6 +208,7 @@
           
             <a onclick="spinner()" href="{% url "pending_requests" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Requests" %}</a>
             <a href="{% url "invite-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+            <a href="{% url "search-posts" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Search Posts" %}</a>
           
           {% elif request.user in members %}
           
@@ -218,6 +219,7 @@
           
           
             <a href="{% url "invite-page" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Invite" %}</a>
+            <a href="{% url "search-posts" group.id %}" class="btn btn-outline-primary" role="button">{% trans "Search Posts" %}</a>
             {% elif group.private %}
             {% if sent %}
             
