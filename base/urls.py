@@ -66,4 +66,5 @@ urlpatterns = (
     path('remove-club-member/<str:club_id>/<str:pk>', views.removeClubMember, name='remove-club-member'),
     path('create-club-post-report-request/<str:pk>', views.createClubPostReportRequest, name='create-club-post-report-request'),
     path('reject-club-request/<str:pk>', views.reject_club_request, name='reject-club-request'),
+    path('search-posts/<str:pk>/', views.search_posts, name='search-posts'),
 )

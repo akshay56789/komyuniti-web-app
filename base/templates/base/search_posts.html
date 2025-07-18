@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="container my-5">
+    <form method="GET" action="">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{% trans "Search..." %}" name="q" value="{{ q }}">
+            <button class="btn btn-outline-secondary" type="submit">{% trans "Search" %}</button>
+        </div>
+    </form>
+    <div class="search-results">
+        {% if posts %}
+            <h3>
+                {% trans "Search Results" %}{% if q %} {% trans "with query" %} "{{ q }}"{% endif %} - {{ posts|length }} {% trans "results" %}
+            </h3>
+            <ul class="list-group">
+                {% for post in posts %}
+                    <div class="d-block d-sm-none">
+                        {% include "base/components/small_screen_posts.html" %}
+                    </div>
+                    <div class="d-none d-sm-block">
+                        {% include "base/components/large_screen_posts.html" %}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans "No posts found." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

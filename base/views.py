@@ -930,6 +930,18 @@ def reject_club_request(request, pk):
     request1.delete()
     return redirect('club-requests', pk=club_id)
 
+@login_required(login_url='home')
+def search_posts(request, pk):
+    group = Groups.objects.get(id=pk)
+    q = request.GET.get('q')
+    posts = []
+    if q:
+        posts = Post.objects.filter(group=group, body__icontains=q).order_by('-post_updated')
+        if not posts:
+            messages.info(request, 'No posts found.')
+    context = {'posts': posts, 'group': group, 'color': group.theme, 'query': q or ''}
+    return render(request, 'base/search_posts.html', context)
+
 
 
 
