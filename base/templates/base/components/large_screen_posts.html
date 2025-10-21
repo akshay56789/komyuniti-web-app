@@ -31,6 +31,12 @@
           <img src="{{post.image.url}}" alt="" class="rounded-3 shadow w-100" style="max-height: 450px; object-fit: contain; background: #fff; border: 2px solid #fff;">
         </div>
       {% endif %}
+      {% if post.cloudinary_url %}
+        <div class="mb-2 mt-3" style="background: #000; display: flex; justify-content: center; align-items: center;">
+          <img src="{{post.cloudinary_url}}" alt="" class="rounded-3 shadow w-100" style="max-height: 450px; object-fit: contain; background: #fff; border: 2px solid #fff;">
+        </div>
+      {% endif %}
+      
     </div>
     <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-2" style="gap: 2rem;">
       <div class="d-flex align-items-center" style="gap: 1.5rem;">
