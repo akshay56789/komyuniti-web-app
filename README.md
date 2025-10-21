@@ -20,3 +20,5 @@ The platform supports multiple languages, making it accessible to a diverse user
 Administrative Controls
 Admins have the power to manage membership requests, moderate content, and organize events within their groups or clubs.
 Admins can configure the privacy settings of their groups and clubs to control visibility and access.
+
+OK
