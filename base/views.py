@@ -112,6 +112,7 @@ def group(request, pk, num):
             group = group,
             body = request.POST.get('body'),
             image = input_image,
+            cloudinary_url = request.POST.get('cloud_url'),
             embed = request.POST.get('embed'),
         )
         messages.success(request, 'New post created!')
@@ -667,6 +668,7 @@ def ClubPage(request, pk, num):
             creator = request.user,
             body = request.POST.get('body'),
             image = input_image,
+            cloudinary_url = request.POST.get('cloud_url'),
             embed = request.POST.get('embed'),
             )
             messages.success(request, 'Post created!')

@@ -39,6 +39,13 @@
           </a>
         </div>
       {% endif %}
+      
+      {% if post.cloudinary_url %}
+        <div class="d-flex justify-content-center mb-2">
+          <img src="{{post.cloudinary_url}}" alt="post image" class="rounded-3" style="max-width: 100%; max-width: 270px; height: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+        </div>
+      {% endif %}
+
       {% if post.embed %}
         <div class="d-flex justify-content-center mb-2">
           <iframe width="250" height="150" src="{{post.embed}}" title="Embedded media" frameborder="0" allowfullscreen style="border-radius: 0.7rem;"></iframe>
